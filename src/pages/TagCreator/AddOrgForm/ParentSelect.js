@@ -1,11 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import useStyles from './styles';
 
 const ParentSelect = ({ org, orgList, onChange }) => {
-  const classes = useStyles();
-
   return (
     <Autocomplete
       autoComplete
