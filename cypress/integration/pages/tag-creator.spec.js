@@ -19,7 +19,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
   ];
 
   beforeEach(() => {
-    cy.intercept('https://api-stage.civictechindex.org/api/organizations/').as('getOrganizations');
+    cy.intercept('https://api.civictechindex.org/api/organizations/').as('getOrganizations');
     cy.visit('/join-index');
     cy.wait('@getOrganizations');
   });
@@ -85,7 +85,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=radio-no]');
   });
 
-  it('change the org from affiliated for `codeforboston/voiceapp311` to unaffiliated', () => {
+  xit('change the org from affiliated for `codeforboston/voiceapp311` to unaffiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
