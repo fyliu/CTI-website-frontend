@@ -103,24 +103,6 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=radio-no]');
   });
 
-  xit('change the org from affiliated for `codeforboston/voiceapp311` to unaffiliated', () => {
-    cy.get('[data-cy=radio-yes]').click();
-    cy.get('#container-affiliated').within(() => {
-      cy.get('#organization')
-        .click()
-        .type(AFFILIATED_ORGANIZATION)
-        .type('{downarrow}{enter}');
-    });
-    cy.get('#submitButton').click();
-    cy.get('h3').contains(AFFILIATED_ORGANIZATION);
-    cy.get('#change-org').click();
-    cy.contains('Are you affiliated with an organization?');
-    cy.get('[data-cy=radio-yes]');
-    cy.get('[data-cy=radio-no]');
-    cy.get('[data-cy=radio-yes]').click();
-    cy.get('#submitButton').click();
-  });
-
   it('change repository url from `codeforboston/voiceapp311` to `civictechindex/CTI-website-frontend` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
