@@ -1,13 +1,17 @@
-// eslint-disable-next-line max-lines-per-function
 describe('Tag Generator Page (Tag Creator)', () => {
   const AFFILIATED_ORGANIZATION = 'Code for Boston';
   const CHANGE_AFFILIATED_ORGANIZATION = 'Hack for LA';
   const AFFILIATED_TEST_URL = 'codeforboston / voiceapp311';
-  const AFFILIATED_TEST_TAGS = ['code-for-boston', 'code-for-america', 'alexa', 'trash'];
+  const AFFILIATED_TEST_TAGS = [
+    'code-for-boston',
+    'code-for-america',
+    'alexa',
+    'trash',
+  ];
   const UNAFFILIATED_NEW_TAGS = ['tag1', 'tag2', 'tag3'];
   const expectedAffiliatedNewTags = ['civictechindex', 'code-for-all', 'tag1'];
-
-  const UNAFFILIATED_TEST_URL = 'https://github.com/civictechindex/CTI-website-frontend.git';
+  const UNAFFILIATED_TEST_URL =
+    'https://github.com/civictechindex/CTI-website-frontend.git';
   const UNAFFILIATED_TEST_TAGS = [
     'civictechindex',
     'hack-for-la',
@@ -19,7 +23,9 @@ describe('Tag Generator Page (Tag Creator)', () => {
   ];
 
   beforeEach(() => {
-    cy.intercept('https://api.civictechindex.org/api/organizations/').as('getOrganizations');
+    cy.intercept('https://api.civictechindex.org/api/organizations/').as(
+      'getOrganizations'
+    );
     cy.visit('/join-index');
     cy.wait('@getOrganizations');
   });
@@ -31,12 +37,18 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('loads correct 4 tags and affliate new tags for `codeforboston/voiceapp311` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
-      cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
+      cy.get('#organization')
+        .click()
+        .type(AFFILIATED_ORGANIZATION)
+        .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
     cy.get('h3').contains(AFFILIATED_ORGANIZATION);
     cy.get('[data-cy=grid-repository]').within(() => {
-      cy.get('#repository-url', { force: true }).click().type(AFFILIATED_TEST_URL).type('{enter}');
+      cy.get('#repository-url', { force: true })
+        .click()
+        .type(AFFILIATED_TEST_URL)
+        .type('{enter}');
     });
     cy.get('[data-cy=current-tags]').within(() => {
       cy.get('[data-cy=topic-tag] span').each(($el, index, $list) => {
@@ -71,12 +83,18 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('resets form in the middle of `codeforboston/voiceapp311` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
-      cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
+      cy.get('#organization')
+        .click()
+        .type(AFFILIATED_ORGANIZATION)
+        .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
     cy.get('h3').contains(AFFILIATED_ORGANIZATION);
     cy.get('[data-cy=grid-repository]').within(() => {
-      cy.get('#repository-url', { force: true }).click().type(AFFILIATED_TEST_URL).type('{enter}');
+      cy.get('#repository-url', { force: true })
+        .click()
+        .type(AFFILIATED_TEST_URL)
+        .type('{enter}');
     });
     cy.get('[data-cy=radio-no]').click();
     cy.get('#reset-form-button').click();
@@ -88,7 +106,10 @@ describe('Tag Generator Page (Tag Creator)', () => {
   xit('change the org from affiliated for `codeforboston/voiceapp311` to unaffiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
-      cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
+      cy.get('#organization')
+        .click()
+        .type(AFFILIATED_ORGANIZATION)
+        .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
     cy.get('h3').contains(AFFILIATED_ORGANIZATION);
@@ -103,18 +124,27 @@ describe('Tag Generator Page (Tag Creator)', () => {
   it('change repository url from `codeforboston/voiceapp311` to `civictechindex/CTI-website-frontend` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
-      cy.get('#organization').click().type(AFFILIATED_ORGANIZATION).type('{downarrow}{enter}');
+      cy.get('#organization')
+        .click()
+        .type(AFFILIATED_ORGANIZATION)
+        .type('{downarrow}{enter}');
     });
     cy.get('#submitButton').click();
     cy.get('h3').contains(AFFILIATED_ORGANIZATION);
     cy.get('[data-cy=grid-repository]').within(() => {
-      cy.get('#repository-url', { force: true }).click().type(AFFILIATED_TEST_URL).type('{enter}');
+      cy.get('#repository-url', { force: true })
+        .click()
+        .type(AFFILIATED_TEST_URL)
+        .type('{enter}');
     });
     cy.get('[data-cy=grid-repository-url]').within(() => {
       cy.get('a').contains(AFFILIATED_TEST_URL);
     });
     cy.get('#change-url').click({ force: true });
-    cy.get('#repository-url').clear().type(UNAFFILIATED_TEST_URL).type('{enter}');
+    cy.get('#repository-url')
+      .clear()
+      .type(UNAFFILIATED_TEST_URL)
+      .type('{enter}');
     cy.get('a').contains(UNAFFILIATED_TEST_URL);
   });
 
