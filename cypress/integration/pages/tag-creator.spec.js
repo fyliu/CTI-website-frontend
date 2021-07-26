@@ -103,7 +103,7 @@ describe('Tag Generator Page (Tag Creator)', () => {
     cy.get('[data-cy=radio-no]');
   });
 
-  it('change repository url from `codeforboston/voiceapp311` to `civictechindex/CTI-website-frontend` - affiliated', () => {
+  xit('change repository url from `codeforboston/voiceapp311` to `civictechindex/CTI-website-frontend` - affiliated', () => {
     cy.get('[data-cy=radio-yes]').click();
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization')
