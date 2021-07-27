@@ -102,7 +102,7 @@ const Home = () => {
                 className={classes.localTitleSectionStyle}>
                 <Grid item xs={11} md={8} lg={10}>
                   <Typography variant='h2' className={classes.localTitleStyle}>
-                    Join a worldwide movement to catalog every open source civic
+                    Join a worldwide movement to catalog every open-source civic
                     tech project.
                   </Typography>
                 </Grid>
