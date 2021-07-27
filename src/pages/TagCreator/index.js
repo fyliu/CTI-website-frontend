@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 
 import React, { useState,useEffect,useRef } from 'react';
 import {
@@ -73,6 +74,7 @@ const TagCreator = () => {
   const [userTags, setUserTags] = useQueryParam('userTags',withDefault(ArrayParam,[]));
   const [orgTags, setOrgTags] = useQueryParam('orgTags',withDefault(ArrayParam,[]));
   const [options, setOptions] = useState([]);
+  const [repoChangeAlert, setRepoChangeAlert] = useState('');
   const [chipInputValue, setChipInputValue] = useState('');
   const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/join-index', name: 'Tag Your Project' }]
 
@@ -172,7 +174,6 @@ const TagCreator = () => {
         .then(res => {
           setTopicSearchError('')
           setCurrentTags(res.data.names)
-          handleChangeProjectRepository()
         }).catch(e => {
         /*
          * This should store the error state.
@@ -183,13 +184,21 @@ const TagCreator = () => {
             setDisplayState('ProjectUrl')
           }
         })
+      if (userTags.length !== 0){
+        setRepoChangeAlert('It looks like you have changed your repository, please check your tags')
+        setDisplayState('ChangeRepository')
+      }
+      else {
+        handleChangeProjectRepository()
+      }
     }
-    if ((prevRefUrl === repositoryUrl) && ((topicSearchError) === 'Cannot find repository. Please check the name and try again')){
+    else if (((topicSearchError) === 'Cannot find repository. Please check the name and try again')){
       setDisplayState('ProjectUrl')
     }
-    else {
+    else  {
       handleChangeProjectRepository()
     }
+
   }
 
   const handleUpdateChipInput = (e) => {
@@ -218,7 +227,6 @@ const TagCreator = () => {
     fontWeight: '400',
     color: theme.palette.secondary.main,
   }
-
 
   const OrgProjSection = () => {
     return (
@@ -290,12 +298,22 @@ const TagCreator = () => {
             linkStyles={linkStyles}/>
         </>
       )
+    case "ChangeRepository":
+      return (
+        <>
+          <OrgProjSection/>
+          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName}/>
+          <AddMoreTags userTags={userTags} setDisplayState={setDisplayState}
+            resetForm={resetForm} handleChangeChip={handleChangeChip} changeValue={changeValue}
+            repoChangeAlert={repoChangeAlert} setRepoChangeAlert={setRepoChangeAlert}/>
+        </>
+      )
     case "AddMoreTags":
       return (
         <AddMoreTags userTags={userTags} setDisplayState={setDisplayState}
-          resetForm={resetForm} changeValue={changeValue}
+          resetForm={resetForm} handleChangeChip={handleChangeChip} changeValue={changeValue}
+          setRepoChangeAlert={setRepoChangeAlert}
           chipInputValue={chipInputValue}
-          handleChangeChip={handleChangeChip}
           handleUpdateChipInput={handleUpdateChipInput}/>
       )
     case "CopyPasteTags":
