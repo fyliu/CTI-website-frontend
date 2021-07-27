@@ -148,7 +148,7 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
   const handleSubmitOrg = () => {
     const topics = []
     if (value === 'yes' && orgName === ""){
-      setOrgNameError(<p style={{ color: 'red' }}> Please select org name</p>)
+      setOrgNameError('Please select org name')
     }
     else if (value === 'yes' && orgName !== "") {
       let og = orgName.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
@@ -178,7 +178,7 @@ export const OrgChange = ({ value,orgName,setOrgName, setOrgTags, changeValue, s
   }
   return (
     <Grid item xs={12} sm={12}>
-      {orgNameError}
+      <Typography variant='body1' color='error'>{orgNameError}</Typography>
       <Grid align='center' style={{ padding: '20px' }}><Button onClick={handleSubmitOrg} id='submitButton'>Submit Organization</Button></Grid>
     </Grid>
   )
