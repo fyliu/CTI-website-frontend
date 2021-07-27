@@ -37,25 +37,12 @@ const useStyles = makeStyles((theme) => ({
   localTitleSectionStyle: {
     paddingTop: '5%',
   },
-  localTitleStyle:{
+  localTitleStyle: {
     color: theme.palette.warning.main,
     textAlign: 'center',
     justifyContent: 'center',
-    fontSize: '55px',
-    '& br': {
-      display: 'none',
-    },
     [theme.breakpoints.down('md')]: {
-      fontSize: '34px',
-      '& br': {
-        display: 'none',
-      },
-    },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '37px',
-      '& br': {
-        display: 'block',
-      },
+      fontSize: 32,
     },
   },
 }));
@@ -114,9 +101,9 @@ const Home = () => {
                 justify='center'
                 className={classes.localTitleSectionStyle}>
                 <Grid item xs={11} md={8} lg={10}>
-                  <Typography variant='h1' className={classes.localTitleStyle}>
-                    Join a worldwide movement to catalog every open source <br/> civic tech
-                    project.
+                  <Typography variant='h2' className={classes.localTitleStyle}>
+                    Join a worldwide movement to catalog every open-source civic
+                    tech project.
                   </Typography>
                 </Grid>
               </Grid>
