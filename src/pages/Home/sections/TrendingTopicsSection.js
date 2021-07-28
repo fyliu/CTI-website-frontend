@@ -69,11 +69,11 @@ const TrendingTopicsSection = () => {
         return (
           <Chip
             key={key}
-            label={topic.tag}
-            component={RouterLink}
-            to={{ pathname: '/projects', query: { search: topic.search }}}
-            clickable
             className = {classes.homeTag}
+            clickable
+            component={RouterLink}
+            label={topic.tag}
+            to={{ pathname: '/projects', query: { search: topic.search }}}
           />
         );
       })
@@ -84,10 +84,10 @@ const TrendingTopicsSection = () => {
     <Grid container className={classes.trendingContainerStyle}>
       <Grid item lg={10}>
         <Typography variant='h3' color='textPrimary' className={classes.sectionMainTitle}>
-                    How are people using the CTI?
+          How are people using the CTI?
         </Typography>
         <Typography variant='h5' color='textSecondary' className={classes.sectionSubTitle}>
-                    Trending Topics:
+          Trending Topics:
         </Typography>
         <TrendingTopicList />
       </Grid>
