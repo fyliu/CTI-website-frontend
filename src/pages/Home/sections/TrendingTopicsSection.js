@@ -51,12 +51,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const topicData = [
-  { detail: 'Covid-19', link: '/projects' },
-  { detail: 'food', link: '/projects' },
-  { detail: 'justice', link: '/projects' },
-  { detail: 'Trending Topic 1', link: '/projects' },
-  { detail: 'Trending Topic 2', link: '/projects' },
-  { detail: 'Trending Topic 3', link: '/projects' },
+  { tag: 'voting', search: 'voting' },
+  { tag: 'election', search: 'election' },
+  { tag: 'food-pantry', search: 'food' },
+  { tag: 'voting', search: 'voting' },
+  { tag: 'ballot', search: 'ballot' },
+  { tag: 'budget', search: 'budget' },
+  { tag: 'employment', search: 'employment' },
+  { tag: '311', search: '311' },
 ];
 
 const TrendingTopicsSection = () => {
@@ -67,9 +69,9 @@ const TrendingTopicsSection = () => {
         return (
           <Chip
             key={key}
-            label={topic.detail}
+            label={topic.tag}
             component={RouterLink}
-            to={{ pathname: topic.link, query: { search: topic.detail }}}
+            to={{ pathname: '/projects', query: { search: topic.search }}}
             clickable
             className = {classes.homeTag}
           />
