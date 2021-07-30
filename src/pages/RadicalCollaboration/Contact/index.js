@@ -146,7 +146,7 @@ const Contact = () => {
           </Grid>
         </Grid>
       </GenericHeaderSection>
-      <div style={{ justifyContent: 'center' }}>
+      <div style={{ textAlign: 'center' }}>
         <iframe
           src='https://docs.google.com/forms/d/e/1FAIpQLSeTVA3JJdzS1Hftq5CmpGVYcn60KRXqu2ajM85NgF2vxEgghg/viewform?embedded=true'
           width='640'
