@@ -90,7 +90,7 @@ const StarMediaSection = () => {
         <Grid item style={{ paddingBottom: ' 32px 0 32px' }}>
           <img src='/images/image3.svg' alt='StarCount logo' />
         </Grid>
-        <Typography variant='h6' className={classes.h6}>
+        <Typography variant='h6'>
           Don’t forget to star our repository
         </Typography>
       </Grid>
@@ -107,7 +107,7 @@ const StarMediaSection = () => {
         <Grid item>
           <img src='/images/Medium_logo_Monogram.svg' alt='Medium logo' />
         </Grid>
-        <Typography variant='h6' className={classes.h6}>
+        <Typography variant='h6'>
           Mention or write about us on Medium
         </Typography>
       </Grid>
@@ -123,7 +123,7 @@ const StarMediaSection = () => {
         <Grid item style={{ padding: ' 16px 0 32px' }}>
           <img src='/images/mail.png' alt='Mail logo' />
         </Grid>
-        <Typography variant='h6' className={classes.textColor }>
+        <Typography variant='h6'>
           Send an email to your project admin with suggested tags for your
           repository
         </Typography>
@@ -165,6 +165,7 @@ const SocialMediaSection = () => {
           <Typography
             variant='h3'
             style={{
+              color: '#004364',
               marginBottom: '24px',
             }}
           >
@@ -219,19 +220,18 @@ const MediaInfo = () => {
           style={{ marginBottom: '32px' }}
         >
           <Box>
-            <Typography variant='h4' style={{ marginBottom: '32px' }}>
+            <Typography
+              variant='h4'
+              style={{ color: '#004364', marginBottom: '32px' }}
+            >
               Use our Logo on your Project!
             </Typography>
-            <Typography
-              variant='h6'
-              className={classes.h6}
-              style={{ marginBottom: '16px' }}
-            >
+            <Typography variant='h6' style={{ marginBottom: '16px' }}>
               If you have done the following:
             </Typography>
 
             <Typography variant='body1' style={{ paddingBottom: '15px' }}>
-              • Your have listed your project on Civic Tech Index
+              • You have listed your project on Civic Tech Index
             </Typography>
             <Typography variant='body1' style={{ paddingBottom: '15px' }}>
               • You have added the topic tag &quot;civictechindex&quot;to your
@@ -282,7 +282,7 @@ const CtiImageSection = () => {
     <Grid container justify='space-evenly'>
       <img
         src='/images/Rectangle55.png'
-        alt='CTI  logo'
+        alt='CTI logo'
         className={classes.ctiImageStyle}
       />
       <img
@@ -346,11 +346,12 @@ export default function ShareTheCti() {
             textAlign: 'center',
           }}
         >
-          <Typography variant='h3' style={{ color: '' }}>Tell others about us!</Typography>
+          <Typography variant='h3' style={{ color: '#004364' }}>
+            Tell others about us!
+          </Typography>
           <Typography
             variant='h5'
             style={{
-              color: '',
               fontWeight: '400',
               fontSize: '20px',
               marginTop: '8px',
@@ -360,7 +361,10 @@ export default function ShareTheCti() {
           </Typography>
         </Grid>
         <StarMediaSection />
-        <Typography variant='h3' style={{ textAlign: 'center', color: '' }}>
+        <Typography
+          variant='h3'
+          style={{ textAlign: 'center', color: '#004364' }}
+        >
           Latest Updates from the CTI
         </Typography>
         <SocialMediaPostSection />
