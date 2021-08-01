@@ -29,23 +29,6 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  formStyle: {
-    textAlign: 'left',
-    padding: '48px 0px',
-    justifyContent: 'center',
-    '& h3': {
-      fontSize: '20px',
-      fontWeight: '500',
-      margin: '32px 0px 8px 0px',
-      color: theme.palette.text.primary,
-    },
-    '& h4': {
-      fontSize: '20px',
-      fontWeight: '500',
-      margin: '8px 0px 0px 0px',
-      color: theme.palette.text.primary,
-    },
-  },
 }));
 
 const Contact = () => {
