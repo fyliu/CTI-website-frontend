@@ -2,7 +2,11 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { GetStartedCard, PictureCard, GenericHeaderSection } from '../components';
+import {
+  GetStartedCard,
+  PictureCard,
+  GenericHeaderSection,
+} from '../components';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
 
@@ -16,12 +20,17 @@ const About = () => {
     subHeaderStyle: {
       fontWeight: '700',
       textAlign: 'center',
-      padding: '48px 0',
       [theme.breakpoints.down('sm')]: {
         fontSize: '20px',
+        padding: '48px 30px',
+      },
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '20px',
+        padding: '48px 100px',
       },
       [theme.breakpoints.up('md')]: {
         fontSize: '24px',
+        padding: '48px 200px',
       },
     },
     videoStyle: {
@@ -55,7 +64,8 @@ const About = () => {
     {
       src: '/images/groupCoding.png',
       alt: 'group coding',
-      children: 'Make your project more visible with GitHub’s open-source communities',
+      children:
+        'Make your project more visible with GitHub’s open-source communities',
     },
     {
       src: '/images/girlandguyCoding.png',
@@ -71,13 +81,21 @@ const About = () => {
         breadCrumbLinks={breadCrumbLinks}
       >
         <VideoSection />
-        <Typography variant='h5' color='textSecondary' className={classes.subHeaderStyle}>
-          With your help, we can create a continuously updated repository for all civic tech
-          enthusiasts to find open source projects to model, connect with, and learn from.
+        <Typography
+          variant='h5'
+          color='textSecondary'
+          className={classes.subHeaderStyle}
+        >
+          With your help, we can create a continuously updated repository for
+          all civic tech enthusiasts to find open source projects to model,
+          connect with, and learn from.
         </Typography>
       </GenericHeaderSection>
 
-      <PictureCard items={pictureMarketingPoints} style={{ padding: '0 115px' }} />
+      <PictureCard
+        items={pictureMarketingPoints}
+        style={{ padding: '0 115px' }}
+      />
       <GetStartedCard
         headerTitle='Ready to get started?'
         buttonText='Tag your Project'

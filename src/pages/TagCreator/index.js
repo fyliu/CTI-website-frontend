@@ -348,18 +348,28 @@ const TagCreator = () => {
 
   return (
     <Box>
-      <GenericHeaderSection mainTitle ='Tag Generator' breadCrumbLinks ={breadCrumbLinks}>
-        <Typography variant='h6' color='textSecondary' style={{ fontWeight:'500' , textAlign:'center' }} >Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.</Typography>
+      <GenericHeaderSection
+        mainTitle='Tag Generator'
+        breadCrumbLinks={breadCrumbLinks}
+      >
+        <Typography
+          variant='h6'
+          color='textSecondary'
+          style={{ fontWeight: '500', textAlign: 'center', padding: '0 30px' }}
+        >
+          Join the Civic Tech Index by submitting your open-source project.
+          <br /> This process takes less than one minute to complete.
+        </Typography>
       </GenericHeaderSection>
 
-      <Box className='containerGray' style={{ paddingBottom:'30px' }} >
-        <Container className={classes.containerPadding} >
+      <Box className='containerGray' style={{ paddingBottom: '30px' }}>
+        <Container className={classes.containerPadding}>
           {renderCurrentState()}
         </Container>
       </Box>
-      {(displayState === 'CopyPasteTags')?<TagGeneratorInstructions/>:null}
+      {displayState === 'CopyPasteTags' ? <TagGeneratorInstructions /> : null}
     </Box>
-  )
-}
+  );
+};
 
 export default TagCreator
