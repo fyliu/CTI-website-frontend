@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { NavBreadcrumbs, TitleSection } from './index';
 import { makeStyles } from '@material-ui/core/styles';
 
-const GenericHeaderSection = ({ mainTitle, children, breadCrumbLinks, addPad }) => {
+const GenericHeaderSection = ({ mainTitle, children, breadCrumbLinks }) => {
   const useStyles = makeStyles((theme) => ({
     headerContainerStyle: {
       height: 'auto',

@@ -3,6 +3,8 @@ import Box from '@material-ui/core/Box';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import { GenericHeaderSection } from '../../../components/';
 
 const useStyles = makeStyles((theme) => ({
@@ -53,8 +55,9 @@ const Contact = () => {
           </Grid>
         </Grid>
       </GenericHeaderSection>
-      <div style={{ textAlign: 'center' }}>
-        <iframe
+      <Card>
+        <CardMedia
+          component='iframe'
           title='googleContactForm'
           src='https://docs.google.com/forms/d/e/1FAIpQLSeTVA3JJdzS1Hftq5CmpGVYcn60KRXqu2ajM85NgF2vxEgghg/viewform?embedded=true'
           width='640'
@@ -64,8 +67,8 @@ const Contact = () => {
           marginWidth='0'
         >
           Loading…
-        </iframe>
-      </div>
+        </CardMedia>
+      </Card>
     </Box>
   );
 };
