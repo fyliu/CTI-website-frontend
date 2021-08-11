@@ -12,25 +12,25 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   btnStyle: {
-    '& .MuiButton-label':{
-      whiteSpace:'inherit',
+    '& .MuiButton-label': {
+      whiteSpace: 'inherit',
     },
   },
-  txtStyle:{
+  txtStyle: {
     textAlign: 'center',
-    fontWeight:500,
+    fontWeight: 500,
     [theme.breakpoints.down('xs')]: {
-      fontSize:'1.5rem',
+      fontSize: '1.5rem',
     },
   },
-  gridStyle:{
-    padding:'8px',
-    width:'285px',
+  gridStyle: {
+    padding: '8px',
+    width: '285px',
     [theme.breakpoints.up('sm')]: {
-      width:'270px',
+      width: '270px',
     },
     [theme.breakpoints.down('xs')]: {
-      width:'265px',
+      width: '265px',
     },
   },
   paper: {
@@ -38,29 +38,29 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     borderRadius: '12px',
   },
-  ptextStyle:{
-    fontWeight:400,
-    textAlign:'center',
+  ptextStyle: {
+    fontWeight: 400,
+    textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
       fontSize: '0.875rem',
     },
   },
-  btnColor:{
-    backgroundColor:theme.palette.background.default,
+  btnColor: {
+    backgroundColor: theme.palette.background.default,
     border: '1px solid',
     borderColor: theme.palette.grey[400],
     color: theme.palette.outline.gray,
   },
 }));
 
-const BottomSection = () =>{
+const BottomSection = () => {
   const classes = useStyles()
 
-  const PaperComp = ({ text,btext,bhref }) =>{
+  const PaperComp = ({ text, btext, bhref }) => {
     return (
       <Grid item className={classes.gridStyle} >
         <Paper variant="outlined" className={classes.paper}>
-          <Grid style={{ padding:'16px' }}>
+          <Grid style={{ padding: '16px' }}>
             <Typography variant='body1' className={classes.ptextStyle}>{text}</Typography>
           </Grid>
           <Grid><Button href={bhref} className={classes.btnColor}>{btext}</Button></Grid>
@@ -84,8 +84,8 @@ const BottomSection = () =>{
             </Grid>
           </Grid>
           <Grid container direction="row" justify="center" style={{ paddingBottom: '30px' }}>
-            <PaperComp text='Add Another Project' btext='Tag Generator' bhref='/tag-generator'/>
-            <PaperComp text='Collaborate with us' btext='Learn More' bhref='/support'/>
+            <PaperComp text='Add Another Project' btext='Tag Generator' bhref='/tag-generator' />
+            <PaperComp text='Collaborate with us' btext='Learn More' bhref='/support' />
           </Grid>
         </Container>
       </Box>
@@ -97,7 +97,7 @@ const Instructions = () => {
   return (
     <Box className="pageContainer">
       <TagGeneratorInstructions />
-      <BottomSection/>
+      <BottomSection />
     </Box>
   )
 }
