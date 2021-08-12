@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import SettingsGearIcon from '../icons/SettingsGearIcon';
+import { GenericHeaderSection } from '../GenericHeaderSection';
 
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
