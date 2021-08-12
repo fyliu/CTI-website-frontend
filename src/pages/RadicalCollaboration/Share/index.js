@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
   ctiImageStyle: {
     maxWidth: '100%',
-
     [theme.breakpoints.down('xs')]: {
       width: '102px',
       height: '62px',
@@ -165,8 +164,8 @@ const SocialMediaSection = () => {
         >
           <Typography
             variant='h3'
-            color='Primary'
             style={{
+              color: '#004364',
               marginBottom: '24px',
             }}
           >
@@ -174,7 +173,6 @@ const SocialMediaSection = () => {
           </Typography>
           <Typography
             variant='h6'
-            color='Primary'
             style={{
               marginBottom: '48px',
             }}
@@ -224,53 +222,27 @@ const MediaInfo = () => {
           <Box>
             <Typography
               variant='h4'
-              color='Primary'
-              style={{ marginBottom: '32px' }}
-            >
+              style={{ color: '#004364', marginBottom: '32px' }}>
               Use our Logo on your Project!
             </Typography>
-            <Typography
-              variant='h6'
-              color='Primary'
-              style={{ marginBottom: '16px' }}
-            >
+            <Typography variant='h6' style={{ marginBottom: '16px' }}>
               If you have done the following:
             </Typography>
 
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}
-            >
-              • Your have listed your project on Civic Tech Index
+            <Typography variant='body1' style={{ paddingBottom: '15px' }}>
+              • You have listed your project on Civic Tech Index
             </Typography>
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}
-            >
+            <Typography variant='body1' style={{ paddingBottom: '15px' }}>
               • You have added the topic tag &quot;civictechindex&quot;to your
               project repository
             </Typography>
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}
-            >
+            <Typography variant='body1' style={{ paddingBottom: '15px' }}>
               • You have developed your own interface to search the Index
             </Typography>
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}
-            >
+            <Typography variant='body1' style={{ paddingBottom: '15px' }}>
               • In articles or social media posts featuring Civic Tech Index.
             </Typography>
-            <Typography
-              variant='body1'
-              color='Primary'
-              style={{ paddingBottom: '15px' }}
-            >
+            <Typography variant='body1' style={{ paddingBottom: '15px' }}>
               • For all other uses, please
               <a
                 style={{
@@ -309,7 +281,7 @@ const CtiImageSection = () => {
     <Grid container justify='space-evenly'>
       <img
         src='/images/Rectangle55.png'
-        alt='CTI  logo'
+        alt='CTI logo'
         className={classes.ctiImageStyle}
       />
       <img
@@ -374,12 +346,11 @@ export default function ShareTheCti() {
             textAlign: 'center',
           }}
         >
-          <Typography variant='h3' color='Primary'>
+          <Typography variant='h3' style={{ color: '#004364' }}>
             Tell others about us!
           </Typography>
           <Typography
             variant='h5'
-            color='Primary'
             style={{
               fontWeight: '400',
               fontSize: '20px',
@@ -392,8 +363,7 @@ export default function ShareTheCti() {
         <StarMediaSection />
         <Typography
           variant='h3'
-          color='Primary'
-          style={{ textAlign: 'center' }}
+          style={{ textAlign: 'center', color: '#004364' }}
         >
           Latest Updates from the CTI
         </Typography>
