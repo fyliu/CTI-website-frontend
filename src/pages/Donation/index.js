@@ -17,25 +17,26 @@ const Donation = () => {
 
   return (
     <Box className='pageContainer'>
-      <Box className='containerDefault'>
-        <Container>
-          <GenericHeaderSection
-            mainTitle='Make a Donation'
-            breadCrumbLinks={breadCrumbLinks}
-          />
-        </Container>
-      </Box>
+      <Container className='containerDefault'>
+        <GenericHeaderSection
+          mainTitle='Make a Donation'
+          breadCrumbLinks={breadCrumbLinks}
+        />
+      </Container>
       <Box className='containerGray'>
         <Container>
           <Grid container direction='row'>
             <Grid item xs={12} md={6} className={classes.infoGrid}>
               <Typography variant='body1' className={classes.infoDescription}>
-                The Civic Tech Index is being developed by Hack For LA, and is currently taking
-                donations through Code For America.
+                The Civic Tech Index is being developed by Hack For LA, and is
+                currently taking donations through Code For America.
               </Typography>
               <Typography variant='body1' className={classes.infoSteps}>
                 1. Please follow this link to the Code For America{' '}
-                <Link to='https://www.codeforamerica.org/donate'>donation form</Link>.
+                <Link to='https://www.codeforamerica.org/donate'>
+                  donation form
+                </Link>
+                .
               </Typography>
               <Typography variant='body1' className={classes.infoSteps}>
                 2. To make a donation to the Civic Tech Index, please select{' '}
@@ -57,7 +58,10 @@ const Donation = () => {
       </Box>
       <Box className='containerWhite'>
         <Container>
-          <BottomCallToAction heading='Want to support in other ways?' buttonHref='/contact'/>
+          <BottomCallToAction
+            heading='Want to support in other ways?'
+            buttonHref='/contact'
+          />
         </Container>
       </Box>
     </Box>

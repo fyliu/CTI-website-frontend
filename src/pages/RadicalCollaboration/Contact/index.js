@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
@@ -40,15 +41,17 @@ const Contact = () => {
 
   return (
     <Box>
-      <GenericHeaderSection
-        mainTitle='Contact Us'
-        breadCrumbLinks={breadCrumbLinks}
-      >
-        <Typography variant='h6' className={classes.headerStyle}>
-          We would love to hear your thoughts or feedback on how we can improve
-          your experience with the Civic Tech Index!
-        </Typography>
-      </GenericHeaderSection>
+      <Container className='containerDefault'>
+        <GenericHeaderSection
+          mainTitle='Contact Us'
+          breadCrumbLinks={breadCrumbLinks}
+        >
+          <Typography variant='h6' className={classes.headerStyle}>
+            We would love to hear your thoughts or feedback on how we can
+            improve your experience with the Civic Tech Index!
+          </Typography>
+        </GenericHeaderSection>
+      </Container>
       <Card>
         <CardMedia
           component='iframe'
