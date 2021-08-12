@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import SettingsGearIcon from '../icons/SettingsGearIcon';
-import { GenericHeaderSection } from '../GenericHeaderSection';
+import { GenericHeaderSection } from './index';
 
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
@@ -34,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HowToUse = () => {
+  const breadCrumbLinks = [
+    { href: '/home', name: 'Home' },
+    { href: '/support/donate', name: 'Donate' },
+  ];
   const classes = useStyles();
   const StepComp = (props) => {
     return (
