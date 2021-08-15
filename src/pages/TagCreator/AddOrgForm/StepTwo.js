@@ -20,17 +20,24 @@ const StepTwo = (props) => {
     <>
       <DialogTitle>
         <Box textAlign='center'>
-          <Typography variant='h2' className={classes.infoLarge}>Add Organization to the Civic Tech Index</Typography>
+          <Typography variant='h2' className={classes.infoLarge}>
+            Add Organization to the Civic Tech Index
+          </Typography>
         </Box>
         <Box className={classes.progress}>
           <Typography variant='body1'>Social Media and Location</Typography>
-          <Typography variant='body1'><b>2/2</b></Typography>
+          <Typography variant='body1'>
+            <b>2/2</b>
+          </Typography>
         </Box>
         <LinearProgress variant='determinate' color='secondary' value={100} />
       </DialogTitle>
       <DialogContent>
         <Typography variant='h5' className={classes.heading}>
-          Social Media URL <Box component='span' fontWeight='normal'>(optional)</Box>
+          Social Media URL{' '}
+          <Box component='span' fontWeight='normal'>
+            (optional)
+          </Box>
         </Typography>
         <TextField
           className={classes.field}
@@ -69,7 +76,10 @@ const StepTwo = (props) => {
           value={props.meetupUrl}
         />
         <Typography variant='h5' className={classes.heading}>
-          Location <Box component='span' fontWeight='normal'>(optional)</Box>
+          Location{' '}
+          <Box component='span' fontWeight='normal'>
+            (optional)
+          </Box>
         </Typography>
         <TextField
           className={classes.field}
@@ -87,16 +97,27 @@ const StepTwo = (props) => {
           }}
           value={props.stateProvCo}
         />
-        <CountrySelect country={props.country} onChange={props.onCountryChange} />
+        <CountrySelect
+          country={props.country}
+          onChange={props.onCountryChange}
+        />
       </DialogContent>
       <DialogActions>
         <Box className={classes.buttons}>
-          <Button variant='contained' color='default' onClick={props.onPrev}>Back</Button>
+          <Button variant='contained' color='default' onClick={props.onPrev}>
+            Back
+          </Button>
           <Tooltip
             title='Once your org is submitted, you can return to the Tag Generator and add it to the CTI.'
             aria-label='submit'
           >
-            <Button variant='contained' color='secondary' onClick={props.onSubmit}>Submit</Button>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={props.onSubmit}
+            >
+              Submit
+            </Button>
           </Tooltip>
         </Box>
       </DialogActions>

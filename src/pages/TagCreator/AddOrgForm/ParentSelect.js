@@ -15,16 +15,12 @@ const ParentSelect = ({ org, orgList, onChange }) => {
       autoSelect
       freeSolo
       getOptionLabel={parseOptionLabel}
-      getOptionSelected={(option, value) => option.name === value.name }
+      getOptionSelected={(option, value) => option.name === value.name}
       onChange={(event, value) => onChange(value)}
       options={orgList}
       value={org}
       renderInput={(params) => (
-        <TextField
-          label='Parent Organization'
-          variant='outlined'
-          {...params}
-        />
+        <TextField label='Parent Organization' variant='outlined' {...params} />
       )}
     />
   );

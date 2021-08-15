@@ -10,8 +10,9 @@ import countries from './countryList';
  */
 const countryToFlag = (isoCode) => {
   return typeof String.fromCodePoint !== 'undefined'
-    ? String.fromCodePoint(...[...isoCode.toUpperCase()]
-      .map((char) => 127397 + char.charCodeAt()))
+    ? String.fromCodePoint(
+        ...[...isoCode.toUpperCase()].map((char) => 127397 + char.charCodeAt())
+      )
     : isoCode;
 };
 
@@ -22,7 +23,7 @@ const CountrySelect = ({ country, onChange }) => {
     <Autocomplete
       autoComplete
       getOptionLabel={(option) => option.label}
-      getOptionSelected={(option, value) => option.label === value.label }
+      getOptionSelected={(option, value) => option.label === value.label}
       onChange={(event, value) => onChange(value)}
       options={countries}
       value={country}

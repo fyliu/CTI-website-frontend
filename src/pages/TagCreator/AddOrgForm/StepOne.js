@@ -19,25 +19,31 @@ const StepOne = (props) => {
   const orgEmailApiErr = props.apiErrors.organization_email;
   const orgNameApiErr = props.apiErrors.name;
   const websiteUrlApiErr = props.apiErrors.website_url;
-  const parentHelpInfo = `A parent organization is an organization like Code For America or Code for All. 
-    It's an umbrella organization that oversees your individual orgnanization.`
-  const tagHelpInfo = `This is the Github tag that your organization uses such as 
-    “code-for-america”, “open-oakland” or “hack4la”.`
+  const parentHelpInfo = `A parent organization is an organization like Code For America or Code for All.
+    It's an umbrella organization that oversees your individual orgnanization.`;
+  const tagHelpInfo = `This is the Github tag that your organization uses such as
+    “code-for-america”, “open-oakland” or “hack4la”.`;
   return (
     <>
       <DialogTitle>
         <Box textAlign='center'>
-          <Typography variant='h2' className={classes.infoLarge}>Add Organization to the Civic Tech Index</Typography>
+          <Typography variant='h2' className={classes.infoLarge}>
+            Add Organization to the Civic Tech Index
+          </Typography>
         </Box>
         <Box className={classes.progress}>
           <Typography variant='body1'>Project Information</Typography>
-          <Typography variant='body1'><b>1/2</b></Typography>
+          <Typography variant='body1'>
+            <b>1/2</b>
+          </Typography>
         </Box>
         <LinearProgress variant='determinate' color='secondary' value={50} />
         <Typography variant='body1'>(*) Required Field</Typography>
       </DialogTitle>
       <DialogContent>
-        <Typography variant='h5' className={classes.firstHeading}>Organization Detail</Typography>
+        <Typography variant='h5' className={classes.firstHeading}>
+          Organization Detail
+        </Typography>
         <TextField
           className={classes.field}
           error={!!orgEmailApiErr}
@@ -45,7 +51,7 @@ const StepOne = (props) => {
           label='Organization Email'
           onChange={(event) => {
             props.onOrgEmail(event.target.value);
-            props.setApiErrors({ ...props.apiErrors, organization_email: '' })
+            props.setApiErrors({ ...props.apiErrors, organization_email: '' });
           }}
           placeholder='Name@example.com'
           required
@@ -66,8 +72,14 @@ const StepOne = (props) => {
         <Tooltip title={parentHelpInfo}>
           <HelpIcon color='secondary' className={classes.field} />
         </Tooltip>
-        <ParentSelect org={props.parentOrg} orgList={props.parentOrgList} onChange={props.onParentOrg} />
-        <Typography variant='h5' className={classes.heading}>Organization URL</Typography>
+        <ParentSelect
+          org={props.parentOrg}
+          orgList={props.parentOrgList}
+          onChange={props.onParentOrg}
+        />
+        <Typography variant='h5' className={classes.heading}>
+          Organization URL
+        </Typography>
         <TextField
           className={classes.field}
           error={!!websiteUrlApiErr}
@@ -114,11 +126,21 @@ const StepOne = (props) => {
       </DialogContent>
       <DialogActions disableSpacing>
         <Box className={classes.buttons}>
-          <Button variant='contained' color='default' onClick={props.onCancel}>Cancel</Button>
+          <Button variant='contained' color='default' onClick={props.onCancel}>
+            Cancel
+          </Button>
           <Button
             variant='contained'
             color='secondary'
-            disabled={!(props.orgEmail && props.orgName && props.githubTag && props.websiteUrl && props.githubUrl)}
+            disabled={
+              !(
+                props.orgEmail &&
+                props.orgName &&
+                props.githubTag &&
+                props.websiteUrl &&
+                props.githubUrl
+              )
+            }
             onClick={props.onNext}
           >
             Next

@@ -12,7 +12,9 @@ const Complete = ({ onClose }) => {
   return (
     <>
       <Box className={classes.complete}>
-        <Typography variant='subtitle1'><b>Complete!</b></Typography>
+        <Typography variant='subtitle1'>
+          <b>Complete!</b>
+        </Typography>
       </Box>
       <Box textAlign='center'>
         <LinearProgress variant='determinate' color='secondary' value={100} />

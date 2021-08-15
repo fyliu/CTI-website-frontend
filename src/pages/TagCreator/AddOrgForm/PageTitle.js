@@ -16,7 +16,9 @@ export const PageTitle = () => {
       <Container style={{ paddingBottom: '40px' }}>
         <NavBreadcrumbs crumbs={breadCrumbLinks} />
         <Grid container>
-          <TitleSection>Add an Organization to the Civic Tech Index</TitleSection>
+          <TitleSection>
+            Add an Organization to the Civic Tech Index
+          </TitleSection>
         </Grid>
       </Container>
     </Box>
