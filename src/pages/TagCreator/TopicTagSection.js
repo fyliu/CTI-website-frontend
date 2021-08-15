@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useClipboard } from 'use-clipboard-copy';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { AffiliationQuestionSection } from './AffilationQuestionSection';
 import {
@@ -9,10 +13,6 @@ import {
   DeletableTopicTag,
   ChipInputSection,
 } from './TopicTag';
-import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
-import Divider from '@material-ui/core/Divider';
-import { useClipboard } from 'use-clipboard-copy';
 import SettingsGearIcon from '../../icons/SettingsGearIcon';
 
 const useStyles = makeStyles((theme) => ({

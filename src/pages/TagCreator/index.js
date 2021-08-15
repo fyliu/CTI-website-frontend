@@ -3,12 +3,13 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  useQueryParam,
-  StringParam,
   ArrayParam,
+  StringParam,
+  useQueryParam,
   withDefault,
 } from 'use-query-params';
 import axios from 'axios';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -16,25 +17,24 @@ import Typography from '@material-ui/core/Typography';
 import { GenericHeaderSection } from '../../components/';
 import { AffiliationQuestionSection } from './AffilationQuestionSection';
 import {
-  OrgNameSection,
   OrganizationSelectorSection,
   OrgChange,
+  OrgNameSection,
 } from './Organization';
 import {
-  ProjectRepositorySection,
   ProjectRepositoryInput,
+  ProjectRepositorySection,
 } from './ProjectRepository';
 import {
-  AddTopicTagSection,
-  AddTagsQuestion,
-  NewTags,
-  CopyPasteTags,
   AddMoreTags,
+  AddTagsQuestion,
+  AddTopicTagSection,
+  CopyPasteTags,
   CurrentTopicTagSection,
+  NewTags,
 } from './TopicTagSection';
-import useTheme from '@material-ui/core/styles/useTheme';
 import Instructions from './Instructions';
-import { makeStyles } from '@material-ui/core/styles';
+
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
     paddingLeft: '100px',

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Chip from '@material-ui/core/Chip';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import CopyPasteIcon from '../../icons/CopyPasteIcon';
-import Grid from '@material-ui/core/Grid';
-import { useClipboard } from 'use-clipboard-copy';
 import ChipInput from 'material-ui-chip-input';
+import { useClipboard } from 'use-clipboard-copy';
+import { makeStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import Grid from '@material-ui/core/Grid';
+import CopyPasteIcon from '../../icons/CopyPasteIcon';
 
 const useStyles = makeStyles((theme) => ({
   topicTag: {

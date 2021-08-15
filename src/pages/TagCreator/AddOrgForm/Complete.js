@@ -1,10 +1,10 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import useStyles from './styles';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import useStyles from './styles';
 
 const Complete = ({ onClose }) => {
   const classes = useStyles();
