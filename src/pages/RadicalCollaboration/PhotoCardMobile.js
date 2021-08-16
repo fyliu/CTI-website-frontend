@@ -41,7 +41,7 @@ const PhotoCardMobile = (props) => {
                 </CardContent>
               </CardActionArea>
               <CardActions className={classes.mobileCardActions}>
-                <Button className={classes.mobileButton}>
+                <Button href={i.route} className={classes.mobileButton}>
                   {i.buttonText}
                 </Button>
               </CardActions>
