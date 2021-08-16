@@ -34,11 +34,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HowToUse = () => {
+  const classes = useStyles();
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
-    { href: '/support/donate', name: 'Donate' },
+    { href: '/join-index/how-to-add', name: 'How to Add Your Project' },
   ];
-  const classes = useStyles();
   const StepComp = (props) => {
     return (
       <Grid container>
