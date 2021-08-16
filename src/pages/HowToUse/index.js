@@ -11,14 +11,12 @@ const HowToUse = () => {
   ];
   return (
     <Box className="pageContainer">
-      <Box className='containerDefault'>
-        <Container>
-          <GenericHeaderSection
-            mainTitle='How to Add Your Project'
-            breadCrumbLinks={breadCrumbLinks}
-          />
-        </Container>
-      </Box>
+      <Container className='containerDefault'>
+        <GenericHeaderSection
+          mainTitle='How to Add Your Project'
+          breadCrumbLinks={breadCrumbLinks}
+        />
+      </Container>
       <TagGeneratorInstructions />
     </Box>
   )

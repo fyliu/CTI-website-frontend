@@ -63,12 +63,6 @@ const HowToUse = () => {
   return (
     <>
       <Box className='containerGray'>
-        <Container className='containerDefault'>
-          <GenericHeaderSection
-            mainTitle='How to Add Your Project'
-            breadCrumbLinks={breadCrumbLinks}
-          />
-        </Container>
         <Container className={classes.containerPadding}>
           <Grid container>
             <Grid item xs={12} style={{ padding: '24px 0px' }}>
