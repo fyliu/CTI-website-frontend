@@ -6,8 +6,8 @@ import TagGeneratorInstructions from "../../components/TagGeneratorInstructions"
 
 const HowToUse = () => {
   const breadCrumbLinks = [
-    { name: 'Home', href: '/home' },
-    { name: 'How to Add Your Project', href: '/join-index/how-to-add' },
+    { href: '/home', name: 'Home' },
+    { href: '/join-index/how-to-add', name: 'How to Add Your Project' },
   ];
   return (
     <Box className="pageContainer">

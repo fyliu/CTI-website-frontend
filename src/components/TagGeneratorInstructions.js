@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import SettingsGearIcon from '../icons/SettingsGearIcon';
-import { GenericHeaderSection } from './index';
 
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
@@ -35,10 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 const HowToUse = () => {
   const classes = useStyles();
-  const breadCrumbLinks = [
-    { href: '/home', name: 'Home' },
-    { href: '/join-index/how-to-add', name: 'How to Add Your Project' },
-  ];
   const StepComp = (props) => {
     return (
       <Grid container>
