@@ -61,8 +61,7 @@ const About = () => {
     {
       src: '/images/groupCoding.png',
       alt: 'group coding',
-      children:
-        'Make your project more visible with GitHub’s open-source communities',
+      children: 'Make your project more visible with GitHub’s open-source communities',
     },
     {
       src: '/images/girlandguyCoding.png',

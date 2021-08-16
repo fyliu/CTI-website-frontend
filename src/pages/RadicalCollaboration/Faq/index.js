@@ -93,11 +93,7 @@ const Faq = () => {
         </GenericHeaderSection>
       </Container>
       <FAQCard
-        title={
-          status === 'fetchedFaq'
-            ? 'Top Asked Questions'
-            : `Search results (${totalCount})`
-        }
+        title={ status === 'fetchedFaq' ? 'Top Asked Questions' : `Search results (${totalCount})`}
         faqs={data}
         pages={Math.ceil(totalCount / (largeScreen ? 10 : 5))}
         currentPageNum={pageNum}
