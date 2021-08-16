@@ -3,11 +3,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import {
-  GetStartedCard,
-  PictureCard,
-  GenericHeaderSection,
-} from '../components';
+import { GetStartedCard, PictureCard, GenericHeaderSection } from '../components';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
 
