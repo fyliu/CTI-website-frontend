@@ -71,30 +71,23 @@ const useStyles = makeStyles((theme) => ({
 /* eslint complexity: [0, 0]*/
 export const Affiliated = (props) => {
   const {
-    organizations,
-    inputValue,
     classes,
+    inputValue,
+    organizations,
     organizationData,
-    affiliatedSepOpen,
-    searchCount,
+    filtersActive,
     affiliatedCount,
     totalaffiliatedCount,
-    setAfflnSepOpen,
-    checkboxValue,
+    showIndexContrib,
   } = props;
   const classesLocal = useStyles();
-  const [gp, setGp] = useState(false);
-  const handleClickGrid = () => {
-    setGp(!gp);
-    setAfflnSepOpen(true);
-  };
-
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
     <Grid>
       <Grid style={{ padding: '40px' }}>
         <Typography variant='h4' className={classesLocal.titleStyle}>
           Affiliated Organizations
-          {searchCount
+          {filtersActive
             ? `(${affiliatedCount}/${totalaffiliatedCount})`
             : `(${totalaffiliatedCount})`}
         </Typography>
@@ -104,7 +97,7 @@ export const Affiliated = (props) => {
         xs={12}
         sm={10}
         className={clsx(classesLocal.gpGrid, {
-          [classesLocal.open]: gp === true,
+          [classesLocal.open]: dropdownOpen,
         })}
       >
         <Grid>
@@ -119,13 +112,13 @@ export const Affiliated = (props) => {
             >
               Code for All
             </Link>
-            {searchCount
+            {filtersActive
               ? `(${affiliatedCount}/${totalaffiliatedCount})`
               : ` (${totalaffiliatedCount})`}
           </Typography>
         </Grid>
         <Grid>
-          {checkboxValue ? (
+          {showIndexContrib ? (
             <Typography>
               <img
                 className={classesLocal.contributorIcon}
@@ -141,15 +134,14 @@ export const Affiliated = (props) => {
           item
           container
           className={classesLocal.flexGrid}
-          onClick={handleClickGrid}
+          onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <DropdownArrow open={gp} handleArrow={handleClickGrid} />
+          <DropdownArrow open={dropdownOpen} handleArrow={() => setDropdownOpen(!dropdownOpen)} />
         </Grid>
       </Grid>
       <Grid>
-        {affiliatedSepOpen &&
-          gp &&
-          (!organizations['Code for All'] ? (
+        {dropdownOpen && (
+          !organizations['Code for All'] ? (
             !inputValue ? (
               <h3 className={classes.loaders}>Loading...</h3>
             ) : (
@@ -161,10 +153,11 @@ export const Affiliated = (props) => {
                 organizations={organizations}
                 inputValue={inputValue}
                 organizationData={organizationData}
-                checkboxValue={checkboxValue}
+                showIndexContrib={showIndexContrib}
               />
             </Grid>
-          ))}
+          )
+        )}
       </Grid>
     </Grid>
   );

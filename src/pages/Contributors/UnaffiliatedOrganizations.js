@@ -35,12 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const UnaffiliatedOrganizations = (props) => {
   const {
-    searchCount,
-    unaffiliatedCount,
-    totalunaffiliatedCount,
-    unaffiliatedOpen,
+    filtersActive,
     organization,
-    checkboxValue,
+    showIndexContrib,
+    totalunaffiliatedCount,
+    unaffiliatedCount,
   } = props;
   const classes = useStyles();
   const isChildThumbnail = false;
@@ -52,13 +51,13 @@ export const UnaffiliatedOrganizations = (props) => {
           Unaffiliated Organizations
           <span style={{ paddingLeft: '1px' }}>
             {' '}
-            {searchCount
+            {filtersActive
               ? `(${unaffiliatedCount}/${totalunaffiliatedCount})`
               : `(${totalunaffiliatedCount})`}{' '}
           </span>
         </Typography>
       </Grid>
-      {checkboxValue ? (
+      {showIndexContrib ? (
         <Box>
           <Typography color='primary' className={classes.noargText}>
             {' '}
@@ -67,25 +66,24 @@ export const UnaffiliatedOrganizations = (props) => {
         </Box>
       ) : (
         <Grid>
-          {unaffiliatedOpen && (
-            <Grid>
-              {organization &&
-                organization.map((org, index) => (
-                  <Grid
-                    item
-                    xs={12}
-                    sm={10}
-                    className={classes.unaffiliatedThumbnails}
-                    key={index}
-                  >
-                    <ContributorThumbnail
-                      organization={org}
-                      isChildThumbnail={isChildThumbnail}
-                    ></ContributorThumbnail>
-                  </Grid>
-                ))}
-            </Grid>
-          )}
+          <Grid>
+            {organization &&
+              organization.map((org, index) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={10}
+                  className={classes.unaffiliatedThumbnails}
+                  key={index}
+                >
+                  <ContributorThumbnail
+                    organization={org}
+                    isChildThumbnail={isChildThumbnail}
+                  ></ContributorThumbnail>
+                </Grid>
+              ))
+            }
+          </Grid>
         </Grid>
       )}
     </Grid>
