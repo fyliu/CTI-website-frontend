@@ -10,13 +10,15 @@ const HowToUse = () => {
     { href: '/join-index/how-to-add', name: 'How to Add Your Project' },
   ];
   return (
-    <Box className="pageContainer">
-      <Container className='containerDefault'>
-        <GenericHeaderSection
-          mainTitle='How to Add Your Project'
-          breadCrumbLinks={breadCrumbLinks}
-        />
-      </Container>
+    <Box className='pageContainer'>
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
+          <GenericHeaderSection
+            mainTitle='How to Add Your Project'
+            breadCrumbLinks={breadCrumbLinks}
+          />
+        </Container>
+      </Box>
       <TagGeneratorInstructions />
     </Box>
   )

@@ -329,12 +329,14 @@ export default function ShareTheCti() {
 
   return (
     <Box>
-      <Container className='containerDefault'>
-        <GenericHeaderSection
-          mainTitle='Share the CTI'
-          breadCrumbLinks={breadCrumbLinks}
-        />
-      </Container>
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
+          <GenericHeaderSection
+            mainTitle='Share the CTI'
+            breadCrumbLinks={breadCrumbLinks}
+          />
+        </Container>
+      </Box>
       <Container className={classes.containerStyle}>
         <Grid
           container

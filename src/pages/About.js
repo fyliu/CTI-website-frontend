@@ -31,7 +31,7 @@ const About = () => {
       },
     },
     videoStyle: {
-      height: '360px',
+      height: 'auto',
       [theme.breakpoints.up('lg')]: {
         height: '440px',
       },
@@ -72,6 +72,7 @@ const About = () => {
 
   return (
     <Box className='containerDefault'>
+      <Box className='boxBackround'>
       <Container className='containerDefault'>
         <GenericHeaderSection
           mainTitle='A movement to index every open source civic tech project on GitHub'
@@ -89,6 +90,7 @@ const About = () => {
           </Typography>
         </GenericHeaderSection>
       </Container>
+      </Box>
       <PictureCard
         items={pictureMarketingPoints}
         style={{ padding: '0 115px' }}

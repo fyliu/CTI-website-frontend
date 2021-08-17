@@ -354,17 +354,19 @@ const TagCreator = () => {
 
   return (
     <Box>
-      <Container className='containerDefault'>
-        <GenericHeaderSection mainTitle ='Tag Generator' breadCrumbLinks =    {breadCrumbLinks}>
-          <Typography
-            variant='h6'
-            color='textSecondary'
-            style={{ fontWeight:'500' , textAlign:'center' }}
-          >
-            Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.
-          </Typography>
-        </GenericHeaderSection>
-      </Container>
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
+          <GenericHeaderSection mainTitle ='Tag Generator' breadCrumbLinks =    {breadCrumbLinks}>
+            <Typography
+              variant='h6'
+              color='textSecondary'
+              style={{ fontWeight:'500' , textAlign:'center' }}
+            >
+              Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.
+            </Typography>
+          </GenericHeaderSection>
+        </Container>
+      </Box>
       <Box className='containerGray' style={{ paddingBottom:'30px' }} >
         <Container className={classes.containerPadding} >
           {renderCurrentState()}

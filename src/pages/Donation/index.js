@@ -17,12 +17,14 @@ const Donation = () => {
 
   return (
     <Box className='pageContainer'>
-      <Container className='containerDefault'>
-        <GenericHeaderSection
-          mainTitle='Make a Donation'
-          breadCrumbLinks={breadCrumbLinks}
-        />
-      </Container>
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
+          <GenericHeaderSection
+            mainTitle='Make a Donation'
+            breadCrumbLinks={breadCrumbLinks}
+          />
+        </Container>
+      </Box>
       <Box className='containerGray'>
         <Container>
           <Grid container direction='row'>

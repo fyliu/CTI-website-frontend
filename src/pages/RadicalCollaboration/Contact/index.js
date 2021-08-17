@@ -10,6 +10,7 @@ import { GenericHeaderSection } from '../../../components/';
 const useStyles = makeStyles((theme) => ({
   headerStyle: {
     color: theme.palette.text.secondary,
+    maxWidth: '1150px',
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
       padding: '0px 32px',
@@ -41,17 +42,19 @@ const Contact = () => {
 
   return (
     <Box>
-      <Container className='containerDefault'>
-        <GenericHeaderSection
-          mainTitle='Contact Us'
-          breadCrumbLinks={breadCrumbLinks}
-        >
-          <Typography variant='h6' className={classes.headerStyle}>
-            We would love to hear your thoughts or feedback on how we can
-            improve your experience with the Civic Tech Index!
-          </Typography>
-        </GenericHeaderSection>
-      </Container>
+      <Box className='boxBackground'>
+        <Container className='containerDefault'>
+          <GenericHeaderSection
+            mainTitle='Contact Us'
+            breadCrumbLinks={breadCrumbLinks}
+          >
+            <Typography variant='h6' className={classes.headerStyle}>
+              We would love to hear your thoughts or feedback on how we can
+              improve your experience with the Civic Tech Index!
+            </Typography>
+          </GenericHeaderSection>
+        </Container>
+      </Box>
       <Card>
         <CardMedia
           component='iframe'
