@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
@@ -21,10 +20,37 @@ const useStyles = makeStyles((theme) => ({
       width: '55vw',
     },
   },
+  selectedSort: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '7px 10px',
+    minHeight: '42px',
+    background: '#FFFFFF',
+    color: '#0F1D2F',
+    borderRadius: 4,
+    border: '1px solid #6D6E74',
+  },
+  itemMenuStyle: {
+    
+  }
 }));
 
 const ResultHeader = (props) => {
   const classes = useStyles();
+  const [value, setValue] = useState('match');
+
+  const changeHandler = (event) => {
+    const val = event.target.value;
+    setValue(val);
+    // call function that sends it to ResultContainer
+  };
+
+  const options = [
+    { value: 'match', label: 'Best Match' },
+    { value: 'stars', label: 'StarGazer Count' },
+    // { value: 'udpated', label: 'Last Updated' },
+  ];
 
   const resultCount = (
     <Typography variant='body2' color='primary'>
@@ -34,27 +60,40 @@ const ResultHeader = (props) => {
   );
   return (
     <>
-      <Box display='flex' justifyContent='space-between' alignItems='center' mb={2}>
-        {props.variant === 'large' ? resultCount : (
+      <Box
+        display='flex'
+        justifyContent='space-between'
+        alignItems='center'
+        mb={2}
+      >
+        {props.variant === 'large' ? (
+          resultCount
+        ) : (
           <Button className={classes.button} onClick={props.onHeaderClick}>
-            <FilterListIcon />Filter
+            <FilterListIcon />
+            Filter
           </Button>
         )}
-        <FormControl variant='outlined'>
-          <InputLabel id='sort-select-label'>Sort</InputLabel>
+        <FormControl variant="outlined">
           <Select
-            labelId='sort-select-label'
-            label='Sort'
-            defaultValue='best match'
+            value={value}
             className={classes.select}
-            onChange={(e) => props.onSortChange(e.target.value)}
+            onChange={changeHandler}
+            classes={{
+              root: classes.selectedSort,
+            }}
           >
-            <MenuItem value='best match'>Best Match</MenuItem>
-            {/*
-              Issue#626: This is the temporary fix that removes the 'Last Updated' option from Dropdown in the search page.
-              <MenuItem value='updated'>Last Updated</MenuItem>
-            */}
-            <MenuItem value='stars'>Stargazer Count</MenuItem>
+            {options.map((option) => {
+              const selected = option.value === value;
+              return (
+                <MenuItem value={option.value} selected={selected} classes={{
+                  root: classes.itemMenuStyle,
+                }}>
+                  {selected ? 'Sort: ' : null}
+                  {option.label}
+                </MenuItem>
+              );
+            })}
           </Select>
         </FormControl>
       </Box>
