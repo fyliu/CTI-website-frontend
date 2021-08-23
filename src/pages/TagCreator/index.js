@@ -10,6 +10,7 @@ import {
 } from 'use-query-params';
 import axios from 'axios';
 import Box from '@material-ui/core/Box'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -65,17 +66,18 @@ const usePrevious = (refValue) => {
 const TagCreator = () => {
   const theme = useTheme();
   const classes = useStyles()
-  const [displayState, setDisplayState] = useQueryParam('displayState', withDefault(StringParam, ''));
-  const [value, setValue] = useQueryParam('value', withDefault(StringParam, ''));
-  const [orgName, setOrgName] = useQueryParam('orgName', withDefault(StringParam, ''));
   const [changeValue, setChangeValue] = useQueryParam('changeValue', withDefault(StringParam, ''));
-  const [repositoryUrl, setRepositoryUrl] = useQueryParam('repositoryUrl', withDefault(StringParam, ''));
-  const [repositoryName, setRepositoryName] = useQueryParam('repositoryName', withDefault(StringParam, ''));
-  const [topicSearchError, setTopicSearchError] = useQueryParam('topicSearchError', withDefault(StringParam, ''));
-  const [tagsToAdd, setTagsToAdd] = useQueryParam('tagsToAdd', withDefault(ArrayParam, []));
   const [currentTags, setCurrentTags] = useQueryParam('currentTags', withDefault(ArrayParam, []));
-  const [userTags, setUserTags] = useQueryParam('userTags', withDefault(ArrayParam, []));
+  const [displayState, setDisplayState] = useQueryParam('displayState', withDefault(StringParam, ''));
+  const [orgName, setOrgName] = useQueryParam('orgName', withDefault(StringParam, ''));
   const [orgTags, setOrgTags] = useQueryParam('orgTags', withDefault(ArrayParam, []));
+  const [repositoryName, setRepositoryName] = useQueryParam('repositoryName', withDefault(StringParam, ''));
+  const [repositoryUrl, setRepositoryUrl] = useQueryParam('repositoryUrl', withDefault(StringParam, ''));
+  const [tagsToAdd, setTagsToAdd] = useQueryParam('tagsToAdd', withDefault(ArrayParam, []));
+  const [topicSearchError, setTopicSearchError] = useQueryParam('topicSearchError', withDefault(StringParam, ''));
+  const [userTags, setUserTags] = useQueryParam('userTags', withDefault(ArrayParam, []));
+  const [value, setValue] = useQueryParam('value', withDefault(StringParam, ''));
+  const [loadingTags, setLoadingTags] = useState(false);
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
   const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/join-index', name: 'Tag Your Project' }]
@@ -160,48 +162,59 @@ const TagCreator = () => {
   const prevRefUrl = usePrevious(repositoryUrl)
 
   const handleSubmit = (event) => {
-    const urlPath = getRepositoryUrlPath(repositoryUrl)
+    const urlPath = getRepositoryUrlPath(repositoryUrl);
     // Setting Repository Name
-    const patt = /[a-z]+\//g
-    const repName = urlPath.replace(patt, '')
-    setRepositoryName(repName)
+    const patt = /[a-z]+\//g;
+    const repName = urlPath.replace(patt, '');
+    setRepositoryName(repName);
     // Return error message if no url present
     if (urlPath.length === 0) {
       return setTopicSearchError('Please enter a URL');
     }
     // Fetches Tags from API only if URL is changed
     if (prevRefUrl !== repositoryUrl) {
-      axios.get('https://api.github.com/repos/' + urlPath + '/topics', {
-        headers: { Accept: "application/vnd.github.mercy-preview+json" },
-      })
-        .then(res => {
-          setTopicSearchError('')
-          setCurrentTags(res.data.names)
-        }).catch(e => {
+      setLoadingTags(true);
+      axios
+        .get('https://api.github.com/repos/' + urlPath + '/topics', {
+          headers: { Accept: 'application/vnd.github.mercy-preview+json' },
+        })
+        .then((res) => {
+          setCurrentTags(res.data.names);
+          setTopicSearchError('');
+        })
+        .catch((e) => {
           /*
            * This should store the error state.
            * Component should check for error state and resolve the correct response.
            */
           if (e) {
-            setTopicSearchError('Cannot find repository. Please check the name and try again')
-            setDisplayState('ProjectUrl')
+            setCurrentTags([]);
+            setTopicSearchError(
+              'Cannot find repository. Please check the name and try again'
+            );
+            setDisplayState('ProjectUrl');
           }
         })
+        .finally(() => {
+          setLoadingTags(false);
+        });
       if (userTags.length !== 0) {
-        setRepoChangeAlert('It looks like you have changed your repository, please check your tags')
-        setDisplayState('ChangeTags')
+        setRepoChangeAlert(
+          'It looks like you have changed your repository, please check your tags'
+        );
+        setDisplayState('ChangeTags');
+      } else {
+        handleChangeProjectRepository();
       }
-      else {
-        handleChangeProjectRepository()
-      }
+    } else if (
+      topicSearchError ===
+      'Cannot find repository. Please check the name and try again'
+    ) {
+      setDisplayState('ProjectUrl');
+    } else {
+      handleChangeProjectRepository();
     }
-    else if (((topicSearchError) === 'Cannot find repository. Please check the name and try again')) {
-      setDisplayState('ProjectUrl')
-    }
-    else {
-      handleChangeProjectRepository()
-    }
-  }
+  };
 
   const handleAdd = (chip) => {
     chip = chip.toLowerCase();
@@ -249,49 +262,77 @@ const TagCreator = () => {
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
     switch (displayState) {
-    case "ProjectUrl":
+    case 'ProjectUrl':
       return (
         <>
-          <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles} />
+          <OrgNameSection
+            setDisplayState={setDisplayState}
+            orgName={orgName}
+            linkStyles={linkStyles}
+          />
           <ProjectRepositoryInput
             repositoryUrl={repositoryUrl}
             handleEnter={handleEnter}
             setRepositoryUrl={setRepositoryUrl}
             topicSearchError={topicSearchError}
             setTopicSearchError={setTopicSearchError}
-            handleSubmit={handleSubmit} />
+            handleSubmit={handleSubmit}
+          />
         </>
-      )
-    case "TopicTag":
+      );
+    case 'TopicTag':
       return (
         <>
           <OrgProjSection />
-          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName} />
-          <AddTagsQuestion setDisplayState={setDisplayState} setChangeValue={setChangeValue} resetForm={resetForm}
-            userTags={userTags}
-            handleAdd={handleAdd}
-            handleDelete={handleDelete} />
+          {loadingTags ? (
+            <Box display='flex' alignItems='center' justifyContent='center'>
+              <CircularProgress />
+            </Box>
+          ) : (
+            <>
+              <CurrentTopicTagSection
+                currentTags={currentTags}
+                repositoryName={repositoryName}
+              />
+              <AddTagsQuestion
+                setDisplayState={setDisplayState}
+                setChangeValue={setChangeValue}
+                resetForm={resetForm}
+                userTags={userTags}
+                handleAdd={handleAdd}
+                handleDelete={handleDelete}
+              />
+            </>
+          )}
         </>
-      )
-    case "AddTopicTags":
+      );
+    case 'AddTopicTags':
       return (
         <>
-          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName} />
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
           <AddTopicTagSection
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
             userTags={userTags}
             handleAdd={handleAdd}
-            handleDelete={handleDelete} />
+            handleDelete={handleDelete}
+          />
         </>
-      )
-    case "GenerateTags":
+      );
+    case 'GenerateTags':
       return (
         <>
           <OrgProjSection />
-          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName} />
-          <NewTags tagsToAdd={tagsToAdd}
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <NewTags
+            tagsToAdd={tagsToAdd}
             setDisplayState={setDisplayState}
             setChangeValue={setChangeValue}
             resetForm={resetForm}
@@ -299,49 +340,73 @@ const TagCreator = () => {
             userTags={userTags}
             setUserTags={setUserTags}
             handleAdd={handleAdd}
-            handleDelete={handleDelete} />
+            handleDelete={handleDelete}
+          />
         </>
-      )
-    case "ChangeTags":
+      );
+    case 'ChangeTags':
       return (
         <>
           <OrgProjSection />
-          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName} />
-          <AddMoreTags userTags={userTags}
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <AddMoreTags
+            userTags={userTags}
             setDisplayState={setDisplayState}
             resetForm={resetForm}
             changeValue={changeValue}
             handleAdd={handleAdd}
             handleDelete={handleDelete}
             repoChangeAlert={repoChangeAlert}
-            setRepoChangeAlert={setRepoChangeAlert} />
+            setRepoChangeAlert={setRepoChangeAlert}
+          />
         </>
-      )
-    case "CopyPasteTags":
+      );
+    case 'CopyPasteTags':
       return (
         <>
           <OrgProjSection />
-          <CurrentTopicTagSection currentTags={currentTags} repositoryName={repositoryName} />
-          <CopyPasteTags tagsToAdd={tagsToAdd} setDisplayState={setDisplayState}
+          <CurrentTopicTagSection
+            currentTags={currentTags}
+            repositoryName={repositoryName}
+          />
+          <CopyPasteTags
+            tagsToAdd={tagsToAdd}
+            setDisplayState={setDisplayState}
             userTags={userTags}
             repositoryName={repositoryName}
             repositoryUrl={repositoryUrl}
-            linkStyles={linkStyles} />
+            linkStyles={linkStyles}
+          />
         </>
-      )
+      );
     default:
       return (
         <>
-          <AffiliationQuestionSection value={value} handleChange={handleChange}
-            question={'Are you affiliated with an organization?'} />
-          {(value === 'yes') ? <RadioYes value={value} setOrgName={setOrgName} /> : null}
-          {(value === 'no') ? <OrgChange value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
-            changeValue={changeValue} setDisplayState={setDisplayState} /> : null}
+          <AffiliationQuestionSection
+            value={value}
+            handleChange={handleChange}
+            question={'Are you affiliated with an organization?'}
+          />
+          {value === 'yes' ? (
+            <RadioYes value={value} setOrgName={setOrgName} />
+          ) : null}
+          {value === 'no' ? (
+            <OrgChange
+              value={value}
+              orgName={orgName}
+              setOrgName={setOrgName}
+              setOrgTags={setOrgTags}
+              changeValue={changeValue}
+              setDisplayState={setDisplayState}
+            />
+          ) : null}
         </>
-      )
+      );
     }
-
-  }
+  };
 
   return (
     <Box>
