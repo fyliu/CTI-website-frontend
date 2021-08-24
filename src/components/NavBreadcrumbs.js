@@ -4,10 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
+import spectrum from './../theme-spectrum';
 
-const DARK_BLUE = '#0F1D2F';
-const WHITE = '#FEFEFE';
-const DARK_GRAY = '#6D6E74';
+
 const FULL_OPAQUE = '100%';
 const SEMI_OPAQUE = '80%';
 
@@ -22,12 +21,12 @@ const SEMI_OPAQUE = '80%';
 export default function NavBreadcrumbs(props) {
   const crumbs = props.crumbs;
 
-  let linkColor = WHITE;
-  let activeLinkColor = WHITE;
+  let linkColor = spectrum.white;
+  let activeLinkColor = spectrum.white;
   let opacity = SEMI_OPAQUE;
   if (props.color === 'secondary') {
-    linkColor = DARK_GRAY;
-    activeLinkColor = DARK_BLUE;
+    linkColor = spectrum.darkGray;
+    activeLinkColor = spectrum.darkBlue;
     opacity = FULL_OPAQUE;
   }
 
@@ -39,6 +38,11 @@ export default function NavBreadcrumbs(props) {
   const activeLinkProps = {
     color: activeLinkColor,
     opacity: FULL_OPAQUE,
+  }
+  const linkPropsNotActive = {
+    paddingBottom: '1px',
+    borderBottomStyle: 'solid',
+    borderBottomWidth: '0.1px',
   }
 
   const theme = createMuiTheme({
@@ -61,7 +65,13 @@ export default function NavBreadcrumbs(props) {
 
   const displayCrumbs = crumbs.map((i,idx) => {
     if (i.href) {
-      return <NavLink key={idx} to={i.href}>{i.name}</NavLink>
+      let notActivestyle =  {};
+
+      if (idx < crumbs.length-1)
+      {
+        notActivestyle = linkPropsNotActive;
+      }
+      return <NavLink style={notActivestyle} key={idx} to={i.href}>{i.name}</NavLink>
     } else {
       return <Typography key={idx}>{i.name}</Typography>
     }
