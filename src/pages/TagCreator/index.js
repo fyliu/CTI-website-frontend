@@ -14,14 +14,28 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { GenericHeaderSection } from '../../components/'
-import { AffiliationQuestionSection } from "./AffilationQuestionSection";
-import { OrgNameSection, OrganizationSelectorSection, OrgChange } from './Organization'
-import { ProjectRepositorySection, ProjectRepositoryInput } from './ProjectRepository'
-import { AddTopicTagSection, AddTagsQuestion, NewTags, CopyPasteTags, AddMoreTags, CurrentTopicTagSection } from './TopicTagSection'
+import { GenericHeaderSection } from '../../components/';
+import { AffiliationQuestionSection } from './AffilationQuestionSection';
+import {
+  OrgNameSection,
+  OrganizationSelectorSection,
+  OrgChange,
+} from './Organization';
+import {
+  ProjectRepositorySection,
+  ProjectRepositoryInput,
+} from './ProjectRepository';
+import {
+  AddTopicTagSection,
+  AddTagsQuestion,
+  NewTags,
+  CopyPasteTags,
+  AddMoreTags,
+  CurrentTopicTagSection,
+} from './TopicTagSection';
 import useTheme from '@material-ui/core/styles/useTheme';
-import Instructions from './Instructions'
-import { makeStyles } from '@material-ui/core/styles'
+import BottomSection from './BottomSection';
+import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   containerPadding: {
     paddingLeft: 100,
@@ -34,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '0px 16px',
     },
   },
-}))
+}));
 
 /**
  * By removing matched text, we allow leeway in entering repository URL,
@@ -45,13 +59,13 @@ const useStyles = makeStyles((theme) => ({
  * civictechindex / CTI-website-frontend
  */
 const getRepositoryUrlPath = (repositoryUrl) => {
-  let result = repositoryUrl.replace(/ /g, '')
-  const prefix = /^(?:https?:\/\/)?github\.com\/|git@github\.com:/
-  const suffix = /\.git$/
-  result = result.replace(prefix, '')
-  result = result.replace(suffix, '')
-  return result
-}
+  let result = repositoryUrl.replace(/ /g, '');
+  const prefix = /^(?:https?:\/\/)?github\.com\/|git@github\.com:/;
+  const suffix = /\.git$/;
+  result = result.replace(prefix, '');
+  result = result.replace(suffix, '');
+  return result;
+};
 
 // checks if URL is deifferent
 const usePrevious = (refValue) => {
@@ -60,7 +74,7 @@ const usePrevious = (refValue) => {
     ref.current = refValue;
   });
   return ref.current;
-}
+};
 
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
@@ -80,86 +94,84 @@ const TagCreator = () => {
   const [loadingTags, setLoadingTags] = useState(false);
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
-  const breadCrumbLinks = [{ href: '/home', name: 'Home' }, { href: '/join-index', name: 'Tag Your Project' }]
+  const breadCrumbLinks = [
+    { href: '/home', name: 'Home' },
+    { href: '/join-index', name: 'Tag Your Project' },
+  ];
 
   const resetForm = () => {
-    setValue('')
-    setOrgName('')
-    setRepositoryUrl('')
-    setRepositoryName('')
-    setTopicSearchError('')
-    setTagsToAdd([])
-    setCurrentTags([])
-    setUserTags([])
-    setOrgTags([])
-    setChangeValue('')
-    setDisplayState('')
-    setRepoChangeAlert('')
-  }
+    setValue('');
+    setOrgName('');
+    setRepositoryUrl('');
+    setRepositoryName('');
+    setTopicSearchError('');
+    setTagsToAdd([]);
+    setCurrentTags([]);
+    setUserTags([]);
+    setOrgTags([]);
+    setChangeValue('');
+    setDisplayState('');
+    setRepoChangeAlert('');
+  };
 
   useEffect(() => {
     let active = true;
-    axios.get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
-      .then(res => {
-        const orgs = (res.data).map((org) => org.name)
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/organizations/`)
+      .then((res) => {
+        const orgs = res.data.map((org) => org.name);
         if (active) {
           setOptions(orgs);
         }
-      })
+      });
     return () => {
       active = false;
     };
   }, []);
 
   useEffect(() => {
-    const civicName = []
-    if (!currentTags.includes("civictechindex")) {
-      civicName.push("civictechindex")
+    const civicName = [];
+    if (!currentTags.includes('civictechindex')) {
+      civicName.push('civictechindex');
     }
     if (orgTags.length !== 0 && currentTags.length !== 0) {
-      const result = orgTags.filter(ot => !currentTags.includes(ot))
-      setTagsToAdd([...civicName, ...result])
+      const result = orgTags.filter((ot) => !currentTags.includes(ot));
+      setTagsToAdd([...civicName, ...result]);
+    } else {
+      setTagsToAdd([...civicName, ...orgTags]);
     }
-    else {
-      setTagsToAdd([...civicName, ...orgTags])
-    }
-  }, [orgTags, currentTags, setTagsToAdd])
-
+  }, [orgTags, currentTags, setTagsToAdd]);
 
   useEffect(() => {
     if (value === 'no') {
-      setOrgName('')
-      setOrgTags([])
+      setOrgName('');
+      setOrgTags([]);
     }
-  }, [setOrgName, setOrgTags, value])
-
+  }, [setOrgName, setOrgTags, value]);
 
   const handleEnter = (event) => {
     if (event.key === 'Enter') {
       handleSubmit();
     }
-  }
+  };
 
   const handleChange = (event) => {
-    setValue(event.target.value)
-  }
+    setValue(event.target.value);
+  };
 
   const handleChangeProjectRepository = () => {
     if (changeValue === 'TopicTag') {
-      setDisplayState('TopicTag')
+      setDisplayState('TopicTag');
+    } else if (changeValue === 'GenerateTags') {
+      setDisplayState('GenerateTags');
+    } else if (changeValue === 'CopyPasteTags') {
+      setDisplayState('CopyPasteTags');
+    } else {
+      setChangeValue('TopicTag');
+      setDisplayState('TopicTag');
     }
-    else if (changeValue === 'GenerateTags') {
-      setDisplayState('GenerateTags')
-    }
-    else if (changeValue === 'CopyPasteTags') {
-      setDisplayState('CopyPasteTags')
-    }
-    else {
-      setChangeValue('TopicTag')
-      setDisplayState('TopicTag')
-    }
-  }
-  const prevRefUrl = usePrevious(repositoryUrl)
+  };
+  const prevRefUrl = usePrevious(repositoryUrl);
 
   const handleSubmit = (event) => {
     const urlPath = getRepositoryUrlPath(repositoryUrl);
@@ -232,32 +244,52 @@ const TagCreator = () => {
   };
 
   const handleDelete = (deletedChip) => {
-    setUserTags(userTags.filter((c) => c !== deletedChip))
-  }
+    setUserTags(userTags.filter((c) => c !== deletedChip));
+  };
 
   const linkStyles = {
     fontWeight: '400',
     color: theme.palette.secondary.main,
-  }
+  };
 
   const OrgProjSection = () => {
     return (
       <>
-        <OrgNameSection setDisplayState={setDisplayState} orgName={orgName} linkStyles={linkStyles} />
-        <ProjectRepositorySection repositoryUrl={repositoryUrl} setDisplayState={setDisplayState} linkStyles={linkStyles} />
+        <OrgNameSection
+          setDisplayState={setDisplayState}
+          orgName={orgName}
+          linkStyles={linkStyles}
+        />
+        <ProjectRepositorySection
+          repositoryUrl={repositoryUrl}
+          setDisplayState={setDisplayState}
+          linkStyles={linkStyles}
+        />
       </>
-    )
-  }
+    );
+  };
 
   const RadioYes = ({ value, setOrgName }) => {
     return (
       <Grid container id='container-affiliated'>
-        <OrganizationSelectorSection orgName={orgName} setOrgName={setOrgName} options={options} setOptions={setOptions} />
-        <OrgChange value={value} orgName={orgName} setOrgName={setOrgName} setOrgTags={setOrgTags}
-          changeValue={changeValue} setDisplayState={setDisplayState} linkStyles={linkStyles} />
+        <OrganizationSelectorSection
+          orgName={orgName}
+          setOrgName={setOrgName}
+          options={options}
+          setOptions={setOptions}
+        />
+        <OrgChange
+          value={value}
+          orgName={orgName}
+          setOrgName={setOrgName}
+          setOrgTags={setOrgTags}
+          changeValue={changeValue}
+          setDisplayState={setDisplayState}
+          linkStyles={linkStyles}
+        />
       </Grid>
-    )
-  }
+    );
+  };
 
   // eslint-disable-next-line complexity
   const renderCurrentState = () => {
@@ -412,25 +444,29 @@ const TagCreator = () => {
     <Box>
       <Box className='boxBackground'>
         <Container className='containerDefault'>
-          <GenericHeaderSection mainTitle ='Tag Generator' breadCrumbLinks =    {breadCrumbLinks}>
+          <GenericHeaderSection
+            mainTitle='Tag Generator'
+            breadCrumbLinks={breadCrumbLinks}
+          >
             <Typography
               variant='h6'
               color='textSecondary'
-              style={{ fontWeight:'500' , textAlign:'center' }}
+              style={{ fontWeight: '500', textAlign: 'center' }}
             >
-              Join the Civic Tech Index by submitting your open-source project.<br /> This process takes less than one minute to complete.
+              Join the Civic Tech Index by submitting your open-source project.
+              <br /> This process takes less than one minute to complete.
             </Typography>
           </GenericHeaderSection>
         </Container>
       </Box>
-      <Box className='containerGray' style={{ paddingBottom:'30px' }} >
-        <Container className={classes.containerPadding} >
+      <Box className='containerGray' style={{ paddingBottom: '30px' }}>
+        <Container className={classes.containerPadding}>
           {renderCurrentState()}
         </Container>
       </Box>
-      {(displayState === 'CopyPasteTags') ? <Instructions /> : null}
+      {displayState === 'CopyPasteTags' ? <BottomSection /> : null}
     </Box>
-  )
-}
+  );
+};
 
-export default TagCreator
+export default TagCreator;
