@@ -6,7 +6,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 import spectrum from './../theme-spectrum';
 
-
 const FULL_OPAQUE = '100%';
 const SEMI_OPAQUE = '80%';
 
@@ -33,18 +32,12 @@ export default function NavBreadcrumbs(props) {
   const linkProps = {
     color: linkColor,
     opacity: opacity,
-    textDecoration: 'none',
+    textDecoration: 'underline',
   }
   const activeLinkProps = {
     color: activeLinkColor,
     opacity: FULL_OPAQUE,
   }
-  const linkPropsNotActive = {
-    paddingBottom: '1px',
-    borderBottomStyle: 'solid',
-    borderBottomWidth: '0.1px',
-  }
-
   const theme = createMuiTheme({
     overrides: {
       MuiBreadcrumbs: {
@@ -52,11 +45,19 @@ export default function NavBreadcrumbs(props) {
           fontFamily: 'Work Sans',
           padding: '32px',
           '& p': linkProps,
-          '& a:link': linkProps,
+          '& a:link':linkProps,
           '& a:visited': linkProps,
           '& a:hover': activeLinkProps,
           '& a:active': activeLinkProps,
           '& a:focus': activeLinkProps,
+          '& ol': {
+            '& li':{ textDecoration:'none' },
+            '& li:last-child': {
+              '& a:link': {
+                textDecoration:'none',
+              },
+            },
+          },
         },
         separator: linkProps,
       },
@@ -65,13 +66,7 @@ export default function NavBreadcrumbs(props) {
 
   const displayCrumbs = crumbs.map((i,idx) => {
     if (i.href) {
-      let notActivestyle =  {};
-
-      if (idx < crumbs.length-1)
-      {
-        notActivestyle = linkPropsNotActive;
-      }
-      return <NavLink style={notActivestyle} key={idx} to={i.href}>{i.name}</NavLink>
+      return <NavLink key={idx} to={i.href}>{i.name}</NavLink>
     } else {
       return <Typography key={idx}>{i.name}</Typography>
     }
