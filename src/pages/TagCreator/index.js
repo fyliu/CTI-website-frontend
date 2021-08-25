@@ -409,7 +409,7 @@ const TagCreator = () => {
             setDisplayState={setDisplayState}
             userTags={userTags}
             repositoryName={repositoryName}
-            repositoryUrl={repositoryUrl}
+            repositoryUrl={'https://github.com/' + getRepositoryUrlPath(repositoryUrl)}
             linkStyles={linkStyles}
           />
         </>
