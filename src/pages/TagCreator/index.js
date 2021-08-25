@@ -91,6 +91,7 @@ const TagCreator = () => {
   const [topicSearchError, setTopicSearchError] = useQueryParam('topicSearchError', withDefault(StringParam, ''));
   const [userTags, setUserTags] = useQueryParam('userTags', withDefault(ArrayParam, []));
   const [value, setValue] = useQueryParam('value', withDefault(StringParam, ''));
+  const [fullRepositoryUrl, setFullRepositoryUrl] = useState('');
   const [loadingTags, setLoadingTags] = useState(false);
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
@@ -192,6 +193,7 @@ const TagCreator = () => {
         })
         .then((res) => {
           setCurrentTags(res.data.names);
+          setFullRepositoryUrl('https://github.com/' + urlPath);
           setTopicSearchError('');
         })
         .catch((e) => {
@@ -201,6 +203,7 @@ const TagCreator = () => {
            */
           if (e) {
             setCurrentTags([]);
+            setFullRepositoryUrl('');
             setTopicSearchError(
               'Cannot find repository. Please check the name and try again'
             );
@@ -261,7 +264,7 @@ const TagCreator = () => {
           linkStyles={linkStyles}
         />
         <ProjectRepositorySection
-          repositoryUrl={repositoryUrl}
+          repositoryUrl={fullRepositoryUrl}
           setDisplayState={setDisplayState}
           linkStyles={linkStyles}
         />
@@ -409,7 +412,7 @@ const TagCreator = () => {
             setDisplayState={setDisplayState}
             userTags={userTags}
             repositoryName={repositoryName}
-            repositoryUrl={'https://github.com/' + getRepositoryUrlPath(repositoryUrl)}
+            repositoryUrl={fullRepositoryUrl}
             linkStyles={linkStyles}
           />
         </>
