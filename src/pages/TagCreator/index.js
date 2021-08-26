@@ -9,7 +9,7 @@ import {
   withDefault,
 } from 'use-query-params';
 import axios from 'axios';
-import Box from '@material-ui/core/Box'
+import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -30,7 +30,6 @@ import {
   AddTagsQuestion,
   NewTags,
   CopyPasteTags,
-  AddMoreTags,
   CurrentTopicTagSection,
 } from './TopicTagSection';
 import useTheme from '@material-ui/core/styles/useTheme';
@@ -79,19 +78,55 @@ const usePrevious = (refValue) => {
 // eslint-disable-next-line max-lines-per-function
 const TagCreator = () => {
   const theme = useTheme();
-  const classes = useStyles()
-  const [changeValue, setChangeValue] = useQueryParam('changeValue', withDefault(StringParam, ''));
-  const [currentTags, setCurrentTags] = useQueryParam('currentTags', withDefault(ArrayParam, []));
-  const [fullRepositoryUrl, setFullRepositoryUrl] = useQueryParam('fullRepositoryUrl', withDefault(StringParam, ''));
-  const [displayState, setDisplayState] = useQueryParam('displayState', withDefault(StringParam, ''));
-  const [orgName, setOrgName] = useQueryParam('orgName', withDefault(StringParam, ''));
-  const [orgTags, setOrgTags] = useQueryParam('orgTags', withDefault(ArrayParam, []));
-  const [repositoryName, setRepositoryName] = useQueryParam('repositoryName', withDefault(StringParam, ''));
-  const [repositoryUrl, setRepositoryUrl] = useQueryParam('repositoryUrl', withDefault(StringParam, ''));
-  const [tagsToAdd, setTagsToAdd] = useQueryParam('tagsToAdd', withDefault(ArrayParam, []));
-  const [topicSearchError, setTopicSearchError] = useQueryParam('topicSearchError', withDefault(StringParam, ''));
-  const [userTags, setUserTags] = useQueryParam('userTags', withDefault(ArrayParam, []));
-  const [value, setValue] = useQueryParam('value', withDefault(StringParam, ''));
+  const classes = useStyles();
+  const [changeValue, setChangeValue] = useQueryParam(
+    'changeValue',
+    withDefault(StringParam, '')
+  );
+  const [currentTags, setCurrentTags] = useQueryParam(
+    'currentTags',
+    withDefault(ArrayParam, [])
+  );
+  const [displayState, setDisplayState] = useQueryParam(
+    'displayState',
+    withDefault(StringParam, '')
+  );
+  const [orgName, setOrgName] = useQueryParam(
+    'orgName',
+    withDefault(StringParam, '')
+  );
+  const [orgTags, setOrgTags] = useQueryParam(
+    'orgTags',
+    withDefault(ArrayParam, [])
+  );
+  const [repositoryName, setRepositoryName] = useQueryParam(
+    'repositoryName',
+    withDefault(StringParam, '')
+  );
+  const [repositoryUrl, setRepositoryUrl] = useQueryParam(
+    'repositoryUrl',
+    withDefault(StringParam, '')
+  );
+  const [fullRepositoryUrl, setFullRepositoryUrl] = useQueryParam(
+    'fullRepositoryUrl', 
+    withDefault(StringParam, '')
+  );
+  const [tagsToAdd, setTagsToAdd] = useQueryParam(
+    'tagsToAdd',
+    withDefault(ArrayParam, [])
+  );
+  const [topicSearchError, setTopicSearchError] = useQueryParam(
+    'topicSearchError',
+    withDefault(StringParam, '')
+  );
+  const [userTags, setUserTags] = useQueryParam(
+    'userTags',
+    withDefault(ArrayParam, [])
+  );
+  const [value, setValue] = useQueryParam(
+    'value',
+    withDefault(StringParam, '')
+  );
   const [loadingTags, setLoadingTags] = useState(false);
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
@@ -241,7 +276,8 @@ const TagCreator = () => {
       chip = chip.slice(0, -1);
     }
     if (chip.includes(',')) {
-      const inputChipArr = chip.split(',');
+      let inputChipArr = chip.split(',');
+      inputChipArr = inputChipArr.filter((i) => i);
       setUserTags([...new Set([...userTags, ...inputChipArr])]);
     } else setUserTags([...new Set([...userTags, chip])]);
   };
@@ -330,32 +366,19 @@ const TagCreator = () => {
                 repositoryName={repositoryName}
               />
               <AddTagsQuestion
+                userTags={userTags}
+                displayState={displayState}
                 setDisplayState={setDisplayState}
+                changeValue={changeValue}
                 setChangeValue={setChangeValue}
                 resetForm={resetForm}
-                userTags={userTags}
                 handleAdd={handleAdd}
                 handleDelete={handleDelete}
+                repoChangeAlert={repoChangeAlert}
+                setRepoChangeAlert={setRepoChangeAlert}
               />
             </>
           )}
-        </>
-      );
-    case 'AddTopicTags':
-      return (
-        <>
-          <CurrentTopicTagSection
-            currentTags={currentTags}
-            repositoryName={repositoryName}
-          />
-          <AddTopicTagSection
-            setDisplayState={setDisplayState}
-            setChangeValue={setChangeValue}
-            resetForm={resetForm}
-            userTags={userTags}
-            handleAdd={handleAdd}
-            handleDelete={handleDelete}
-          />
         </>
       );
     case 'GenerateTags':
@@ -387,11 +410,13 @@ const TagCreator = () => {
             currentTags={currentTags}
             repositoryName={repositoryName}
           />
-          <AddMoreTags
+          <AddTopicTagSection
             userTags={userTags}
+            displayState={displayState}
             setDisplayState={setDisplayState}
-            resetForm={resetForm}
             changeValue={changeValue}
+            setChangeValue={setChangeValue}
+            resetForm={resetForm}
             handleAdd={handleAdd}
             handleDelete={handleDelete}
             repoChangeAlert={repoChangeAlert}

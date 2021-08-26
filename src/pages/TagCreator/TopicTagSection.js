@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    flexWrap: 'nowrap',
   },
   typoStyle: {
     fontWeight: '400',
@@ -39,11 +38,80 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '14px',
     },
   },
+  gridLinkStyle: {
+    '& a:link': {
+      fontWeight: '700',
+      color: theme.palette.secondary.main,
+    },
+    '& a:visited': {
+      color: theme.palette.secondary.main,
+    },
+  },
   lStyle: {
     fontWeight: '700',
     color: theme.palette.secondary.main,
   },
+  repoChangeGrid: {
+    paddingTop: '10px',
+    paddingLeft: '10px',
+  },
+  addTopicGridPadding: {
+    padding: '20px 10px 10px',
+  },
+  newTopicGridPadding: {
+    padding: '20px 20px 0px 0px',
+  },
+  resetButton: {
+    backgroundColor: theme.palette.background.default,
+    border: '1px solid',
+    borderColor: theme.palette.background.darkGray,
+    color: theme.palette.spectrum.darkBlue,
+    '&:hover': {
+      background: 'none',
+    },
+  },
+  gridChipInput: {
+    paddingLeft: '10px',
+  },
+  typoPadding: {
+    padding: '30px 0px',
+  },
 }));
+
+const ButtonComponent = ({
+  id,
+  addTagsButtonLabel,
+  handleAddTagsButton,
+  resetButtonLabel,
+  handleResetForm,
+}) => {
+  const classes = useStyles();
+  return (
+    <Grid
+      container
+      direction='row'
+      justify='center'
+      alignItems='center'
+      spacing={3}
+      style={{ padding: '10px' }}
+    >
+      <Grid item style={{ padding: '10px' }}>
+        <Button onClick={handleAddTagsButton} id={id}>
+          {addTagsButtonLabel}
+        </Button>
+      </Grid>
+      <Grid item style={{ padding: '10px' }}>
+        <Button
+          className={classes.resetButton}
+          onClick={handleResetForm}
+          id='reset-form-button'
+        >
+          {resetButtonLabel}
+        </Button>
+      </Grid>
+    </Grid>
+  );
+};
 
 export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
   return (
@@ -52,7 +120,10 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
         <Grid>
           <Grid style={{ padding: '24px 0px' }}>
             <Typography variant='body1'>
-              Current topic tags on {repositoryName}:
+              Current topic tags on{' '}
+              <Box component='span' style={{ fontWeight: '700' }}>
+                {repositoryName}:
+              </Box>
             </Typography>
           </Grid>
           <Grid
@@ -80,12 +151,16 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
 };
 
 export const AddTagsQuestion = ({
-  resetForm,
-  setDisplayState,
-  setChangeValue,
   userTags,
+  displayState,
+  setDisplayState,
+  resetForm,
+  changeValue,
+  setChangeValue,
   handleAdd,
   handleDelete,
+  repoChangeAlert,
+  setRepoChangeAlert,
 }) => {
   const [addTagValue, setAddTagValue] = useState('');
   const handleChangeTag = (event) => {
@@ -107,12 +182,16 @@ export const AddTagsQuestion = ({
       />
       {addTagValue === 'yes' ? (
         <AddTopicTagSection
+          userTags={userTags}
+          displayState={displayState}
           setDisplayState={setDisplayState}
+          changeValue={changeValue}
           setChangeValue={setChangeValue}
           resetForm={resetForm}
-          userTags={userTags}
           handleAdd={handleAdd}
           handleDelete={handleDelete}
+          repoChangeAlert={repoChangeAlert}
+          setRepoChangeAlert={setRepoChangeAlert}
         />
       ) : null}
       {addTagValue === 'no' ? showAddTopicTag() : null}
@@ -121,57 +200,66 @@ export const AddTagsQuestion = ({
 };
 
 export const AddTopicTagSection = ({
-  setDisplayState,
-  setChangeValue,
-  resetForm,
   userTags,
+  displayState,
+  setDisplayState,
+  resetForm,
+  changeValue,
+  setChangeValue,
   handleAdd,
   handleDelete,
+  repoChangeAlert,
+  setRepoChangeAlert,
 }) => {
+  const classes = useStyles();
   const handleGenerateTag = () => {
     setChangeValue('GenerateTags');
     setDisplayState('GenerateTags');
+  };
+  const handleAddMoreTags = () => {
+    if (changeValue === 'CopyPasteTags') {
+      setRepoChangeAlert('');
+      setDisplayState('CopyPasteTags');
+    } else {
+      setRepoChangeAlert('');
+      setDisplayState('GenerateTags');
+    }
   };
   const handleResetForm = () => {
     resetForm();
   };
   return (
     <>
-      <Grid style={{ padding: '20px' }}>
+      <Grid className={classes.repoChangeGrid}>
+        <Typography variant='body1' color='error'>
+          {repoChangeAlert}
+        </Typography>
+      </Grid>
+      <Grid className={classes.addTopicGridPadding}>
         <Typography variant='body1'>
           What topic(s), cause(s), or civic issue(s) does your project address?
         </Typography>
-        <Typography variant='body1' style={{ lineHeight: '70px' }}>
+        <Typography variant='body1' className={classes.typoPadding}>
           Separate tags by spaces and dashes for hyphenation. You can edit your
           tags later if you need too.
         </Typography>
       </Grid>
-      <Grid data-cy='add-topic-tags'>
+      <Grid className={classes.gridChipInput} data-cy='add-topic-tags'>
         <ChipInputSection
           handleAdd={handleAdd}
           handleDelete={handleDelete}
           userTags={userTags}
         />
       </Grid>
-      <Grid
-        container
-        direction='row'
-        justify='center'
-        alignItems='center'
-        spacing={3}
-        style={{ padding: '10px' }}
-      >
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleGenerateTag} id='addTagsButton'>
-            Add Tag(s)
-          </Button>
-        </Grid>
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleResetForm} id='reset-form-button'>
-            Reset Form
-          </Button>
-        </Grid>
-      </Grid>
+      <ButtonComponent
+        id='addTagsButton'
+        addTagsButtonLabel='Add Tag(s)'
+        handleAddTagsButton={
+          displayState === 'ChangeTags' ? handleAddMoreTags : handleGenerateTag
+        }
+        resetButtonLabel='Reset Form'
+        handleResetForm={handleResetForm}
+      />
     </>
   );
 };
@@ -196,7 +284,7 @@ export const NewTags = ({
   return (
     <>
       <Grid>
-        <Grid style={{ padding: '20px 20px 0px 20px' }}>
+        <Grid className={classes.addTopicGridPadding}>
           <Typography variant='body1'>
             New tags to add to your repository:
           </Typography>
@@ -220,25 +308,13 @@ export const NewTags = ({
           </Grid>
         </Grid>
       </Grid>
-      <Grid
-        container
-        direction='row'
-        justify='center'
-        alignItems='center'
-        spacing={3}
-        style={{ padding: '10px' }}
-      >
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleAddTags} id='add-tags-button'>
-            Add Tag(s) to Repository
-          </Button>
-        </Grid>
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleResetForm} id='reset-form-button'>
-            Reset Form
-          </Button>
-        </Grid>
-      </Grid>
+      <ButtonComponent
+        id='add-tags-button'
+        addTagsButtonLabel='Add Tag(s) to Repository'
+        handleAddTagsButton={handleAddTags}
+        resetButtonLabel='Reset Form'
+        handleResetForm={handleResetForm}
+      />
     </>
   );
 };
@@ -263,15 +339,10 @@ const TagGeneratorInstructions = ({
             How to add your tags to your project’s repository
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.gridLinkStyle}>
           <Typography variant='body1' className={classes.typoStyle}>
             1. Under your{' '}
-            <Link
-              target='_blank'
-              href={repositoryUrl}
-              underline='always'
-              className={classes.lStyle}
-            >
+            <Link target='_blank' href={repositoryUrl} underline='always'>
               project’s repository,
             </Link>{' '}
             click <SettingsGearIcon /> to paste your tags.
@@ -380,71 +451,6 @@ export const CopyPasteTags = ({
         linkStyles={linkStyles}
         repositoryUrl={repositoryUrl}
       />
-    </>
-  );
-};
-
-export const AddMoreTags = ({
-  userTags,
-  setDisplayState,
-  resetForm,
-  changeValue,
-  handleAdd,
-  handleDelete,
-  repoChangeAlert,
-  setRepoChangeAlert,
-}) => {
-  const handleAddMoreTags = () => {
-    if (changeValue === 'CopyPasteTags') {
-      setDisplayState('CopyPasteTags');
-      setRepoChangeAlert('');
-    } else {
-      setDisplayState('GenerateTags');
-      setRepoChangeAlert('');
-    }
-  };
-
-  const handleResetForm = () => {
-    resetForm();
-  };
-  return (
-    <>
-      <Grid style={{ paddingTop: '10px' }}>
-        <Typography variant='body1' color='error'>
-          {repoChangeAlert}
-        </Typography>
-      </Grid>
-      <Grid style={{ padding: '20px' }}>
-        <Typography variant='body1'>
-          What topic(s), cause(s), or civic issue(s) does your project address?{' '}
-        </Typography>
-        <Typography variant='body1' style={{ lineHeight: '70px' }}>
-          Separate tags by spaces and dashes for hyphenation. You can edit your
-          tags later if you need too.
-        </Typography>
-      </Grid>
-      <Grid>
-        <ChipInputSection
-          handleAdd={handleAdd}
-          handleDelete={handleDelete}
-          userTags={userTags}
-        />
-      </Grid>
-      <Grid
-        container
-        direction='row'
-        justify='center'
-        alignItems='center'
-        spacing={3}
-        style={{ padding: '10px' }}
-      >
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleAddMoreTags}>Add Tag(s)</Button>
-        </Grid>
-        <Grid item style={{ padding: '10px' }}>
-          <Button onClick={handleResetForm}>Reset Form</Button>
-        </Grid>
-      </Grid>
     </>
   );
 };

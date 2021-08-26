@@ -4,21 +4,21 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  gridStyle:{
+  gridStyle: {
     [theme.breakpoints.down('xs')]: {
       paddingBottom: '8px',
     },
   },
   typoStyle: {
-    fontWeight:'400',
+    fontWeight: '700',
     [theme.breakpoints.down('xs')]: {
       fontSize: '0.875rem',
     },
   },
-}))
+}));
 
 export const ProjectRepositorySection = ({
   repositoryUrl,
@@ -34,12 +34,14 @@ export const ProjectRepositorySection = ({
       style={{ paddingBottom: '32px' }}
     >
       <Grid item xs={12} sm={3} className={classes.gridStyle}>
-        <Typography variant='h6' className={classes.typoStyle}>
-          Project Repository URL:
-        </Typography>
+        <Typography variant='body1'>Project Repository URL:</Typography>
       </Grid>
       <Grid item xs={10} sm={7} data-cy='grid-repository-url'>
-        <Link variant='h6' target='_blank' href={repositoryUrl}>
+        <Link
+          variant='body1'
+          href={repositoryUrl}
+          className={classes.typoStyle}
+        >
           {repositoryUrl}
         </Link>
       </Grid>
@@ -74,7 +76,7 @@ export const ProjectRepositoryInput = ({
   return (
     <>
       <Grid item style={{ padding: '16px 0px' }} xs={12}>
-        <Typography variant='h6'>Project Repository URL</Typography>
+        <Typography variant='body1'>Project Repository URL</Typography>
       </Grid>
       <Grid data-cy='grid-repository'>
         <TextField
@@ -107,4 +109,3 @@ export const ProjectRepositoryInput = ({
     </>
   );
 };
-
