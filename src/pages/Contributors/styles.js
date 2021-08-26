@@ -56,6 +56,7 @@ export const useStyle = makeStyles((theme) => ({
   },
   indicator: {
     backgroundColor: '#006B95',
+    height: 5,
   },
   tabVal: {
     color: DARK_GRAY,
