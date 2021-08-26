@@ -55,7 +55,7 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
   indicator: {
-    backgroundColor: '#006B95',
+    backgroundColor: theme.palette.spectrum.lightBlue,
     height: 5,
   },
   tabVal: {
@@ -85,7 +85,7 @@ export const useStyle = makeStyles((theme) => ({
       },
     },
     '&$tabSelected': {
-      color: '#006B95',
+      color: theme.palette.spectrum.lightBlue,
     },
   },
   tabSelected: {},

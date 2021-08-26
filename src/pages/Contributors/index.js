@@ -185,9 +185,9 @@ export default function Contributors() {
               className={classes.tabs}
               classes={{ indicator: classes.indicator }}
             >
-              <Tab label={<>({totalUnaffiliatedCount + totalAffiliatedCount })</>} icon="All" {...a11yProps(0)} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
-              <Tab  icon="Unaffiliated"  label={<>({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(1)} />
-              <Tab  icon="Affiliated" label={<>({totalAffiliatedCount})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(2)} />
+              <Tab icon="All" label={<>{" "}({totalUnaffiliatedCount + totalAffiliatedCount })</>} {...a11yProps(0)} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
+              <Tab icon="Unaffiliated" label={<>{" "}({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(1)} />
+              <Tab icon="Affiliated" label={<>{" "}({totalAffiliatedCount})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(2)} />
             </Tabs>
           </AppBar>
           <Grid index={tabValue}>
