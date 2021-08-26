@@ -1,5 +1,4 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
-const DARK_GRAY = '#6D6E74';
 
 export const useStyle = makeStyles((theme) => ({
   firstSectionWrapper: {
@@ -59,7 +58,7 @@ export const useStyle = makeStyles((theme) => ({
     height: 5,
   },
   tabVal: {
-    color: DARK_GRAY,
+    color: theme.palette.spectrum.darkGray,
     [theme.breakpoints.down('sm')]: {
       fontSize: '18px',
     },
@@ -96,7 +95,7 @@ export const useStyle = makeStyles((theme) => ({
     '& .MuiSvgIcon-root': {
       width: '24px',
       height: '24px',
-      color: DARK_GRAY,
+      color: theme.palette.spectrum.darkGray,
 
       [theme.breakpoints.down('sm')]: {
         width: '13px',
