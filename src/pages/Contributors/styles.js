@@ -73,15 +73,17 @@ export const useStyle = makeStyles((theme) => ({
   },
   tabRoot: {
     '&.MuiTab-root': {
-      fontSize: '32px',
-      color: DARK_GRAY,
+      color: theme.palette.spectrum.darkGray,
+      fontSize: 32,
       fontWeight: 'bold',
+      overflow: 'hidden',
       textTransform: 'none',
+      whiteSpace: 'nowrap',
       [theme.breakpoints.down('sm')]: {
-        fontSize: '22px',
+        fontSize: 22,
       },
       [theme.breakpoints.down('xs')]: {
-        fontSize: '11px',
+        fontSize: 16,
       },
     },
     '&$tabSelected': {
