@@ -82,6 +82,7 @@ const TagCreator = () => {
   const classes = useStyles()
   const [changeValue, setChangeValue] = useQueryParam('changeValue', withDefault(StringParam, ''));
   const [currentTags, setCurrentTags] = useQueryParam('currentTags', withDefault(ArrayParam, []));
+  const [fullRepositoryUrl, setFullRepositoryUrl] = useQueryParam('fullRepositoryUrl', withDefault(StringParam, ''));
   const [displayState, setDisplayState] = useQueryParam('displayState', withDefault(StringParam, ''));
   const [orgName, setOrgName] = useQueryParam('orgName', withDefault(StringParam, ''));
   const [orgTags, setOrgTags] = useQueryParam('orgTags', withDefault(ArrayParam, []));
@@ -91,7 +92,6 @@ const TagCreator = () => {
   const [topicSearchError, setTopicSearchError] = useQueryParam('topicSearchError', withDefault(StringParam, ''));
   const [userTags, setUserTags] = useQueryParam('userTags', withDefault(ArrayParam, []));
   const [value, setValue] = useQueryParam('value', withDefault(StringParam, ''));
-  const [fullRepositoryUrl, setFullRepositoryUrl] = useState('');
   const [loadingTags, setLoadingTags] = useState(false);
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
