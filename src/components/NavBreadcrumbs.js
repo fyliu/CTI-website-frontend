@@ -32,7 +32,6 @@ export default function NavBreadcrumbs(props) {
   const linkProps = {
     color: linkColor,
     opacity: opacity,
-    textDecoration: 'underline',
   }
   const activeLinkProps = {
     color: activeLinkColor,
@@ -51,7 +50,6 @@ export default function NavBreadcrumbs(props) {
           '& a:active': activeLinkProps,
           '& a:focus': activeLinkProps,
           '& ol': {
-            '& li':{ textDecoration:'none' },
             '& li:last-child': {
               '& a:link': {
                 textDecoration:'none',
