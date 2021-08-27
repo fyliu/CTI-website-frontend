@@ -108,7 +108,7 @@ const TagCreator = () => {
     withDefault(StringParam, '')
   );
   const [fullRepositoryUrl, setFullRepositoryUrl] = useQueryParam(
-    'fullRepositoryUrl', 
+    'fullRepositoryUrl',
     withDefault(StringParam, '')
   );
   const [tagsToAdd, setTagsToAdd] = useQueryParam(

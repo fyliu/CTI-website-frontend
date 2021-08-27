@@ -1,5 +1,4 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
-const DARK_GRAY = '#6D6E74';
 
 export const useStyle = makeStyles((theme) => ({
   firstSectionWrapper: {
@@ -55,10 +54,11 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
   indicator: {
-    backgroundColor: '#006B95',
+    backgroundColor: theme.palette.spectrum.lightBlue,
+    height: 5,
   },
   tabVal: {
-    color: DARK_GRAY,
+    color: theme.palette.spectrum.darkGray,
     [theme.breakpoints.down('sm')]: {
       fontSize: '18px',
     },
@@ -72,19 +72,21 @@ export const useStyle = makeStyles((theme) => ({
   },
   tabRoot: {
     '&.MuiTab-root': {
-      fontSize: '32px',
-      color: DARK_GRAY,
+      color: theme.palette.spectrum.darkGray,
+      fontSize: 32,
       fontWeight: 'bold',
+      overflow: 'hidden',
       textTransform: 'none',
+      whiteSpace: 'nowrap',
       [theme.breakpoints.down('sm')]: {
-        fontSize: '22px',
+        fontSize: 22,
       },
       [theme.breakpoints.down('xs')]: {
-        fontSize: '11px',
+        fontSize: 16,
       },
     },
     '&$tabSelected': {
-      color: '#006B95',
+      color: theme.palette.spectrum.lightBlue,
     },
   },
   tabSelected: {},
@@ -93,7 +95,7 @@ export const useStyle = makeStyles((theme) => ({
     '& .MuiSvgIcon-root': {
       width: '24px',
       height: '24px',
-      color: DARK_GRAY,
+      color: theme.palette.spectrum.darkGray,
 
       [theme.breakpoints.down('sm')]: {
         width: '13px',
