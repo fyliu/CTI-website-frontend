@@ -109,7 +109,7 @@ const TagCreator = () => {
     withDefault(StringParam, '')
   );
   const [fullRepositoryUrl, setFullRepositoryUrl] = useQueryParam(
-    'fullRepositoryUrl', 
+    'fullRepositoryUrl',
     withDefault(StringParam, '')
   );
   const [tagsToAdd, setTagsToAdd] = useQueryParam(
@@ -452,7 +452,7 @@ const TagCreator = () => {
             question={
               <>
                 Are you affiliated with an{' '}
-                <Link to='/organizations/all'> organization</Link>?
+                <Link style={{ color:'#0D99C6'}} to='/organizations/all'> organization</Link>?
               </>
             }
           />
