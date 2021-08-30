@@ -42,7 +42,7 @@ const ShowTypography = () => {
           additional variants <b>h7</b> and <b>body3</b>. These two new
           variants, plus different styling for variants <b>body1</b> and{' '}
           <b>body2</b>, are now available with the <b>Text</b> component. Going
-          forward, use <b>Text</b>, especially for these four variants.
+          forward, use <b>Text</b> for these four variants.
         </Typography>
         <Typography variant='body1' color='secondary' gutterBottom>
           The specifications for <b>body1</b> and <b>body2</b> have changed.{' '}
@@ -76,7 +76,7 @@ const ShowTypography = () => {
         </pre>
       </Paper>
 
-      <Paper elevation={16} className='containerGray'>
+      <Paper elevation={4} className='containerGray'>
         <Typography variant='h1' color='primary'>
           h1. Title1 (3rem/48px)
         </Typography>
@@ -92,24 +92,24 @@ const ShowTypography = () => {
         <Typography variant='h5' color='error'>
           h5. Title5 (1.5rem/24px)
         </Typography>
-        <Typography variant='h6'>
+        <Typography variant='h6' color='primary'>
           h6. Title6 (1.25rem/20px) [or 1.375rem/22px ?]
         </Typography>
-        <Text variant='h7'>
+        <Text variant='h7' color='secondary'>
           <q>h7.</q> Title7 (1.125rem/18px)
         </Text>
       </Paper>
 
-      <Paper elevation={16} className='containerGray'>
+      <Paper elevation={4} className='containerGray'>
         <Text variant='body1' gutterBottom>
-          <q>body1.</q> (1.125rem/18px){' '}
+          body1. (1.125rem/18px){' '}
           <Link to='/guides/type-standards'>Lorem ipsum</Link> dolor sit amet,
           consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit,
           quam beatae rerum inventore consectetur, neque doloribus, cupiditate
           numquam dignissimos laborum fugiat deleniti? (lg-copy)
         </Text>
-        <Text variant='body2' gutterBottom>
-          <q>body2.</q> (1rem/16px){' '}
+        <Text variant='body2' color='secondary' gutterBottom>
+          body2. (1rem/16px){' '}
           <Link href='/guides/type-standards'>Lorem ipsum</Link> dolor sit amet,
           consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit,
           quam beatae rerum inventore consectetur, neque doloribus, cupiditate
