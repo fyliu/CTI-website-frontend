@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { GenericHeaderSection } from '../../../components';
+import GitHubButton from 'react-github-btn';
 
 const useStyles = makeStyles((theme) => ({
   containerStyle: {
@@ -39,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       marginBottom: '32px',
     },
+  },
+  starButtonGrid: {
+    padding:'24px 0px',
+    marginBottom: '36px',
   },
   starMediaSection: {
     height: '252px',
@@ -87,8 +92,16 @@ const StarMediaSection = () => {
         md={3}
         className={classes.starMediaStyle}
       >
-        <Grid item style={{ paddingBottom: ' 32px 0 32px' }}>
-          <img src='/images/image3.svg' alt='StarCount logo' />
+        <Grid item className={classes.starButtonGrid}>
+          <GitHubButton
+            href='https://github.com/civictechindex/CTI-website-frontend'
+            data-icon='octicon-star'
+            data-size='large'
+            data-show-count='true'
+            aria-label='Star civictechindex/CTI-website-frontend on GitHub'
+          >
+            Star
+          </GitHubButton>
         </Grid>
         <Typography variant='h6'>
           Don’t forget to star our repository
@@ -222,7 +235,8 @@ const MediaInfo = () => {
           <Box>
             <Typography
               variant='h4'
-              style={{ color: '#004364', marginBottom: '32px' }}>
+              style={{ color: '#004364', marginBottom: '32px' }}
+            >
               Use our Logo on your Project!
             </Typography>
             <Typography variant='h6' style={{ marginBottom: '16px' }}>
