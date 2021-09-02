@@ -35,7 +35,7 @@ const Donation = () => {
               </Typography>
               <Typography variant='body1' className={classes.infoSteps}>
                 1. Please follow this link to the Code For America{' '}
-                <Link style={{ color: '#0D99C6' }} to='https://www.codeforamerica.org/donate'>
+                <Link to='https://www.codeforamerica.org/donate'>
                   donation form
                 </Link>
                 .
