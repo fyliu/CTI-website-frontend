@@ -3,32 +3,64 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-/**
- * Returns Material-UI Typography and extends it with additional variants.
- * Can replace Typography components or be used as a companion to them.
- */
-
 const useStyles = makeStyles((theme) => ({
-  h7: {
-    fontSize: '1.125rem',
-    fontWeight: 700,
-    lineHeight: 1.25,
+  h1: {
+    fontSize: '3rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2.5rem',
+    },
   },
-  body1: {
+  h2: {
+    fontSize: '2.5rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2rem',
+    },
+  },
+  h3: {
+    fontSize: '2rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.75rem',
+    },
+  },
+  h4: {
+    fontSize: '1.75rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.5rem',
+    },
+  },
+  h5: {
+    fontSize: '1.5rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.25rem',
+    },
+  },
+  h6: {
+    fontSize: '1.25rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem',
+    },
+  },
+  body0: {
     fontSize: '1.125rem',
     fontWeight: 400,
     lineHeight: 1.35,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem',
+    },
+  },
+  body1: {
+    fontSize: '1rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.875rem',
+    },
   },
   body2: {
     color: theme.palette.spectrum.darkBlue,
-    fontSize: '1rem',
-    fontWeight: 400,
-    lineHeight: 1.35,
-  },
-  body3: {
     fontSize: '0.875rem',
     fontWeight: 400,
-    lineHeight: 1.35,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.75rem',
+    },
   },
   // to overcome 'body2' uniqueness in our theme file:
   colorPrimary: {
@@ -44,13 +76,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.spectrum.white,
   },
 }));
-
-const variantMapping = {
-  h7: 'h6',
-  body1: 'body1',
-  body2: 'body2',
-  body3: 'body2',
-};
 
 const Text = (props) => {
   const { children, className, variant, ...rest } = props;
@@ -70,7 +95,7 @@ const Text = (props) => {
           : {}
       }
       className={isCustom ? clsx(classes[variant], className) : className}
-      variant={isCustom ? variantMapping[variant] : variant}
+      variant={variant === 'body0' ? 'body1' : variant}
       {...rest}
     >
       {children}
