@@ -196,17 +196,14 @@ export default function Contributors() {
                 control={
                   <Checkbox
                     checked={showIndexContrib}
-                    className={classes.chkBoxStyle}
                     data-cy='index-contributors-checkbox'
                     onChange={(e) => {
                       setShowIndexContrib(e.target.checked);
                     }}
-                    style={{ backgroundColor: 'transparent' }}
                   />
                 }
                 label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>} />
             </FormGroup>
-
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
                 organization={affiliatedOrganizationsObject["unaffiliated"]}

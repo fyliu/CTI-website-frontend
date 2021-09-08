@@ -226,7 +226,7 @@ describe('Contributors Page (using fixture)', () => {
   });
 
   it('should not show index contributor indicators', () => {
-    cy.get('[class*=makeStyles-chkBoxStyle]').within(() => {
+    cy.get('[data-cy=index-contributors-checkbox]').within(() => {
       cy.get('[type="checkbox"]').should('not.be.checked');
     });
     cy.get('[class*=makeStyles-gpGrid]').within(() => {
