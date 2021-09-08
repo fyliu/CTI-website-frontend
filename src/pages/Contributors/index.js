@@ -156,14 +156,21 @@ export default function Contributors() {
         <Container className={classes.firstSectionWrapper}>
           <NavBreadcrumbs
             crumbs={[
-              { name: "Home", href: "/home" },
-              { name: "Civic Tech Partners", href: "/organizations/all" },
+              { name: 'Home', href: '/home' },
+              { name: 'Civic Tech Partners', href: '/organizations/all' },
             ]}
           />
           <Grid container>
             <TitleSection>Civic Tech Partners</TitleSection>
             <Grid item xs={12}>
-              <Typography color='textSecondary' className={classes.textStyle} gutterBottom>Check out our partners who have contributed to the Civic Tech Index</Typography>
+              <Typography
+                color='textSecondary'
+                className={classes.textStyle}
+                gutterBottom
+              >
+                Check out our partners who have contributed to the Civic Tech
+                Index
+              </Typography>
             </Grid>
             <Grid item xs={12}>
               <OrganizationSearch
@@ -177,17 +184,50 @@ export default function Contributors() {
       </Box>
       <Box className='containerGray'>
         <Container>
-          <AppBar position="static" color="default" elevation={0}>
+          <AppBar position='static' color='default' elevation={0}>
             <Tabs
               value={tabValue}
               onChange={(e, val) => setTabValue(val)}
-              variant="fullWidth"
+              variant='fullWidth'
               className={classes.tabs}
               classes={{ indicator: classes.indicator }}
             >
-              <Tab icon="All" label={<>{" "}({totalUnaffiliatedCount + totalAffiliatedCount })</>} {...a11yProps(0)} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} />
-              <Tab icon="Unaffiliated" label={<>{" "}({affiliatedOrganizationsObject["unaffiliated"] ? affiliatedOrganizationsObject["unaffiliated"].length : 0})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(1)} />
-              <Tab icon="Affiliated" label={<>{" "}({totalAffiliatedCount})</>} classes={{ root: classes.tabRoot, selected: classes.tabSelected }} {...a11yProps(2)} />
+              <Tab
+                icon='All'
+                label={<> ({totalUnaffiliatedCount + totalAffiliatedCount})</>}
+                {...a11yProps(0)}
+                classes={{
+                  root: classes.tabRoot,
+                  selected: classes.tabSelected,
+                }}
+              />
+              <Tab
+                icon='Unaffiliated'
+                label={
+                  <>
+                    {' '}
+                    (
+                    {affiliatedOrganizationsObject['unaffiliated']
+                      ? affiliatedOrganizationsObject['unaffiliated'].length
+                      : 0}
+                    )
+                  </>
+                }
+                classes={{
+                  root: classes.tabRoot,
+                  selected: classes.tabSelected,
+                }}
+                {...a11yProps(1)}
+              />
+              <Tab
+                icon='Affiliated'
+                label={<> ({totalAffiliatedCount})</>}
+                classes={{
+                  root: classes.tabRoot,
+                  selected: classes.tabSelected,
+                }}
+                {...a11yProps(2)}
+              />
             </Tabs>
           </AppBar>
           <Grid index={tabValue}>
@@ -202,11 +242,16 @@ export default function Contributors() {
                     }}
                   />
                 }
-                label={<Typography className={classes.formControlLabel}>Index Contributor</Typography>} />
+                label={
+                  <Typography className={classes.formControlLabel}>
+                    Index Contributor
+                  </Typography>
+                }
+              />
             </FormGroup>
             <TabPanel value={tabValue} index={0}>
               <UnaffiliatedOrganizations
-                organization={affiliatedOrganizationsObject["unaffiliated"]}
+                organization={affiliatedOrganizationsObject['unaffiliated']}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalUnaffiliatedCount}
@@ -216,7 +261,7 @@ export default function Contributors() {
                 organizations={affiliatedOrganizationsObject}
                 inputValue={inputValue}
                 classes={classes}
-                affiliation="affiliated"
+                affiliation='affiliated'
                 organizationData={organizations}
                 filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
@@ -226,7 +271,7 @@ export default function Contributors() {
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <UnaffiliatedOrganizations
-                organization={affiliatedOrganizationsObject["unaffiliated"]}
+                organization={affiliatedOrganizationsObject['unaffiliated']}
                 filtersActive={filtersActive}
                 unaffiliatedCount={unaffiliatedCount}
                 totalunaffiliatedCount={totalUnaffiliatedCount}
@@ -238,7 +283,7 @@ export default function Contributors() {
                 organizations={affiliatedOrganizationsObject}
                 inputValue={inputValue}
                 classes={classes}
-                affiliation="affiliated"
+                affiliation='affiliated'
                 organizationData={organizations}
                 filtersActive={filtersActive}
                 affiliatedCount={affiliatedCount}
