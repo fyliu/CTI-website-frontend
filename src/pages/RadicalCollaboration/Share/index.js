@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   cardTypo:{
     textAlign:'center',
@@ -85,8 +85,8 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom:'32px',
   },
   tweetHeading:{
-    textAlign: 'center', 
-    color: theme.palette.spectrum.teal
+    textAlign: 'center',
+    color: theme.palette.spectrum.teal,
   },
 }));
 
@@ -104,42 +104,42 @@ const StarMediaSection = () => {
     );
   };
   return (
-      <Grid container item xs={12} spacing={4} className={classes.starMediaSection}>
-        <Grid item sm={4}>
-          <Card variant='outlined' className={classes.card}>
-            <CardActions>
-              <GitHubButton
-                href='https://github.com/civictechindex/CTI-website-frontend'
-                data-icon='octicon-star'
-                data-size='large'
-                data-show-count='true'
-                aria-label='Star civictechindex/CTI-website-frontend on GitHub'
-              >
+    <Grid container item xs={12} spacing={4} className={classes.starMediaSection}>
+      <Grid item sm={4}>
+        <Card variant='outlined' className={classes.card}>
+          <CardActions>
+            <GitHubButton
+              href='https://github.com/civictechindex/CTI-website-frontend'
+              data-icon='octicon-star'
+              data-size='large'
+              data-show-count='true'
+              aria-label='Star civictechindex/CTI-website-frontend on GitHub'
+            >
                 Star
-              </GitHubButton>
-            </CardActions>
-            <CardContent>
-              <Typography variant='h6' className={classes.cardTypo}>
+            </GitHubButton>
+          </CardActions>
+          <CardContent>
+            <Typography variant='h6' className={classes.cardTypo}>
                 Don’t forget to star our repository
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item sm={4}>
-          <CardSection
-            image='/images/medium.png'
-            title='Medium logo'
-            cardContent='Mention or write about us on Medium'
-          />
-        </Grid>
-        <Grid item sm={4}>
-          <CardSection
-            image='/images/mail.png'
-            title='Mail logo'
-            cardContent='Share new tags with your project admin'
-          />
-        </Grid>
+            </Typography>
+          </CardContent>
+        </Card>
       </Grid>
+      <Grid item sm={4}>
+        <CardSection
+          image='/images/medium.png'
+          title='Medium logo'
+          cardContent='Mention or write about us on Medium'
+        />
+      </Grid>
+      <Grid item sm={4}>
+        <CardSection
+          image='/images/mail.png'
+          title='Mail logo'
+          cardContent='Share new tags with your project admin'
+        />
+      </Grid>
+    </Grid>
   );
 };
 const SocialMediaPostSection = () => {
@@ -377,12 +377,12 @@ export default function ShareTheCti() {
           </Grid>
           <StarMediaSection />
           <Grid className={classes.tweetGrid}>
-          <Typography
-            variant='h3'
-            className={classes.tweetHeading}
-          >
+            <Typography
+              variant='h3'
+              className={classes.tweetHeading}
+            >
             Latest Updates from the CTI
-          </Typography>
+            </Typography>
           </Grid>
           <SocialMediaPostSection />
         </Container>
