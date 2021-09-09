@@ -206,6 +206,8 @@ const Projects = () => {
             onHeaderClick={handleFilterOpen}
             onSortChange={handleSortChange}
             queryStr={queryStr}
+            sort={sort}
+            setSort={setSort}
             totalCount={res.data.total_count}
             variant={largeScreen ? 'large' : 'small'}
           />

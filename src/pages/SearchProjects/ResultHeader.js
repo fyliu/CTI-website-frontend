@@ -1,12 +1,10 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import Typography from '@material-ui/core/Typography';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import Grid from '@material-ui/core/Grid';
+import SortDropdown from '../../components/SortDropdown';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,10 +19,15 @@ const useStyles = makeStyles((theme) => ({
       width: '55vw',
     },
   },
+  dropdownStyle: {
+    border: '1px solid #ced4da',
+    borderRadius: '4px 4px 0px 0px',
+  },
 }));
 
 const ResultHeader = (props) => {
   const classes = useStyles();
+  const inputSortMethodList = ['best match', 'stars'];
 
   const resultCount = (
     <Typography variant='body2' color='primary'>
@@ -40,23 +43,13 @@ const ResultHeader = (props) => {
             <FilterListIcon />Filter
           </Button>
         )}
-        <FormControl variant='outlined'>
-          <InputLabel id='sort-select-label'>Sort</InputLabel>
-          <Select
-            labelId='sort-select-label'
-            label='Sort'
-            defaultValue='best match'
-            className={classes.select}
-            onChange={(e) => props.onSortChange(e.target.value)}
-          >
-            <MenuItem value='best match'>Best Match</MenuItem>
-            {/*
-              Issue#626: This is the temporary fix that removes the 'Last Updated' option from Dropdown in the search page.
-              <MenuItem value='updated'>Last Updated</MenuItem>
-            */}
-            <MenuItem value='stars'>Stargazer Count</MenuItem>
-          </Select>
-        </FormControl>
+        <Grid className={classes.dropdownStyle}>
+          <SortDropdown
+            inputSortMethodList={inputSortMethodList}
+            defaultSortMethod={props.sort}
+            setSortMethod={props.setSort}
+          />
+        </Grid>
       </Box>
       {props.variant === 'small' && resultCount}
     </>
