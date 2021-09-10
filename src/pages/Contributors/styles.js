@@ -90,19 +90,6 @@ export const useStyle = makeStyles((theme) => ({
     },
   },
   tabSelected: {},
-
-  chkBoxStyle: {
-    '& .MuiSvgIcon-root': {
-      width: '24px',
-      height: '24px',
-      color: theme.palette.spectrum.darkGray,
-
-      [theme.breakpoints.down('sm')]: {
-        width: '13px',
-        height: '13px',
-      },
-    },
-  },
   checkBox: {
     marginLeft: '9%',
     marginTop: '2%',
