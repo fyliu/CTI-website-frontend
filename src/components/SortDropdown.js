@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputBase from '@material-ui/core/InputBase';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-const BootstrapInput = withStyles((theme) => ({
+const DropdownInput = withStyles((theme) => ({
   input: {
     borderRadius: '4px 4px 0px 0px',
     position: 'relative',
@@ -15,7 +15,7 @@ const BootstrapInput = withStyles((theme) => ({
     minHeight: '43px',
     lineHeight: '18px',
     padding: '7px 10px 7px 10px',
-    fontWeight: 'bold',
+    fontWeight: '500',
     fontFamily: 'Work Sans',
   },
 }))(InputBase);
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   dropdownOptionStyle: {
-    fontWeight: 'bold',
+    fontWeight: '500',
   },
 }));
 
@@ -119,7 +119,7 @@ export default function SortDropdown({
         onClick={handleDropdownOpen}
         value={selectedSortMethod}
         onChange={handleChange}
-        input={<BootstrapInput />}
+        input={<DropdownInput />}
         IconComponent={isDropdownExpand ? ExpandLessIcon : ExpandMoreIcon}
       >
         {generateOptions()}
