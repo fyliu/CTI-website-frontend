@@ -6,7 +6,7 @@ const navigation = [
     subNavigation: [
       {
         id: 'tagYourProject',
-        header: 'Tag Your Project',
+        header: 'Add Your Project',
         route: '/join-index',
       },
       {
