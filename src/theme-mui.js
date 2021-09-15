@@ -151,6 +151,14 @@ const themeSettings = {
         margin: '0 8px 8px 0',
       },
     },
+    MuiCheckbox: {
+      root: {
+        color: DARK_GRAY,
+        '&:hover': {
+          backgroundColor: 'transparent !important',
+        },
+      },
+    },
     MuiCssBaseline: {
       '@global': {
         body: {
