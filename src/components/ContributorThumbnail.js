@@ -128,6 +128,8 @@ export const ContributorThumbnail = ({
   dropdownLength,
   isChildThumbnail,
   checkboxValue,
+  inputValue,
+  filtersActive,
 }) => {
   const classes = useStyles();
   const [thumbnailInfo, setThumbnailInfo] = useState({});
@@ -147,6 +149,8 @@ export const ContributorThumbnail = ({
             dropdownLength={dropdownLength}
             isChildThumbnail={isChildThumbnail}
             checkboxValue={checkboxValue}
+            inputValue={inputValue}
+            filtersActive={filtersActive}
           />
         ) : (
           <Grid className={classes.textWrapperWithoutImage} component='span'>
@@ -168,6 +172,8 @@ const Thumbnail = ({
   dropdownLength,
   isChildThumbnail,
   checkboxValue,
+  inputValue,
+  filtersActive,
 }) => {
   const classes = useStyles();
   let thumbnailImageStyle, thumbnailWrapperStyle;
@@ -189,19 +195,38 @@ const Thumbnail = ({
   } else if (organization.depth === 2) {
     thumbnailImageStyle = classes.thumbnailImage;
   }
+
+  const showtotalChildCount = () => {
+
+    let displayedCount = '';
+
+    if (dropdownLength)
+    {
+      if (filtersActive)
+      {
+        displayedCount = `(${dropdownLength} / ${organization.totalCount})`;
+      }
+      else
+      {
+        displayedCount = `(${dropdownLength})`;
+      }
+    }
+    return displayedCount;
+  };
+
   return (
     <>
       <Box className={classes.contributorItem}>
         {organization.depth === 4 &&
         checkboxValue &&
         organization.cti_contributor ? (
-          <img
-            alt='contributor-icon'
-            data-cy='contributor-icon'
-            className={classes.contributorIcon}
-            src='/images/Child_contributed.svg'
-          />
-        ) : null}
+            <img
+              alt='contributor-icon'
+              data-cy='contributor-icon'
+              className={classes.contributorIcon}
+              src='/images/Child_contributed.svg'
+            />
+          ) : null}
       </Box>
       <Grid className={thumbnailWrapperStyle}>
         <Grid item className={classes.imageWrapper}>
@@ -235,7 +260,7 @@ const Thumbnail = ({
             >
               {organization.name ? organization.name : organization}
             </Link>{' '}
-            {dropdownLength ? `(${dropdownLength})` : ` `}
+            {showtotalChildCount()}
           </Typography>
         </Grid>
         <Grid>
