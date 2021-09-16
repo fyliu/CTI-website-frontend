@@ -1,34 +1,72 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FormControl from '@material-ui/core/FormControl';
-import InputBase from '@material-ui/core/InputBase';
-import NativeSelect from '@material-ui/core/NativeSelect';
-
-const DropdownInput = withStyles((theme) => ({
-  input: {
-    borderRadius: '4px 4px 0px 0px',
-    position: 'relative',
-    backgroundColor: theme.palette.background.paper,
-    minWidth: '177px',
-    minHeight: '43px',
-    lineHeight: '18px',
-    padding: '7px 10px 7px 10px',
-    fontWeight: '500',
-    fontFamily: 'Work Sans',
-  },
-}))(InputBase);
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
-  formStyle: {
-    borderRadius: '4px 4px 0px 0px',
-  },
   hiddenStyle: {
     display: 'none',
   },
-  dropdownOptionStyle: {
+  selectedOptionTextStyle: {
     fontWeight: '500',
+    fontFamily: 'Work Sans',
+    fontSize: '14px',
+    lineHeight: '18px',
+    margin: 'auto 0 auto 0',
+  },
+  optionTextStyle: {
+    fontWeight: '500',
+    fontFamily: 'Work Sans',
+    fontSize: '14px',
+    lineHeight: '18px',
+    margin: 'auto 0 auto 10px',
+  },
+  dropdown: {
+    display: 'flex',
+    cursor: 'pointer',
+    backgroundColor: theme.palette.background.default,
+    boxSizing: 'border-box',
+    borderRadius: '4px 4px 0px 0px',
+    minHeight: '43px',
+    minWidth: '177px',
+    border: '1px solid #BCBCBC',
+  },
+  selectedOptionGridStyle: {
+    display: 'inline-flex',
+    marginLeft: '10px',
+  },
+  dropdownIconSytle: {
+    marginLeft: '10px',
+    wdith: '32px',
+    height: '29px',
+  },
+  iconGridStyle: {
+    margin: 'auto',
+    paddingTop: '6px',
+  },
+  optionContainerStyle: {
+    display: 'flex',
+    minHeight: '43px',
+    minWidth: '177px',
+    backgroundColor: theme.palette.background.default,
+    border: '0.5px solid #BCBCBC',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light,
+    },
+  },
+  optionsGridStyle: {
+    position: 'absolute',
+    borderRadius: '0px 0px 4px 4px',
+    left: '0',
+    right: '0',
+  },
+  dropdownContainer: {
+    position: 'relative',
+    display: 'inline-block',
   },
 }));
 
@@ -44,86 +82,78 @@ export default function SortDropdown({
     useState(defaultSortMethod);
   const [sortMethodMap] = useState({
     'best match': 'Best Match',
-    'updated': 'Last Updated',
-    'stars': 'Stargazer Count',
+    updated: 'Last Updated',
+    stars: 'Stargazer Count',
   });
-  const [clickedOutside, setClickedOutside] = useState(false);
-  const myRef = useRef();
-
-  useEffect(() => {
-    // Reset the Dropdown Arrow Icon if there is mouse click outside of the dropdown menu or mouse scroll event.
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('scroll', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('scroll', handleClickOutside);
-    };
-  });
-
-  const handleClickOutside = (e) => {
-    if (!myRef.current.contains(e.target)) {
-      setClickedOutside(true);
-      if (isDropdownExpand) {
-        setIsDropdownExpand(false);
-      }
-    }
-  };
 
   const handleClickInside = () => {
-    setClickedOutside(false);
-    if (isDropdownExpand && clickedOutside) {
-      setIsDropdownExpand(false);
-    }
+    handleDropdownOpen();
   };
 
   const handleChange = (event) => {
-    const sortMethodVal = event.target.value;
+    const sortMethodVal = event.target.dataset.value;
     setSelectedSortMethod(sortMethodVal);
     setSortMethod(sortMethodVal);
+    handleDropdownOpen();
   };
   const handleDropdownOpen = () => {
     setIsDropdownExpand(!isDropdownExpand);
   };
+
   const generateOptions = () => {
     return sortMethodList.map((sortMethod) => {
-      let optionName;
       let isSortMethodSelected = false;
-      optionName = sortMethodMap[sortMethod];
+      const optionName = sortMethodMap[sortMethod];
       if (selectedSortMethod === sortMethod) {
-        optionName = 'Sort: ' + optionName;
         isSortMethodSelected = true;
       }
       return (
-        <option
+        <Grid
+          item
+          key={sortMethod}
+          data-value={sortMethod}
+          onClick={handleChange}
           className={
             isSortMethodSelected
               ? classes.hiddenStyle
-              : classes.dropdownOptionStyle
+              : classes.optionContainerStyle
           }
-          key={sortMethod}
-          value={sortMethod}
         >
-          {optionName}
-        </option>
+          <Typography
+            onClick={handleChange}
+            data-value={sortMethod}
+            className={
+              isSortMethodSelected
+                ? classes.hiddenStyle
+                : classes.optionTextStyle
+            }
+          >
+            {optionName}
+          </Typography>
+        </Grid>
       );
     });
   };
 
   return (
-    <FormControl
-      className={classes.formStyle}
-      ref={myRef}
-      onClick={handleClickInside}
-    >
-      <NativeSelect
-        onClick={handleDropdownOpen}
-        value={selectedSortMethod}
-        onChange={handleChange}
-        input={<DropdownInput />}
-        IconComponent={isDropdownExpand ? ExpandLessIcon : ExpandMoreIcon}
-      >
-        {generateOptions()}
-      </NativeSelect>
-    </FormControl>
+    <Box className={classes.dropdownContainer}>
+      <Grid item className={classes.dropdown} onClick={handleClickInside}>
+        <Grid className={classes.selectedOptionGridStyle}>
+          <Typography className={classes.selectedOptionTextStyle}>
+            {'Sort: ' + sortMethodMap[selectedSortMethod]}
+          </Typography>
+        </Grid>
+        <Grid className={classes.iconGridStyle}>
+          {isDropdownExpand ? (
+            <ExpandLessIcon className={classes.dropdownIconSytle} />
+          ) : (
+            <ExpandMoreIcon className={classes.dropdownIconSytle} />
+          )}
+        </Grid>
+      </Grid>
+      <Grid className={classes.optionsGridStyle}>
+        {isDropdownExpand && generateOptions()}
+      </Grid>
+    </Box>
   );
 }

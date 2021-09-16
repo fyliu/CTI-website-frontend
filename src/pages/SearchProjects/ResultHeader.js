@@ -19,10 +19,6 @@ const useStyles = makeStyles((theme) => ({
       width: '55vw',
     },
   },
-  dropdownStyle: {
-    border: '1px solid #ced4da',
-    borderRadius: '4px 4px 0px 0px',
-  },
 }));
 
 const ResultHeader = (props) => {
@@ -43,7 +39,7 @@ const ResultHeader = (props) => {
             <FilterListIcon />Filter
           </Button>
         )}
-        <Grid className={classes.dropdownStyle}>
+        <Grid>
           <SortDropdown
             inputSortMethodList={inputSortMethodList}
             defaultSortMethod={props.sort}
