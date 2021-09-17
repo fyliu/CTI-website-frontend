@@ -141,9 +141,9 @@ export default function SortDropdown({
         </Grid>
         <Grid className={classes.iconGridStyle}>
           {isDropdownExpand ? (
-            <ExpandLessIcon className={classes.dropdownIconSytle} />
+            <ExpandLessIcon className={classes.dropdownIconStyle} />
           ) : (
-            <ExpandMoreIcon className={classes.dropdownIconSytle} />
+            <ExpandMoreIcon className={classes.dropdownIconStyle} />
           )}
         </Grid>
       </Grid>
