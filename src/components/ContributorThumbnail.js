@@ -128,7 +128,6 @@ export const ContributorThumbnail = ({
   dropdownLength,
   isChildThumbnail,
   checkboxValue,
-  inputValue,
   filtersActive,
 }) => {
   const classes = useStyles();
@@ -149,7 +148,6 @@ export const ContributorThumbnail = ({
             dropdownLength={dropdownLength}
             isChildThumbnail={isChildThumbnail}
             checkboxValue={checkboxValue}
-            inputValue={inputValue}
             filtersActive={filtersActive}
           />
         ) : (
@@ -172,7 +170,6 @@ const Thumbnail = ({
   dropdownLength,
   isChildThumbnail,
   checkboxValue,
-  inputValue,
   filtersActive,
 }) => {
   const classes = useStyles();
@@ -200,14 +197,10 @@ const Thumbnail = ({
 
     let displayedCount = '';
 
-    if (dropdownLength)
-    {
-      if (filtersActive)
-      {
+    if (dropdownLength) {
+      if (filtersActive) {
         displayedCount = `(${dropdownLength} / ${organization.totalCount})`;
-      }
-      else
-      {
+      } else {
         displayedCount = `(${dropdownLength})`;
       }
     }
