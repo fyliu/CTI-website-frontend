@@ -52,7 +52,7 @@ const App = () => {
             <RouteTitled exact path='/support/share' component={ShareTheCti} title='Share the CTI' />
             <Route exact path='/organization/:name' component={IndvOrgPage} />
             {/* test and error page routes begin */}
-            <Route path='/guides/:guide' component={Guides} />
+            <RouteTitled path='/guides/:guide' component={Guides} title='Guides' />
             <Route path='/404' component={Error404} />
             {/* test and error page routes end */}
             <Redirect from='/add' to='/join-index/how-to-add' />
