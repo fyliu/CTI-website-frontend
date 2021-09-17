@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-flex',
     marginLeft: '10px',
   },
-  dropdownIconSytle: {
+  dropdownIconStyle: {
     marginLeft: '10px',
     wdith: '32px',
     height: '29px',
@@ -85,10 +85,6 @@ export default function SortDropdown({
     updated: 'Last Updated',
     stars: 'Stargazer Count',
   });
-
-  const handleClickInside = () => {
-    handleDropdownOpen();
-  };
 
   const handleChange = (event) => {
     const sortMethodVal = event.target.dataset.value;
@@ -137,7 +133,7 @@ export default function SortDropdown({
 
   return (
     <Box className={classes.dropdownContainer}>
-      <Grid item className={classes.dropdown} onClick={handleClickInside}>
+      <Grid item className={classes.dropdown} onClick={handleDropdownOpen}>
         <Grid className={classes.selectedOptionGridStyle}>
           <Typography className={classes.selectedOptionTextStyle}>
             {'Sort: ' + sortMethodMap[selectedSortMethod]}
