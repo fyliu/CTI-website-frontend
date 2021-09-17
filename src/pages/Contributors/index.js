@@ -298,7 +298,7 @@ export default function Contributors() {
         <Container>
           <GetStartedCard
             headerTitle='Want to add your organization?'
-            buttonText='Tag your project'
+            buttonText='Add Your Project'
             buttonHref='/taggenerator'
           />
         </Container>
