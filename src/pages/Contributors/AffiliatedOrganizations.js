@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderColor: theme.palette.outline.gray,
     margin: '8px',
+    width: '392px',
     [theme.breakpoints.down('lg')]: {
       height: '60px',
     },
@@ -67,6 +68,7 @@ export const AffiliatedOrganizations = ({
   inputValue,
   organizationData,
   showIndexContrib,
+  filtersActive,
 }) => {
   const classes = useStyles();
 
@@ -75,17 +77,6 @@ export const AffiliatedOrganizations = ({
   let parentdata;
   let parentChildobj;
   let mapsearchedChildParent;
-
-  const sortFn = (sortKey) => {
-    return function (a, b) {
-      if (a[sortKey].toLowerCase() > b[sortKey].toLowerCase()) {
-        return 1;
-      } else if (a[sortKey].toLowerCase() < b[sortKey].toLowerCase()) {
-        return -1;
-      }
-      return 0;
-    };
-  };
 
   const getParentData = () => {
     organizationArray = organizations['Code for All'].filter((item) => item);
@@ -132,7 +123,6 @@ export const AffiliatedOrganizations = ({
         }
       }
     });
-    parentdata.sort(sortFn('name'));
     return parentdata;
   };
 
@@ -141,7 +131,7 @@ export const AffiliatedOrganizations = ({
   useEffect(() => {
     setCurrentThumbnails(getParentData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue, organizations, organizationData, showIndexContrib]);
+  }, [inputValue, organizations, organizationData, showIndexContrib,filtersActive]);
 
   let childSort;
   let childNode;
@@ -153,7 +143,7 @@ export const AffiliatedOrganizations = ({
         data-cy='affiliated-organizations'
       >
         {currentThumbnails.map((org, i) => {
-          childSort = org.childNodes.sort(sortFn('name'));
+          childSort = org.childNodes;
           childNode = org.isOpen ? childSort : childSort.slice(0, 8);
           return (
             <Dropdown
@@ -162,6 +152,8 @@ export const AffiliatedOrganizations = ({
               key={`affiliatedThumbnailsWrapper_${i}`}
               dropdownLength={org.childNodes.length}
               isOpen={false}
+              inputValue={inputValue}
+              filtersActive={filtersActive}
             >
               <Grid container style={ { justifyContent:"center" } } alignItems='center'>
                 {childNode.length > 0 ? (
@@ -174,7 +166,7 @@ export const AffiliatedOrganizations = ({
                     {childNode.map((child, idx) => {
                       return (
                         <Grid
-                          item xs={12} sm={5} md={5}
+                          item xs={12} sm={5} lg={5}
                           className={classes.afflnThumbnails}
                           key={`affiliatedThumbnail_child_${i}_${idx}`}
                         >
@@ -182,6 +174,8 @@ export const AffiliatedOrganizations = ({
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
                             checkboxValue={showIndexContrib}
+                            inputValue={inputValue}
+                            filtersActive={filtersActive}
                           />
                         </Grid>
                       );
@@ -192,6 +186,8 @@ export const AffiliatedOrganizations = ({
                     isChildThumbnail={isChildThumbnail}
                     organization={org}
                     checkboxValue={showIndexContrib}
+                    inputValue={inputValue}
+                    filtersActive={filtersActive}
                   />
                 )}
                 {org.childNodes.length > 8 ? (
@@ -236,6 +232,9 @@ export const AffiliatedOrganizations = ({
               key={`affiliatedThumbnailsWrapper_${i}`}
               dropdownLength={org.childNodes.length}
               isOpen={org.childNodes.length <= 5 ? true : false}
+              inputValue={inputValue}
+              checkboxValue={showIndexContrib}
+              filtersActive={filtersActive}
             >
               <Box className={classes.affiliatedThumbnailsWrapper}>
                 {org.childNodes.length === 0 ? (
@@ -252,6 +251,8 @@ export const AffiliatedOrganizations = ({
                           <ContributorThumbnail
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
+                            inputValue={inputValue}
+                            filtersActive={filtersActive}
                           />
                         </Typography>
                       );
