@@ -108,6 +108,7 @@ export const AffiliatedOrganizations = ({
         } else {
           parentChildobj = exist;
         }
+
         if (parentChildobj) {
           if (showIndexContrib && org['cti_contributor']) {
             parentChildobj.childNodes.push(org);
@@ -151,6 +152,7 @@ export const AffiliatedOrganizations = ({
               key={`affiliatedThumbnailsWrapper_${i}`}
               dropdownLength={org.childNodes.length}
               isOpen={false}
+              inputValue={inputValue}
               filtersActive={filtersActive}
             >
               <Grid container style={ { justifyContent:"center" } } alignItems='center'>
@@ -172,6 +174,7 @@ export const AffiliatedOrganizations = ({
                             organization={child}
                             isChildThumbnail={isChildThumbnail}
                             checkboxValue={showIndexContrib}
+                            inputValue={inputValue}
                             filtersActive={filtersActive}
                           />
                         </Grid>
@@ -183,6 +186,7 @@ export const AffiliatedOrganizations = ({
                     isChildThumbnail={isChildThumbnail}
                     organization={org}
                     checkboxValue={showIndexContrib}
+                    inputValue={inputValue}
                     filtersActive={filtersActive}
                   />
                 )}
@@ -229,6 +233,7 @@ export const AffiliatedOrganizations = ({
               dropdownLength={org.childNodes.length}
               isOpen={org.childNodes.length <= 5 ? true : false}
               inputValue={inputValue}
+              checkboxValue={showIndexContrib}
               filtersActive={filtersActive}
             >
               <Box className={classes.affiliatedThumbnailsWrapper}>
