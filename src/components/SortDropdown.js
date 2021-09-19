@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Work Sans',
     fontSize: '14px',
     lineHeight: '18px',
-    margin: 'auto 0 auto 0',
+    margin: 'auto 0',
   },
   optionTextStyle: {
     fontWeight: '500',
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   dropdownIconStyle: {
     marginLeft: '10px',
-    wdith: '32px',
+    width: '32px',
     height: '29px',
   },
   iconGridStyle: {
@@ -70,21 +70,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SortDropdown({
+export const SortDropdown = ({
   inputSortMethodList,
   defaultSortMethod,
   setSortMethod,
-}) {
+}) => {
   const classes = useStyles();
   const [isDropdownExpand, setIsDropdownExpand] = useState(false);
-  const sortMethodList = inputSortMethodList;
   const [selectedSortMethod, setSelectedSortMethod] =
     useState(defaultSortMethod);
-  const [sortMethodMap] = useState({
+  const sortMethodMap = {
     'best match': 'Best Match',
-    updated: 'Last Updated',
-    stars: 'Stargazer Count',
-  });
+    'updated': 'Last Updated',
+    'stars': 'Stargazer Count',
+  };
 
   const handleChange = (event) => {
     const sortMethodVal = event.target.dataset.value;
@@ -97,7 +96,7 @@ export default function SortDropdown({
   };
 
   const generateOptions = () => {
-    return sortMethodList.map((sortMethod) => {
+    return inputSortMethodList.map((sortMethod) => {
       let isSortMethodSelected = false;
       const optionName = sortMethodMap[sortMethod];
       if (selectedSortMethod === sortMethod) {
@@ -152,4 +151,6 @@ export default function SortDropdown({
       </Grid>
     </Box>
   );
-}
+};
+
+export default SortDropdown;
