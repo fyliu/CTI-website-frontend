@@ -78,10 +78,10 @@ const CallToActionSection = () => {
     <Grid container style={{ paddingTop: '35px' }} justify='center'>
       <Grid container justify='space-around' style={{ width: '392px' }}>
         <NavButton href='/join-index' color='primary'>
-                    Tag your project
+          Add Your Project
         </NavButton>
         <NavButton href='/about' variant='outlined'>
-          Learn more
+          Learn More
         </NavButton>
       </Grid>
     </Grid>
@@ -116,7 +116,7 @@ const Home = () => {
         </div>
         <GetStartedCard
           headerTitle='Ready to get started?'
-          buttonText='Tag your Project'
+          buttonText='Add Your Project'
           buttonHref='/join-index'
         />
       </Box>
