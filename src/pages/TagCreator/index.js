@@ -139,7 +139,7 @@ const TagCreator = () => {
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
-    { href: '/join-index', name: 'Tag Your Project' },
+    { href: '/join-index', name: 'Add Your Project' },
   ];
 
   const resetForm = () => {
