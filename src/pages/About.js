@@ -1,7 +1,9 @@
+/* eslint-disable react/style-prop-object */
+/* eslint-disable jsx-a11y/iframe-has-title */
+/* eslint-disable max-lines-per-function */
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {
   GetStartedCard,
@@ -34,24 +36,19 @@ const About = () => {
         padding: '48px 200px',
       },
     },
-    videoStyle: {
-      height: 'auto',
-      [theme.breakpoints.up('lg')]: {
-        height: '440px',
-      },
+    frameStyle: {
+      border: "none",
+      overflow: "hidden",
+      padding: "0",
+      width:"949px",
+      height:"629px",
     },
   }));
   const classes = useStyles();
   const VideoSection = () => {
     return (
       <Grid container justify='center'>
-        <CardMedia
-          className={classes.videoStyle}
-          component='video'
-          image='/images/CTI V1.mp4'
-          title='Overview of CTI'
-          controls
-        />
+        <iframe className={classes.frameStyle} frameBorder="0" src="https://docs.google.com/presentation/d/e/2PACX-1vR7tcbGnftrvXyCPzQW9wIo4fstOf1YFhSbP_VP2E7XXKrk9qCdy7Qq5pYnrA0yudpmH2PS3R8s_oTM/embed?start=false&loop=false&delayms=3000&amp:rm=minimal" scrolling="no" allowFullScreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
       </Grid>
     );
   };
