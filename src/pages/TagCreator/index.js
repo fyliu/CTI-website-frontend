@@ -64,6 +64,12 @@ const getRepositoryUrlPath = (repositoryUrl) => {
   const suffix = /\.git$/;
   result = result.replace(prefix, '');
   result = result.replace(suffix, '');
+  const arr = result.split('/');
+  if (arr.length < 2) {
+    result = 'error';
+  } else {
+    result = arr.slice(0, 2).join('/');
+  }
   return result;
 };
 
@@ -219,6 +225,9 @@ const TagCreator = () => {
     // Return error message if no url present
     if (urlPath.length === 0) {
       return setTopicSearchError('Please enter a URL');
+    }
+    if (urlPath === 'error') {
+      return setTopicSearchError('Please enter a valid URL');
     }
     // Fetches Tags from API only if URL is changed
     if (prevRefUrl !== repositoryUrl) {
@@ -451,7 +460,7 @@ const TagCreator = () => {
             handleChange={handleChange}
             question={
               <>
-                Are you affiliated with an{' '}
+                  Are you affiliated with an{' '}
                 <Link to='/organizations/all'> organization</Link>?
               </>
             }
