@@ -27,25 +27,32 @@ const StepOne = (props) => {
     <>
       <DialogTitle>
         <Box textAlign='center'>
-          <Typography variant='h2' className={classes.infoLarge}>Add Organization to the Civic Tech Index</Typography>
+          <Typography variant='h2' className={classes.infoLarge}>
+            Add Organization to the Civic Tech Index
+          </Typography>
         </Box>
         <Box className={classes.progress}>
           <Typography variant='body1'>Project Information</Typography>
-          <Typography variant='body1'><b>1/2</b></Typography>
+          <Typography variant='body1'>
+            <b>1/2</b>
+          </Typography>
         </Box>
         <LinearProgress variant='determinate' color='secondary' value={50} />
         <Typography variant='body1'>(*) Required Field</Typography>
       </DialogTitle>
       <DialogContent>
-        <Typography variant='h5' className={classes.firstHeading}>Organization Detail</Typography>
+        <Typography variant='h5' className={classes.firstHeading}>
+          Organization Detail
+        </Typography>
         <TextField
           className={classes.field}
+          data-cy='org-email-input'
           error={!!orgEmailApiErr}
           helperText={orgEmailApiErr}
           label='Organization Email'
           onChange={(event) => {
             props.onOrgEmail(event.target.value);
-            props.setApiErrors({ ...props.apiErrors, organization_email: '' })
+            props.setApiErrors({ ...props.apiErrors, organization_email: '' });
           }}
           placeholder='Name@example.com'
           required
@@ -53,6 +60,7 @@ const StepOne = (props) => {
         />
         <TextField
           className={classes.field}
+          data-cy='org-name-input'
           error={!!orgNameApiErr}
           helperText={orgNameApiErr}
           label='Organization Name'
@@ -66,10 +74,17 @@ const StepOne = (props) => {
         <Tooltip title={parentHelpInfo}>
           <HelpIcon color='secondary' className={classes.field} />
         </Tooltip>
-        <ParentSelect org={props.parentOrg} orgList={props.parentOrgList} onChange={props.onParentOrg} />
-        <Typography variant='h5' className={classes.heading}>Organization URL</Typography>
+        <ParentSelect
+          org={props.parentOrg}
+          orgList={props.parentOrgList}
+          onChange={props.onParentOrg}
+        />
+        <Typography variant='h5' className={classes.heading}>
+          Organization URL
+        </Typography>
         <TextField
           className={classes.field}
+          data-cy='org-website-input'
           error={!!websiteUrlApiErr}
           helperText={websiteUrlApiErr}
           label='Website URL'
@@ -83,6 +98,7 @@ const StepOne = (props) => {
         />
         <TextField
           className={classes.field}
+          data-cy='org-github-input'
           error={!!githubUrlApiErr}
           helperText={githubUrlApiErr}
           label='GitHub URL'
@@ -102,6 +118,7 @@ const StepOne = (props) => {
         </Typography>
         <TextField
           className={classes.field}
+          data-cy='org-tag-input'
           label='GitHub Tag(s)'
           onChange={(event) => {
             props.onGithubTag(event.target.value);
@@ -114,11 +131,27 @@ const StepOne = (props) => {
       </DialogContent>
       <DialogActions disableSpacing>
         <Box className={classes.buttons}>
-          <Button variant='contained' color='default' onClick={props.onCancel}>Cancel</Button>
+          <Button
+            variant='contained'
+            color='default'
+            data-cy='cancel-button'
+            onClick={props.onCancel}
+          >
+            Cancel
+          </Button>
           <Button
             variant='contained'
             color='secondary'
-            disabled={!(props.orgEmail && props.orgName && props.githubTag && props.websiteUrl && props.githubUrl)}
+            data-cy='next-button'
+            disabled={
+              !(
+                props.orgEmail &&
+                props.orgName &&
+                props.githubTag &&
+                props.websiteUrl &&
+                props.githubUrl
+              )
+            }
             onClick={props.onNext}
           >
             Next
