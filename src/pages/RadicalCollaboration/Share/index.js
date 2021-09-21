@@ -293,23 +293,16 @@ const MediaInfo = () => {
 };
 
 const CtiImageSection = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <Grid container justify='space-evenly'>
       <img
-        src='/images/Rectangle55.png'
+        src='/images/OneColor_CTI_Logo.svg'
         alt='CTI logo'
-        className={classes.ctiImageStyle}
       />
       <img
-        src='/images/Rectangle51.png'
-        alt='Facebook logo'
-        className={classes.ctiSquareStyle}
-      />
-      <img
-        src='/images/Rectangle53.png'
-        alt='CTI logo'
-        className={classes.ctiImageStyle}
+        src='/images/FullColor_CTI_Logo.svg'
+        alt='CTI logo color'
       />
     </Grid>
   );
