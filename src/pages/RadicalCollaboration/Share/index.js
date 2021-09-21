@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   socialMediaSectionStyle: {
-    padding: '99px 0',
+    padding: '60px 0 80px',
     [theme.breakpoints.down('sm')]: {
       padding: '47px 0 72px 0',
     },
@@ -202,7 +202,6 @@ const SocialMediaSection = () => {
             </a>
             <a href='https://twitter.com/civictechindex'>
               <img
-                className={classes.twitterIcon}
                 src='/images/share-twitter-logo.svg'
                 alt='twitter logo'
               />
