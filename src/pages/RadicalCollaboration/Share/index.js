@@ -195,19 +195,30 @@ const SocialMediaSection = () => {
             alignItems='center'
             justify='space-between'
             style={{ maxWidth: '576px' }}
+            className={classes.socialMediaSectionStyle}
           >
+
+            {/* MAX ITS FUCCCCKKKING HEEEEEEEEEEERRRRRRREEEEEEE */}
+                    {/* MAX ITS FUCCCCKKKING HEEEEEEEEEEERRRRRRREEEEEEE */}    
+                        {/* MAX ITS FUCCCCKKKING HEEEEEEEEEEERRRRRRREEEEEEE */}   
+
             <a href='https://www.instagram.com/civictechindex'>
-              <img src='/images/insta-logo-variant.png' alt='Instagram logo' />
+              <img src='/images/share-insta-logo.svg' alt='instagram logo' />
             </a>
             <a href='https://twitter.com/civictechindex'>
-              <img src='/images/twitter-logo-variant.png' alt='Twitter logo' />
+              <img
+                className={classes.twitterIcon}
+                src='/images/share-twitter-logo.svg'
+                alt='twitter logo'
+              />
             </a>
             <a href='https://www.facebook.com/civictechindex'>
-              <img src='/images/fb-logo-variant.png' alt='Facebook logo' />
+              <img src='/images/share-fb-logo.svg' alt='facebook logo' />
             </a>
             <a href='https://github.com/civictechindex'>
-              <img src='/images/github-logo-variant.png' alt='GitHub logo' />
+              <img src='/images/share-github-logo.svg' alt='github logo' />
             </a>
+    
           </Grid>
         </Grid>
       </Container>
