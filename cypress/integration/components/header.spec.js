@@ -10,7 +10,7 @@ describe('Header component', () => {
       .trigger('mouseover')
       .get('[data-cy=menuItem]')
       .within(() => {
-        cy.contains('Tag Your Project');
+        cy.contains('Add Your Project');
         cy.contains('How to Add Your Project');
       });
 

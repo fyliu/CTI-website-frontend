@@ -27,32 +27,32 @@ const Donation = () => {
       </Box>
       <Box className='containerGray'>
         <Container>
-          <Grid container direction='row'>
-            <Grid item xs={12} md={6} className={classes.infoGrid}>
-              <Typography variant='body1' className={classes.infoDescription}>
+          <Grid container>
+            <Grid item xs={12} sm={6} className={classes.infoGrid}>
+              <Typography variant='h4' className={classes.infoDescription}>
                 The Civic Tech Index is being developed by Hack For LA, and is
                 currently taking donations through Code For America.
               </Typography>
               <Typography variant='body1' className={classes.infoSteps}>
                 1. Please follow this link to the Code For America{' '}
-                <Link to='https://www.codeforamerica.org/donate'>
+                <Link to='https://www.codeforamerica.org/donate' target="_blank">
                   donation form
                 </Link>
                 .
               </Typography>
               <Typography variant='body1' className={classes.infoSteps}>
                 2. To make a donation to the Civic Tech Index, please select{' '}
-                <strong>Hack for LA</strong> under the brigades listed.
+                Hack for LA under the brigades listed.
               </Typography>
-              <Typography variant='h4' className={classes.infoThank}>
+              <Typography variant='h5' className={classes.infoThank}>
                 We appreciate your contribution.
               </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <img
                 alt='A gif demonstrating the use of the donation form'
                 className={classes.infoGif}
-                src='../images/CTI-Donate-to-HfLA.gif'
+                src='../images/CfA-HfLA-Donation.gif'
               />
             </Grid>
           </Grid>

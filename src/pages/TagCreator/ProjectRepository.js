@@ -102,7 +102,7 @@ export const ProjectRepositoryInput = ({
       >
         <Grid align='center'>
           <Button onClick={handleSubmit} id='projectButton'>
-            Find Project
+            Submit Your Project Repository
           </Button>
         </Grid>
       </Grid>
