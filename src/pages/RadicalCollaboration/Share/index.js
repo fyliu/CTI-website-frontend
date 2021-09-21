@@ -197,11 +197,6 @@ const SocialMediaSection = () => {
             style={{ maxWidth: '576px' }}
             className={classes.socialMediaSectionStyle}
           >
-
-            {/* MAX ITS FUCCCCKKKING HEEEEEEEEEEERRRRRRREEEEEEE */}
-                    {/* MAX ITS FUCCCCKKKING HEEEEEEEEEEERRRRRRREEEEEEE */}    
-                        {/* MAX ITS FUCCCCKKKING HEEEEEEEEEEERRRRRRREEEEEEE */}   
-
             <a href='https://www.instagram.com/civictechindex'>
               <img src='/images/share-insta-logo.svg' alt='instagram logo' />
             </a>
