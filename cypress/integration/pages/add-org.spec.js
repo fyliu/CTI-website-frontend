@@ -134,7 +134,7 @@ describe('Add Organization Workflow', () => {
       cy.get('[data-cy=org-country-input]').type('{downarrow}{downarrow}{enter}');
       cy.get('[data-cy=submit-button]').click();
     });
-    cy.wait(1000);
+    cy.wait(500);
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[data-cy=org-facebook-input]').children().eq(2).should('contain', 'Not a valid Facebook URL');
       cy.get('[data-cy=org-twitter-input]').children().eq(2).should('contain', 'Enter a valid URL');
@@ -150,7 +150,7 @@ describe('Add Organization Workflow', () => {
       cy.get('[class*=MuiFormHelperText]').should('not.exist');
       cy.get('[data-cy=submit-button]').click();
     });
-    cy.wait(1000);
+    cy.wait(500);
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=makeStyles-complete]').should('exist');
     });
@@ -158,7 +158,9 @@ describe('Add Organization Workflow', () => {
 
   it('should return to tag generator', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('[data-cy=return-button]').click();
+      cy.get('[class*=makeStyles-return]').within(() => {
+        cy.get('[data-cy=return-button]').click();
+      });
     });
     cy.get('h1').contains('Tag Generator');
     cy.get('#organization').should('have.value', VALID_NAME);
@@ -186,7 +188,9 @@ describe('Add Organization Workflow', () => {
     });
     cy.wait(500);
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('[data-cy=return-button]').click();
+      cy.get('[class*=makeStyles-return]').within(() => {
+        cy.get('[data-cy=return-button]').click();
+      });
     });
     cy.get('#organization').should('have.value', VALID_NAME_2);
   });
