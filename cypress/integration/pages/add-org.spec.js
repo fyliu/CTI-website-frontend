@@ -99,10 +99,10 @@ describe('Add Organization Workflow', () => {
     cy.wait(500);
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '50');
-      cy.get('[class*=MuiFormHelperText]').eq(0).should('contain', 'Enter a valid email address');
-      cy.get('[class*=MuiFormHelperText]').eq(1).should('contain', 'We already have an organization');
-      cy.get('[class*=MuiFormHelperText]').eq(2).should('contain', 'Enter a valid URL');
-      cy.get('[class*=MuiFormHelperText]').eq(3).should('contain', 'Enter a valid URL');
+      cy.get('[data-cy=org-email-input]').children().eq(2).should('contain', 'Enter a valid email address');
+      cy.get('[data-cy=org-name-input]').children().eq(2).should('contain', 'We already have an organization');
+      cy.get('[data-cy=org-website-input]').children().eq(2).should('contain', 'Enter a valid URL');
+      cy.get('[data-cy=org-github-input]').children().eq(2).should('contain', 'Enter a valid URL');
     });
   });
 
@@ -134,11 +134,11 @@ describe('Add Organization Workflow', () => {
       cy.get('[data-cy=org-country-input]').type('{downarrow}{downarrow}{enter}');
       cy.get('[data-cy=submit-button]').click();
     });
-    cy.wait(500);
+    cy.wait(1000);
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('[class*=MuiFormHelperText]').eq(0).should('contain', 'Not a valid Facebook URL');
-      cy.get('[class*=MuiFormHelperText]').eq(1).should('contain', 'Enter a valid URL');
-      cy.get('[class*=MuiFormHelperText]').eq(2).should('contain', 'Enter a valid URL');
+      cy.get('[data-cy=org-facebook-input]').children().eq(2).should('contain', 'Not a valid Facebook URL');
+      cy.get('[data-cy=org-twitter-input]').children().eq(2).should('contain', 'Enter a valid URL');
+      cy.get('[data-cy=org-meetup-input]').children().eq(2).should('contain', 'Enter a valid URL');
     });
   });
 
@@ -150,7 +150,7 @@ describe('Add Organization Workflow', () => {
       cy.get('[class*=MuiFormHelperText]').should('not.exist');
       cy.get('[data-cy=submit-button]').click();
     });
-    cy.wait(500);
+    cy.wait(1000);
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=makeStyles-complete]').should('exist');
     });
