@@ -45,6 +45,7 @@ export const OtherProjectsDropdown = (props) => {
     <List dense disablePadding className={classes.list}>
       <ListItem
         button
+        data-cy='other-repo-dropdown'
         onClick={handleClick}
         className={classes.dropdownBtnStyle}
       >
