@@ -85,15 +85,16 @@ export const SortDropdown = ({
     'stars': 'Stargazer Count',
   };
 
-  const handleChange = (event) => {
+  const handleOptionChange = (event) => {
     const sortMethodVal = event.target.dataset.value;
     setSelectedSortMethod(sortMethodVal);
     setSortMethod(sortMethodVal);
-    handleDropdownOpen();
-  };
-  const handleDropdownOpen = () => {
     setIsDropdownExpand(!isDropdownExpand);
   };
+
+  const toggleDropdown = () =>{
+    setIsDropdownExpand(!isDropdownExpand);
+  }
 
   const generateOptions = () => {
     return inputSortMethodList.map((sortMethod) => {
@@ -107,7 +108,7 @@ export const SortDropdown = ({
           item
           key={sortMethod}
           data-value={sortMethod}
-          onClick={handleChange}
+          onClick={handleOptionChange}
           className={
             isSortMethodSelected
               ? classes.hiddenStyle
@@ -115,7 +116,7 @@ export const SortDropdown = ({
           }
         >
           <Typography
-            onClick={handleChange}
+            onClick={handleOptionChange}
             data-value={sortMethod}
             className={
               isSortMethodSelected
@@ -132,7 +133,7 @@ export const SortDropdown = ({
 
   return (
     <Box className={classes.dropdownContainer}>
-      <Grid item className={classes.dropdown} onClick={handleDropdownOpen}>
+      <Grid item data-cy='sort-dropdown' className={classes.dropdown} onClick={toggleDropdown}>
         <Grid className={classes.selectedOptionGridStyle}>
           <Typography className={classes.selectedOptionTextStyle}>
             {'Sort: ' + sortMethodMap[selectedSortMethod]}
