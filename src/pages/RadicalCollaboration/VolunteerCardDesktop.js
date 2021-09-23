@@ -27,13 +27,13 @@ const VolunteerCardDesktop = (props) => {
                 </Typography>
                 <br></br>
                 <Typography className={classes.dtpLine1}>
-                                    Please <a className={classes.inLineLinkText} href="https://www.hackforla.org/#about">complete this application</a> if you would like
+                                    Please <a className={classes.inLineLinkText} href="https://www.hackforla.org/#about" target="_blank" rel="noopener noreferrer">complete this application</a> if you would like
                 </Typography>
                 <Typography className={classes.dtpLine2}>
                   {i.dsktpTxtLn2}
                 </Typography>
                 <Typography className={classes.dtpLine3}>
-                  <a className={classes.inLineLinkText} href="https://www.hackforla.org/projects/civic-tech-index">project team page.</a>
+                  <a className={classes.inLineLinkText} href="https://www.hackforla.org/projects/civic-tech-index" target="_blank" rel="noopener noreferrer">project team page.</a>
                 </Typography>
                 <Button href='https://www.hackforla.org/projects/civic-tech-index.html' className={classes.volButton}>
                   {i.buttonText}

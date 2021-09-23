@@ -22,11 +22,10 @@ const RadicalCollaboration = () => {
       subHeading: 'Every gift helps us continue our work.',
       textBody:
         'Your tax-deductible gift today will help make more open-source solutions easily available for the communities who need it the most.',
-      footerText: 'Thank You.',
       buttonText: 'Make a Donation',
       dsktpTxtLn1: 'Your tax-deductible gift today will help make more',
       dsktpTxtLn2: 'open-source solutions easily available for the',
-      dsktpTxtLn3: 'communities who need it the most.',
+      dsktpTxtLn3: 'communities who need it the most. Thank You',
       route: '/donate',
     },
     {

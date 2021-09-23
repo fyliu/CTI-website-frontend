@@ -10,7 +10,13 @@ const useStyles = makeStyles((theme) => ({
   typoHeading: {
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '1.75rem',
+      fontSize: '20px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '32px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '15px',
     },
   },
 }));

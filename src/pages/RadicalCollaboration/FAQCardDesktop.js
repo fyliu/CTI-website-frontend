@@ -35,8 +35,8 @@ const FAQCardDesktop = (props) => {
                 </Typography>
 
                 <Typography className={classes.faqLinkText}>
-                  View our  <Link to="/faq">FAQ</Link>
-                   to find answers or <a className={classes.inLineLinkText} href='/contact'>contact us.</a>
+                  View our   <Link to="/faq"> FAQ  </Link>
+                  <span> to find answers or <a className={classes.inLineLinkText} href='/contact'>contact us.</a> </span>
                 </Typography>
                 <Button component={Link} to='/faq' className={classes.faqButton}>
                   {i.buttonText}
