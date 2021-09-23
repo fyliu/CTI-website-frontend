@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './styles';
 import CountrySelect from './CountrySelect';
 
+// eslint-disable-next-line max-lines-per-function
 const StepTwo = (props) => {
   const classes = useStyles();
   const facebookUrlApiErr = props.apiErrors.facebook_url;
@@ -20,20 +21,28 @@ const StepTwo = (props) => {
     <>
       <DialogTitle>
         <Box textAlign='center'>
-          <Typography variant='h2' className={classes.infoLarge}>Add Organization to the Civic Tech Index</Typography>
+          <Typography variant='h2' className={classes.infoLarge}>
+            Add Organization to the Civic Tech Index
+          </Typography>
         </Box>
         <Box className={classes.progress}>
           <Typography variant='body1'>Social Media and Location</Typography>
-          <Typography variant='body1'><b>2/2</b></Typography>
+          <Typography variant='body1'>
+            <b>2/2</b>
+          </Typography>
         </Box>
         <LinearProgress variant='determinate' color='secondary' value={100} />
       </DialogTitle>
       <DialogContent>
         <Typography variant='h5' className={classes.heading}>
-          Social Media URL <Box component='span' fontWeight='normal'>(optional)</Box>
+          Social Media URL{' '}
+          <Box component='span' fontWeight='normal'>
+            (optional)
+          </Box>
         </Typography>
         <TextField
           className={classes.field}
+          data-cy='org-facebook-input'
           error={!!facebookUrlApiErr}
           helperText={facebookUrlApiErr}
           label='Facebook URL'
@@ -46,6 +55,7 @@ const StepTwo = (props) => {
         />
         <TextField
           className={classes.field}
+          data-cy='org-twitter-input'
           error={!!twitterUrlApiErr}
           helperText={twitterUrlApiErr}
           label='Twitter URL'
@@ -58,6 +68,7 @@ const StepTwo = (props) => {
         />
         <TextField
           className={classes.field}
+          data-cy='org-meetup-input'
           error={!!meetupUrlApiErr}
           helperText={meetupUrlApiErr}
           label='Meetup URL'
@@ -69,10 +80,14 @@ const StepTwo = (props) => {
           value={props.meetupUrl}
         />
         <Typography variant='h5' className={classes.heading}>
-          Location <Box component='span' fontWeight='normal'>(optional)</Box>
+          Location{' '}
+          <Box component='span' fontWeight='normal'>
+            (optional)
+          </Box>
         </Typography>
         <TextField
           className={classes.field}
+          data-cy='org-city-input'
           label='City'
           onChange={(event) => {
             props.onCity(event.target.value);
@@ -81,22 +96,40 @@ const StepTwo = (props) => {
         />
         <TextField
           className={classes.field}
+          data-cy='org-state-input'
           label='State'
           onChange={(event) => {
             props.onStateProvCo(event.target.value);
           }}
           value={props.stateProvCo}
         />
-        <CountrySelect country={props.country} onChange={props.onCountryChange} />
+        <CountrySelect
+          country={props.country}
+          onChange={props.onCountryChange}
+        />
       </DialogContent>
       <DialogActions>
         <Box className={classes.buttons}>
-          <Button variant='contained' color='default' onClick={props.onPrev}>Back</Button>
+          <Button
+            variant='contained'
+            color='default'
+            data-cy='back-button'
+            onClick={props.onPrev}
+          >
+            Back
+          </Button>
           <Tooltip
             title='Once your org is submitted, you can return to the Tag Generator and add it to the CTI.'
             aria-label='submit'
           >
-            <Button variant='contained' color='secondary' onClick={props.onSubmit}>Submit</Button>
+            <Button
+              variant='contained'
+              color='secondary'
+              data-cy='submit-button'
+              onClick={props.onSubmit}
+            >
+              Submit
+            </Button>
           </Tooltip>
         </Box>
       </DialogActions>
