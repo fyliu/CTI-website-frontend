@@ -120,10 +120,7 @@ export const CurrentTopicTagSection = ({ currentTags, repositoryName }) => {
         <Grid>
           <Grid style={{ padding: '24px 0px' }}>
             <Typography variant='body1'>
-              Current topic tags on{' '}
-              <Box component='span' style={{ fontWeight: '700' }}>
-                {repositoryName}:
-              </Box>
+              These are your current topic tags in your repo:
             </Typography>
           </Grid>
           <Grid
