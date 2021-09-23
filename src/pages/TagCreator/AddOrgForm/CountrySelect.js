@@ -21,6 +21,7 @@ const CountrySelect = ({ country, onChange }) => {
   return (
     <Autocomplete
       autoComplete
+      data-cy='org-country-input'
       getOptionLabel={(option) => option.label}
       getOptionSelected={(option, value) => option.label === value.label }
       onChange={(event, value) => onChange(value)}
