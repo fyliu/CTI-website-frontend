@@ -76,7 +76,7 @@ export const ProjectRepositoryInput = ({
   return (
     <>
       <Grid item style={{ padding: '16px 0px' }} xs={12}>
-        <Typography variant='body1'>Github Project Repository URL</Typography>
+        <Typography variant='body1'>GitHub Project Repository URL</Typography>
       </Grid>
       <Grid data-cy='grid-repository'>
         <TextField
