@@ -27,7 +27,6 @@ describe('Add Organization Workflow', () => {
     cy.visit('/join-index');
     cy.wait('@getOrganizations');
     cy.get('[data-cy=radio-yes]').click();
-    cy.wait(100);
   });
 
   it('loads first step and returns to tag generator', () => {
@@ -40,17 +39,15 @@ describe('Add Organization Workflow', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=makeStyles-progress]').contains('Project Information');
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '50');
-      cy.get('input').eq(0).type(INVALID_EMAIL);
-      cy.get('input').eq(1).type(DUPLICATE_NAME);
-      cy.get('input').eq(3).type(INVALID_URL);
-      cy.get('input').eq(4).type(INVALID_URL);
-      cy.get('input').eq(5).type(VALID_TAG);
-      cy.get('input').eq(2).type(AUTOCOMPLETE_ORG);
-      cy.wait(100);
-      cy.get('input').eq(2).type('{downarrow}{downarrow}{enter}');
-      cy.get('button').eq(1).click();
+      cy.get('[data-cy=org-email-input]').type(INVALID_EMAIL);
+      cy.get('[data-cy=org-name-input]').type(DUPLICATE_NAME);
+      cy.get('[data-cy=org-website-input]').type(INVALID_URL);
+      cy.get('[data-cy=org-github-input]').type(INVALID_URL);
+      cy.get('[data-cy=org-tag-input]').type(VALID_TAG);
+      cy.get('[data-cy=parent-org-input]').type(AUTOCOMPLETE_ORG);
+      cy.get('[data-cy=parent-org-input]').type('{downarrow}{downarrow}{enter}');
+      cy.get('[data-cy=cancel-button]').click();
     });
-    cy.wait(100);
     cy.get('h1').contains('Tag Generator');
     cy.get('#container-affiliated').within(() => {
       cy.get('#organization').should('be.empty');
@@ -62,33 +59,31 @@ describe('Add Organization Workflow', () => {
       cy.get('#add-org-link').click();
     });
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).should('be.empty');
-      cy.get('input').eq(1).should('be.empty');
-      cy.get('input').eq(2).should('be.empty');
-      cy.get('input').eq(3).should('be.empty');
-      cy.get('input').eq(4).should('be.empty');
-      cy.get('input').eq(5).should('be.empty');
-      cy.get('button').eq(2).should('be.disabled');
-      cy.get('input').eq(0).type(INVALID_EMAIL);
-      cy.get('input').eq(1).type(DUPLICATE_NAME);
-      cy.get('input').eq(2).type(VALID_PARENT_NAME);
-      cy.get('input').eq(3).type(INVALID_URL);
-      cy.get('input').eq(4).type(INVALID_URL);
-      cy.get('input').eq(5).type(VALID_TAG);
-      cy.get('button').eq(2).should('not.be.disabled');
+      cy.get('[data-cy=org-email-input]').should('contain', 'Organization Email');
+      cy.get('[data-cy=org-name-input]').should('contain', 'Organization Name');
+      cy.get('[data-cy=parent-org-input]').should('contain', 'Parent Organization');
+      cy.get('[data-cy=org-website-input]').should('contain', 'Website URL');
+      cy.get('[data-cy=org-github-input]').should('contain', 'GitHub URL');
+      cy.get('[data-cy=org-tag-input]').should('contain', 'GitHub Tag(s)');
+      cy.get('[data-cy=next-button]').should('be.disabled');
+      cy.get('[data-cy=org-email-input]').type(INVALID_EMAIL);
+      cy.get('[data-cy=org-name-input]').type(DUPLICATE_NAME);
+      cy.get('[data-cy=parent-org-input]').type(VALID_PARENT_NAME);
+      cy.get('[data-cy=org-website-input]').type(INVALID_URL);
+      cy.get('[data-cy=org-github-input]').type(INVALID_URL);
+      cy.get('[data-cy=org-tag-input]').type(VALID_TAG);
+      cy.get('[data-cy=next-button]').should('not.be.disabled');
     });
   });
 
   it('loads next step and returns to first step', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('button').eq(2).click();
+      cy.get('[data-cy=next-button]').click();
     });
-    cy.wait(100);
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '100');
-      cy.get('button').eq(2).click();
+      cy.get('[data-cy=back-button]').click();
     });
-    cy.wait(100);
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '50');
     });
@@ -96,36 +91,33 @@ describe('Add Organization Workflow', () => {
 
   it('loads next step and submits org with invalid first step data', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('button').eq(2).click();
+      cy.get('[data-cy=next-button]').click();
     });
-    cy.wait(100);
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('button').eq(3).click();
+      cy.get('[data-cy=submit-button]').click();
     });
     cy.wait(500);
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '50');
-      cy.get('[class*=MuiFormHelperText]').eq(0).should('contain', 'Enter a valid email address');
-      cy.get('[class*=MuiFormHelperText]').eq(1).should('contain', 'We already have an organization');
-      cy.get('[class*=MuiFormHelperText]').eq(2).should('contain', 'Enter a valid URL');
-      cy.get('[class*=MuiFormHelperText]').eq(3).should('contain', 'Enter a valid URL');
+      cy.get('[data-cy=org-email-input]').children().eq(2).should('contain', 'Enter a valid email address');
+      cy.get('[data-cy=org-name-input]').children().eq(2).should('contain', 'We already have an organization');
+      cy.get('[data-cy=org-website-input]').children().eq(2).should('contain', 'Enter a valid URL');
+      cy.get('[data-cy=org-github-input]').children().eq(2).should('contain', 'Enter a valid URL');
     });
   });
 
   it('corrects data in the first step and loads next step', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).clear().type(VALID_EMAIL);
-      cy.get('input').eq(1).clear().type(VALID_NAME);
-      cy.get('input').eq(3).clear().type(VALID_WEBSITE_URL);
-      cy.get('input').eq(4).clear().type(VALID_GITHUB_URL);
-      cy.get('input').eq(5).clear().type(VALID_TAG);
-      cy.get('input').eq(2).type(AUTOCOMPLETE_ORG);
-      cy.wait(100);
-      cy.get('input').eq(2).type('{downarrow}{downarrow}{enter}');
+      cy.get('[data-cy=org-email-input]').clear().type(VALID_EMAIL);
+      cy.get('[data-cy=org-name-input]').clear().type(VALID_NAME);
+      cy.get('[data-cy=org-website-input]').clear().type(VALID_WEBSITE_URL);
+      cy.get('[data-cy=org-github-input]').clear().type(VALID_GITHUB_URL);
+      cy.get('[data-cy=org-tag-input]').clear().type(VALID_TAG);
+      cy.get('[data-cy=parent-org-input]').type(AUTOCOMPLETE_ORG);
+      cy.get('[data-cy=parent-org-input]').type('{downarrow}{downarrow}{enter}');
       cy.get('[class*=MuiFormHelperText]').should('not.exist');
-      cy.get('button').eq(2).click();
+      cy.get('[data-cy=next-button]').click();
     });
-    cy.wait(100);
     cy.get('[class*=MuiDialog-container]').within(() => {
       cy.get('[class*=MuiLinearProgress]').invoke('attr', 'aria-valuenow').should('eq', '100');
     });
@@ -133,31 +125,30 @@ describe('Add Organization Workflow', () => {
 
   it('submits org with invalid data in next step', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).type(INVALID_FACEBOOK_URL);
-      cy.get('input').eq(1).type(INVALID_URL);
-      cy.get('input').eq(2).type(INVALID_URL);
-      cy.get('input').eq(3).type(VALID_CITY);
-      cy.get('input').eq(4).type(VALID_STATE);
-      cy.get('input').eq(5).type(AUTOCOMPLETE_COUNTRY);
-      cy.wait(100);
-      cy.get('input').eq(5).type('{downarrow}{downarrow}{enter}');
-      cy.get('button').eq(3).click();
+      cy.get('[data-cy=org-facebook-input]').type(INVALID_FACEBOOK_URL);
+      cy.get('[data-cy=org-twitter-input]').type(INVALID_URL);
+      cy.get('[data-cy=org-meetup-input]').type(INVALID_URL);
+      cy.get('[data-cy=org-city-input]').type(VALID_CITY);
+      cy.get('[data-cy=org-state-input]').type(VALID_STATE);
+      cy.get('[data-cy=org-country-input]').type(AUTOCOMPLETE_COUNTRY);
+      cy.get('[data-cy=org-country-input]').type('{downarrow}{downarrow}{enter}');
+      cy.get('[data-cy=submit-button]').click();
     });
     cy.wait(500);
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('[class*=MuiFormHelperText]').eq(0).should('contain', 'Not a valid Facebook URL');
-      cy.get('[class*=MuiFormHelperText]').eq(1).should('contain', 'Enter a valid URL');
-      cy.get('[class*=MuiFormHelperText]').eq(2).should('contain', 'Enter a valid URL');
+      cy.get('[data-cy=org-facebook-input]').children().eq(2).should('contain', 'Not a valid Facebook URL');
+      cy.get('[data-cy=org-twitter-input]').children().eq(2).should('contain', 'Enter a valid URL');
+      cy.get('[data-cy=org-meetup-input]').children().eq(2).should('contain', 'Enter a valid URL');
     });
   });
 
   it('corrects data in the next step and submits the org', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).clear().type(VALID_FACEBOOK_URL);
-      cy.get('input').eq(1).clear().type(VALID_TWITTER_URL);
-      cy.get('input').eq(2).clear().type(VALID_MEETUP_URL);
+      cy.get('[data-cy=org-facebook-input]').clear().type(VALID_FACEBOOK_URL);
+      cy.get('[data-cy=org-twitter-input]').clear().type(VALID_TWITTER_URL);
+      cy.get('[data-cy=org-meetup-input]').clear().type(VALID_MEETUP_URL);
       cy.get('[class*=MuiFormHelperText]').should('not.exist');
-      cy.get('button').eq(3).click();
+      cy.get('[data-cy=submit-button]').click();
     });
     cy.wait(500);
     cy.get('[class*=MuiDialog-container]').within(() => {
@@ -167,9 +158,10 @@ describe('Add Organization Workflow', () => {
 
   it('should return to tag generator', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('button').click();
+      cy.get('[class*=makeStyles-return]').within(() => {
+        cy.get('[data-cy=return-button]').click();
+      });
     });
-    cy.wait(100);
     cy.get('h1').contains('Tag Generator');
     cy.get('#organization').should('have.value', VALID_NAME);
   });
@@ -179,26 +171,27 @@ describe('Add Organization Workflow', () => {
       cy.get('#add-org-link').click();
     });
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).clear().type(VALID_EMAIL);
-      cy.get('input').eq(1).clear().type(VALID_NAME_2);
-      cy.get('input').eq(3).clear().type(VALID_WEBSITE_URL);
-      cy.get('input').eq(4).clear().type(VALID_GITHUB_URL);
-      cy.get('input').eq(5).clear().type(VALID_TAG);
-      cy.get('input').eq(2).type(VALID_PARENT_NAME);
-      cy.get('button').eq(2).click();
+      cy.get('[data-cy=org-email-input]').clear().type(VALID_EMAIL);
+      cy.get('[data-cy=org-name-input]').clear().type(VALID_NAME_2);
+      cy.get('[data-cy=org-website-input]').clear().type(VALID_WEBSITE_URL);
+      cy.get('[data-cy=org-github-input]').clear().type(VALID_GITHUB_URL);
+      cy.get('[data-cy=org-tag-input]').clear().type(VALID_TAG);
+      cy.get('[data-cy=parent-org-input]').type(VALID_PARENT_NAME);
+      cy.get('[data-cy=next-button]').click();
     });
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).clear().type(VALID_FACEBOOK_URL);
-      cy.get('input').eq(1).clear().type(VALID_TWITTER_URL);
-      cy.get('input').eq(2).clear().type(VALID_MEETUP_URL);
+      cy.get('[data-cy=org-facebook-input]').clear().type(VALID_FACEBOOK_URL);
+      cy.get('[data-cy=org-twitter-input]').clear().type(VALID_TWITTER_URL);
+      cy.get('[data-cy=org-meetup-input]').clear().type(VALID_MEETUP_URL);
       cy.get('[class*=MuiFormHelperText]').should('not.exist');
-      cy.get('button').eq(3).click();
+      cy.get('[data-cy=submit-button]').click();
     });
     cy.wait(500);
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('button').click();
+      cy.get('[class*=makeStyles-return]').within(() => {
+        cy.get('[data-cy=return-button]').click();
+      });
     });
-    cy.wait(100);
     cy.get('#organization').should('have.value', VALID_NAME_2);
   });
 
@@ -207,32 +200,31 @@ describe('Add Organization Workflow', () => {
       cy.get('#add-org-link').click();
     });
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).should('be.empty');
-      cy.get('input').eq(1).should('be.empty');
-      cy.get('input').eq(2).should('be.empty');
-      cy.get('input').eq(3).should('be.empty');
-      cy.get('input').eq(4).should('be.empty');
-      cy.get('input').eq(5).should('be.empty');
+      cy.get('[data-cy=org-email-input]').should('contain', 'Organization Email');
+      cy.get('[data-cy=org-name-input]').should('contain', 'Organization Name');
+      cy.get('[data-cy=parent-org-input]').should('contain', 'Parent Organization');
+      cy.get('[data-cy=org-website-input]').should('contain', 'Website URL');
+      cy.get('[data-cy=org-github-input]').should('contain', 'GitHub URL');
+      cy.get('[data-cy=org-tag-input]').should('contain', 'GitHub Tag(s)');
     });
   });
 
   it('loads next step and checks all fields are empty', () => {
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).type(VALID_EMAIL);
-      cy.get('input').eq(1).type(VALID_NAME);
-      cy.get('input').eq(3).type(VALID_WEBSITE_URL);
-      cy.get('input').eq(4).type(VALID_GITHUB_URL);
-      cy.get('input').eq(5).type(VALID_TAG);
-      cy.get('button').eq(2).click();
+      cy.get('[data-cy=org-email-input]').type(VALID_EMAIL);
+      cy.get('[data-cy=org-name-input]').type(VALID_NAME);
+      cy.get('[data-cy=org-website-input]').type(VALID_WEBSITE_URL);
+      cy.get('[data-cy=org-github-input]').type(VALID_GITHUB_URL);
+      cy.get('[data-cy=org-tag-input]').type(VALID_TAG);
+      cy.get('[data-cy=next-button]').click();
     });
-    cy.wait(100);
     cy.get('[class*=MuiDialog-container]').within(() => {
-      cy.get('input').eq(0).should('be.empty');
-      cy.get('input').eq(1).should('be.empty');
-      cy.get('input').eq(2).should('be.empty');
-      cy.get('input').eq(3).should('be.empty');
-      cy.get('input').eq(4).should('be.empty');
-      cy.get('input').eq(5).should('be.empty');
+      cy.get('[data-cy=org-facebook-input]').should('contain', 'Facebook URL');
+      cy.get('[data-cy=org-twitter-input]').should('contain', 'Twitter URL');
+      cy.get('[data-cy=org-meetup-input]').should('contain', 'Meetup URL');
+      cy.get('[data-cy=org-city-input]').should('contain', 'City');
+      cy.get('[data-cy=org-state-input]').should('contain', 'State');
+      cy.get('[data-cy=org-country-input]').should('contain', 'Country');
     });
   });
 });

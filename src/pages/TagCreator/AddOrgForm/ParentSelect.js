@@ -13,6 +13,7 @@ const ParentSelect = ({ org, orgList, onChange }) => {
   return (
     <Autocomplete
       autoSelect
+      data-cy='parent-org-input'
       freeSolo
       getOptionLabel={parseOptionLabel}
       getOptionSelected={(option, value) => option.name === value.name }
