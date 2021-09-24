@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '36px',
     },
   },
-
   ctiImageStyle: {
     maxWidth: '100%',
     [theme.breakpoints.down('xs')]: {
@@ -60,6 +59,9 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: '64px',
     width: '64px',
+  },
+  logoPadding: {
+      padding: '12px 0'
   },
   tweetGrid: {
     paddingTop: '96px',

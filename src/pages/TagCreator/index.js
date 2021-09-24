@@ -452,7 +452,7 @@ const TagCreator = () => {
             question={
               <>
                 Are you affiliated with an{' '}
-                <Link to='/organizations/all'> organization</Link>?
+                <Link to='/organizations/all'>organization</Link>?
               </>
             }
           />
