@@ -51,7 +51,7 @@ const renderAffiliationsTopicsTags = (topics, classes) => {
           className={classes.affiliationTopicLogoStyle}
           src='/images/github-topic-tag-logo.png'
         />
-        <span className={classes.tagChipTextStyle}>{topic}</span>
+        <span data-cy='topic-tag' className={classes.tagChipTextStyle}>{topic}</span>
       </Typography>
     );
   });
