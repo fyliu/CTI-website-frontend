@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '96px 0 96px',
   },
   card: {
-    backgroundColor: theme.palette.spectrum.white,
+    backgroundColor: '#FFFFFF',
     height: '186px',
     border: '1px solid',
     borderRadius: '4px',
@@ -50,7 +50,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    boxShadow: '0.1rem 0.1rem 10px #919191',
+    boxSizing: 'border-box',
+    boxShadow: '0px 6px 30px rgba(4, 45, 95, 0.08)',
   },
   cardTypo: {
     textAlign: 'center',
