@@ -72,10 +72,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.spectrum.teal,
   },
   twitterFeedStyle: {
-    width: '600px',
     border: '1px solid',
+    borderRadius: '4px',
     borderColor: theme.palette.background.darkGray,
-    boxShadow: '0.1rem 0.1rem 10px #919191',
+    // boxSizing: 'border-box',
+    boxShadow: '0px 6px 30px rgba(4, 45, 95, 0.08)',
+    width: '600px',
   },
 }));
 
