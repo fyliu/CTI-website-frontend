@@ -10,31 +10,14 @@ import Link from '../../../components/common/Link';
 const CtiLogoSection = () => {
     const classes = useStyles();
   return (
-    <Grid container>
-      <Grid
-        container
-        item
-        xs={6}
-        justify='flex-end'
-      >
-        <img className={classes.logoPadding} src='/images/OneColor_CTI_Logo_noSpace.svg' alt='CTI logo' />
-      </Grid>
-      <Grid item xs={6} />
-      <Grid item xs={6} />
-      <Grid
-        container
-        item
-        
-        xs={6}
-        justify='flex-start'
-      >
+    <Container className={classes.logoContainer}>
+        <img className={classes.logoBW} src='/images/OneColor_CTI_Logo.svg' alt='CTI logo' />
         <img
-        className={classes.logoPadding}
-          src='/images/FullColor_CTI_Logo_noSpace.svg'
+        className={classes.logoColor}
+          src='/images/FullColor_CTI_Logo.svg'
           alt='CTI logo color'
         />
-      </Grid>
-    </Grid>
+    </Container>
   );
 };
 

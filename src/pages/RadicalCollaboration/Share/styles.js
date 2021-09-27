@@ -61,9 +61,31 @@ const useStyles = makeStyles((theme) => ({
     height: '64px',
     width: '64px',
   },
-  logoPadding: {
-      padding: '12px 0'
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
+  logoBW: {
+    overflow: 'hidden',
+    backgroundColor: '#FFFFFF',
+    display: 'flex',
+    marginLeft: '0px',
+    marginTop: '-85px',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    boxShadow: '0px 6px 30px rgba(4, 45, 95, 0.08)',
+  },
+  logoColor: {
+    overflow: 'visible',
+    backgroundColor: '#FFFFFF',
+    display: 'flex',
+    marginLeft: '-40px',
+    marginTop: '85px',
+    alignItems: 'center',
+    boxSizing: 'border-box',
+    boxShadow: '0px 6px 30px rgba(4, 45, 95, 0.08)',
+},
   tweetGrid: {
     paddingTop: '96px',
   },
