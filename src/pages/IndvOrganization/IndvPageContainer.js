@@ -4,17 +4,14 @@ import Box from '@material-ui/core/Box'
 import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import ListItem from '@material-ui/core/ListItem';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
 import PriorityQueue from 'js-priority-queue';
 import { renderCard } from './RenderProjectCard';
 import { OtherProjectsDropdown } from './OtherProjectsDropdown'
 import ResultContainer from '../SearchProjects/ResultContainer';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/styles';
+import SortDropdown from '../../components/SortDropdown';
 
 const calculateDaysSince = (updateTime) => {
   const days = new Date() - new Date(updateTime);
@@ -94,7 +91,8 @@ export const IndvPageContainer = (props) => {
   const [results, setResults] = useState('');
   const [dropDownListItem, setDropDownListItem] = useState('');
   const [loading, setLoading] = useState(true);
-  const [sort, setSort] = useState('best match');
+  const [sortMethod, setSortMethod] = useState('best match');
+  const inputSortMethodList = ['best match', 'updated', 'stars'];
   const [isProjectSearchFinish, setIsProjectSearchFinish] = useState(false);
   const [errorState, setErrorState] = useState(false);
   const projectsPerPage = 4;
@@ -110,7 +108,7 @@ export const IndvPageContainer = (props) => {
     setStargazerProjects([]);
     setResults('');
     setDropDownListItem('');
-    setSort('best match');
+    setSortMethod('best match');
   }, [props.pathName]);
 
   // Fetching the data for 'other repo' dropdown elements
@@ -224,6 +222,16 @@ export const IndvPageContainer = (props) => {
     }
   }, [projects, isProjectSearchFinish]);
 
+  useEffect(() => {
+    if (sortMethod === 'best match') {
+      setProjects(bestMatchProjects);
+    } else if (sortMethod === 'updated') {
+      setProjects(lastUpdatedProjects);
+    } else {
+      setProjects(stargazerProjects);
+    }
+  }, [bestMatchProjects, lastUpdatedProjects, sortMethod, stargazerProjects]);
+
   // Using priorityQueue to sort result list.
   const getSortedProjectsArr = (sortMethod, bestMatchSortedProjectsArr) => {
     let priorityQueue;
@@ -265,17 +273,6 @@ export const IndvPageContainer = (props) => {
     setResults(items);
   };
 
-  const handleSortChange = (value) => {
-    if (value === 'best match') {
-      setProjects(bestMatchProjects);
-    } else if (value === 'updated') {
-      setProjects(lastUpdatedProjects);
-    } else {
-      setProjects(stargazerProjects);
-    }
-    setSort(value);
-  };
-
   return (
     <>
       <Grid className={classes.contentContainerStyle}>
@@ -295,20 +292,11 @@ export const IndvPageContainer = (props) => {
             className={classes.allSubmittedProjectSectionStyle}
           >
             <Typography variant='h5'>All Submitted Projects:</Typography>
-            <FormControl variant='outlined'>
-              <InputLabel id='sort-select-label'>Sort</InputLabel>
-              <Select
-                labelId='sort-select-label'
-                label='Sort'
-                defaultValue='best match'
-                value={sort}
-                onChange={(e) => handleSortChange(e.target.value)}
-              >
-                <MenuItem value='best match'>Best Match</MenuItem>
-                <MenuItem value='updated'>Last Updated</MenuItem>
-                <MenuItem value='stars'>Stargazer Count</MenuItem>
-              </Select>
-            </FormControl>
+            <SortDropdown
+              inputSortMethodList={inputSortMethodList}
+              defaultSortMethod={sortMethod}
+              setSortMethod={setSortMethod}
+            />
           </Box>
           {!loading ? (
             <ResultContainer
