@@ -96,7 +96,7 @@ const StarMediaSection = () => {
 
   const CardSection = ({ image, title, cardContent, link='' }) => {
     return (
-      <CardActionArea href={link}>
+      <CardActionArea href={link} target="_blank">
         <Card className={classes.card}>
           <CardMedia className={classes.media} image={image} title={title} />
           <CardContent>
