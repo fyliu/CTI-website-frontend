@@ -67,17 +67,22 @@ const useStyles = makeStyles((theme) => ({
   tweetGrid: {
     paddingTop: '96px',
   },
-  tweetHeading: {
-    textAlign: 'center',
-    color: theme.palette.spectrum.teal,
-  },
   twitterFeedStyle: {
     border: '1px solid',
     borderRadius: '4px',
     borderColor: theme.palette.background.darkGray,
-    // boxSizing: 'border-box',
     boxShadow: '0px 6px 30px rgba(4, 45, 95, 0.08)',
     width: '600px',
+  },
+  sectionHeadTypography: {
+    textAlign: 'center',
+    color: theme.palette.spectrum.teal,
+  },
+  contactLinkStyle: {
+    paddingBottom: '40px',
+    '& a:visited': {
+      color: theme.palette.secondary.main,
+    },
   },
 }));
 

@@ -21,13 +21,21 @@ const StarMediaSection = () => {
       <Card className={classes.card}>
         <CardMedia className={classes.media} image={image} title={title} />
         <CardContent>
-          <Typography variant='h6' className={classes.cardTypo}>{cardContent}</Typography>
+          <Typography variant='h6' className={classes.cardTypo}>
+            {cardContent}
+          </Typography>
         </CardContent>
       </Card>
     );
   };
   return (
-    <Grid container item xs={12} spacing={4} className={classes.starMediaSection}>
+    <Grid
+      container
+      item
+      xs={12}
+      spacing={4}
+      className={classes.starMediaSection}
+    >
       <Grid item sm={4}>
         <Card variant='outlined' className={classes.card}>
           <CardActions>
@@ -38,12 +46,12 @@ const StarMediaSection = () => {
               data-show-count='true'
               aria-label='Star civictechindex/CTI-website-frontend on GitHub'
             >
-                Star
+              Star
             </GitHubButton>
           </CardActions>
           <CardContent>
             <Typography variant='h6' className={classes.cardTypo}>
-                Don’t forget to star our repository
+              Don’t forget to star our repository
             </Typography>
           </CardContent>
         </Card>
@@ -76,9 +84,9 @@ const SocialMediaPostSection = () => {
     >
       <Grid className={classes.twitterFeedStyle}>
         <TwitterTimelineEmbed
-          sourceType="profile"
-          screenName="HackForLA"
-          options={{height: 640}}
+          sourceType='profile'
+          screenName='CivicTechIndex'
+          options={{ height: 640 }}
         />
       </Grid>
     </Grid>
@@ -97,9 +105,9 @@ const SocialMediaSection = () => {
           className={classes.socialMediaSectionStyle}
         >
           <Typography
-            variant='h3'
+            variant='h4'
+            className={classes.sectionHeadTypography}
             style={{
-              color: '#004364',
               marginBottom: '24px',
             }}
           >
@@ -123,10 +131,7 @@ const SocialMediaSection = () => {
               <img src='/images/share-insta-logo.svg' alt='instagram logo' />
             </a>
             <a href='https://twitter.com/civictechindex'>
-              <img
-                src='/images/share-twitter-logo.svg'
-                alt='twitter logo'
-              />
+              <img src='/images/share-twitter-logo.svg' alt='twitter logo' />
             </a>
             <a href='https://www.facebook.com/civictechindex'>
               <img src='/images/share-fb-logo.svg' alt='facebook logo' />
@@ -170,7 +175,7 @@ export default function ShareTheCti() {
               textAlign: 'center',
             }}
           >
-            <Typography variant='h3' style={{ color: '#004364' }}>
+            <Typography variant='h4' className={classes.sectionHeadTypography}>
               Tell others about us!
             </Typography>
             <Typography
@@ -184,11 +189,8 @@ export default function ShareTheCti() {
             <StarMediaSection />
           </Grid>
           <Grid className={classes.tweetGrid}>
-            <Typography
-              variant='h3'
-              className={classes.tweetHeading}
-            >
-            Latest Updates from the CTI
+            <Typography variant='h4' className={classes.sectionHeadTypography}>
+              Latest Updates from the CTI
             </Typography>
             <SocialMediaPostSection />
           </Grid>
