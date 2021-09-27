@@ -77,6 +77,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign:'center',
     width:'218px',
   },
+  link: {
+    '& .MuiCardActionArea-focusHighlight': {
+      backgroundColor: 'transparent',
+    },
+  },
   media: {
     height: '64px',
     width: '64px',
@@ -96,14 +101,14 @@ const StarMediaSection = () => {
 
   const CardSection = ({ image, title, cardContent, link='' }) => {
     return (
-      <CardActionArea href={link} target="_blank">
-        <Card className={classes.card}>
-          <CardMedia className={classes.media} image={image} title={title} />
-          <CardContent>
-            <Typography variant='h6' className={classes.cardTypo}>{cardContent}</Typography>
-          </CardContent>
-        </Card>
+    <Card className={classes.card}>
+      <CardActionArea className={`${classes.link} ${classes.media}`} href={link} target="_blank">
+        <CardMedia className={classes.media} image={image} title={title} />
       </CardActionArea>
+      <CardContent>
+        <Typography variant='h6' className={classes.cardTypo}>{cardContent}</Typography>
+      </CardContent>
+    </Card>
     );
   };
   return (
