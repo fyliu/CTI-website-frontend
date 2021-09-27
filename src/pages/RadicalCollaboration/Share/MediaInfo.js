@@ -96,14 +96,14 @@ const MediaInfo = () => {
               • You have developed your own interface to search the Index
             </Typography>
             <Typography variant='body1' style={{ paddingBottom: '15px' }}>
-              • In articles or social media posts featuring Civic Tech Index.
+              • In articles or social media posts featuring Civic Tech Index
             </Typography>
             <Typography variant='body1' style={{ paddingBottom: '40px' }} className={classes.contactLinkStyle}>
               • For all other uses, please{' '}
               <Link to='/contact'>
-                contact
+                contact us
               </Link>
-              {' '}us for permission.
+              {' '} for permission
             </Typography>
           </Box>
         </Grid>
