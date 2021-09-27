@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  cardTypo:{
+  cardTypo: {
     textAlign:'center',
     width:'218px',
   },
@@ -86,11 +86,11 @@ const useStyles = makeStyles((theme) => ({
     height: '64px',
     width: '64px',
   },
-  tweetGrid:{
+  tweetGrid: {
     paddingTop:'96px',
     paddingBottom:'32px',
   },
-  tweetHeading:{
+  tweetHeading: {
     textAlign: 'center',
     color: theme.palette.spectrum.teal,
   },
@@ -101,14 +101,14 @@ const StarMediaSection = () => {
 
   const CardSection = ({ image, title, cardContent, link='' }) => {
     return (
-    <Card className={classes.card}>
-      <CardActionArea className={`${classes.link} ${classes.media}`} href={link} target="_blank">
-        <CardMedia className={classes.media} image={image} title={title} />
-      </CardActionArea>
-      <CardContent>
-        <Typography variant='h6' className={classes.cardTypo}>{cardContent}</Typography>
-      </CardContent>
-    </Card>
+      <Card className={classes.card}>
+        <CardActionArea className={`${classes.link} ${classes.media}`} href={link} target="_blank">
+          <CardMedia className={classes.media} image={image} title={title} />
+        </CardActionArea>
+        <CardContent>
+          <Typography variant='h6' className={classes.cardTypo}>{cardContent}</Typography>
+        </CardContent>
+      </Card>
     );
   };
   return (
