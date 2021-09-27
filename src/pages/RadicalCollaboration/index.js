@@ -1,75 +1,23 @@
+/* eslint-disable max-lines-per-function */
 import React from 'react';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Hidden from '@material-ui/core/Hidden';
-import withWidth from '@material-ui/core/withWidth';
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import BottomCallToAction from '../../components/BottomCallToAction';
-import PhotoCardDesktop from './PhotoCardDesktop';
-import PhotoCardMobile from './PhotoCardMobile';
-
+import useStyles from './styles.js';
 import { GenericHeaderSection } from '../../components/';
 const RadicalCollaboration = () => {
   const breadCrumbLinks = [
     { name: 'Home', href: '/home' },
     { name: 'Collaborate with Us', href: '/support' },
   ];
-  const Images = [
-    {
-      src: '/images/dsktp-photo-of-people-standing-near-window-3184427.png',
-      alt: 'team high fiving',
-      title: 'img-1',
-      heading: 'Donate',
-      subHeading: 'Every gift helps us continue our work.',
-      textBody:
-        'Your tax-deductible gift today will help make more open-source solutions easily available for the communities who need it the most.',
-      buttonText: 'Make a Donation',
-      dsktpTxtLn1: 'Your tax-deductible gift today will help make more',
-      dsktpTxtLn2: 'open-source solutions easily available for the',
-      dsktpTxtLn3: 'communities who need it the most. Thank You',
-      route: '/donate',
-    },
-    {
-      src: '/images/group-smiling-working.png',
-      alt: 'group working',
-      title: 'img-2',
-      heading: 'Share the CTI',
-      subHeading: 'Love the Index? Be an evangelist!',
-      textBody:
-        ' Help others and their communities discover, share, and benefit from contributed projects on the Index.',
-      buttonText: 'Share the Civic Tech Index',
-      dsktpTxtLn1: 'Help others and their communities discover, share, and',
-      dsktpTxtLn2: 'benefit from contributed projects on the index.',
-      route: '/support/share',
-    },
-    {
-      src: '/images/bulletin-board-postits.png',
-      alt: 'bulletin board',
-      title: 'img-3',
-      heading: 'Volunteer with Us',
-      subHeading: 'Help us improve the Civic Tech Index',
-      textBody:
-        'Please complete this application if you would like us to reach out to you directly or find us on our project team page.',
-      buttonText: 'Become a Volunteer',
-      dsktpTxtLn1: 'Please complete this application if you would like',
-      dsktpTxtLn2: 'us to reach out to you directly or find us on our',
-      dsktpTxtLn3: 'project team page.',
-      route: "https://www.hackforla.org/#about",
-    },
-    {
-      src: '/images/man-and-woman-working.png',
-      alt: 'girl and guy coding',
-      title: 'img-4',
-      heading: 'Need Help?',
-      subHeading: "Can't find the answer you're looking for?",
-      textBody:
-        "We've shared some of our most frequently asked questions to help you out! View our FAQ to find answers or contact us.",
-      buttonText: 'View the FAQ',
-      dsktpTxtLn1: "We've shared some of our most frequently asked",
-      dsktpTxtLn2: 'questions to help you out!',
-      dsktpTxtLn3: 'View our FAQ to find answers or contact us.',
-      route: '/faq',
-    },
-  ];
+  const classes = useStyles();
   return (
     <Box className='pageContainer'>
       <Box className='boxBackground'>
@@ -82,12 +30,95 @@ const RadicalCollaboration = () => {
       </Box>
       <Box className='containerGray'>
         <Container>
-          <Hidden mdDown>
-            <PhotoCardDesktop items={Images} />
-          </Hidden>
-          <Hidden lgUp>
-            <PhotoCardMobile items={Images} />
-          </Hidden>
+          <Grid container item>
+            <Grid>
+              <Paper elevation={0} className={classes.innerTextCardContainer}>
+                <Typography className={classes.cardHeading} variant='h4'>Donate </Typography>
+                <Typography variant="h6" color='primary' className={classes.subcardHeading}>Every gift helps us continue our work.</Typography>
+                <Typography className={classes.dtpLine1}>
+                 Your tax-deductible gift today will help make more open-source solutions easily available for the
+                 communities who need it the most. Thank You
+                </Typography>
+                <Button component={Link} to="/donate"  color='textSecondary' className={classes.donateButton}>
+                 Make a Donation
+                </Button>
+                <br></br>
+              </Paper>
+            </Grid>
+            <Grid>
+              <Card className={classes.imgCard}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={'/images/Donate-to-Us.png'}
+                />
+              </Card>
+            </Grid>
+            <Grid>
+              <Paper elevation={0} className={classes.innerLeftTextCardContainer}>
+                <Typography className={classes.shareCardHeading} variant='h4'>Share the CTI </Typography>
+                <Typography variant="h6" color='primary' className={classes.subcardHeading}>Love the Index? Be an evangelist!</Typography>
+                <Typography className={classes.rightDtpLine1}>
+                 Help others and their communities discover, share and benefit from contributed projects on the index.
+                </Typography>
+                <Button component={Link} to='/support/share'  className={classes.buttonRight}>
+                 Share the CTI
+                </Button>
+                <br></br>
+              </Paper>
+            </Grid>
+            <Grid>
+              <Card className={classes.imgCardLeft}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={'/images/Evangelize-Us.png'}
+                />
+              </Card>
+            </Grid>
+            <Grid item>
+              <Paper elevation={0} className={classes.innerVolunteerTextCardContainer}>
+                <Typography className={classes.cardHeading} variant='h4'>Volunteer With Us</Typography>
+                <Typography variant="h6" color='primary' className={classes.subcardHeading}>Help us improve the Civic Tech Index.</Typography>
+                <Typography className={classes.dtpLine1}>
+                 Please <a className={classes.inLineLinkText} href="https://www.hackforla.org/#about" target="_blank" rel="noopener noreferrer">complete this application</a>
+                 if you would like us to reach out to you directly or find us on our <a className={classes.inLineLinkText} href="https://www.hackforla.org/projects/civic-tech-index" target="_blank" rel="noopener noreferrer">project team page.</a>.
+                </Typography>
+                <Button href='https://www.hackforla.org/projects/civic-tech-index.html' color='textSecondary' className={classes.volButton}>
+                 Become a Volunteer
+                </Button>
+                <br></br>
+              </Paper>
+            </Grid>
+            <Grid>
+              <Card className={classes.imgCardVolunteer}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={'/images/Volunteer-With-Us.png'}
+                />
+              </Card>
+            </Grid>
+            <Grid item>
+              <Paper elevation={0} className={classes.innerHelpTextCardContainer}>
+                <Typography className={classes.shareCardHeading} variant='h4'>Need Help?</Typography>
+                <Typography variant="h6" color='primary' className={classes.subcardHeading}>Can&apos;t find the answer youre looking for?</Typography>
+                <Typography className={classes.rightDtpLine1}>
+                   We&apos;ve shared some of our most frequently asked questions to help you out!  View our   <Link to="/faq"> FAQ  </Link>
+                  <span> to find answers or <a className={classes.inLineLinkText} href='/contact'>contact us.</a> </span>
+                </Typography>
+                <Button component={Link} to='/faq' className={classes.donateButton}>
+                  View FAQ
+                </Button>
+                <br></br>
+              </Paper>
+            </Grid>
+            <Grid>
+              <Card className={classes.imgHelpCardLeft}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={'/images/FAQ.png'}
+                />
+              </Card>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
       <Box className='containerWhite'>
@@ -102,4 +133,4 @@ const RadicalCollaboration = () => {
   );
 };
 
-export default withWidth()(RadicalCollaboration);
+export default RadicalCollaboration;

@@ -13,10 +13,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '20px',
     },
     [theme.breakpoints.up('lg')]: {
-      fontSize: '32px',
-    },
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '15px',
+      fontSize: '40px',
     },
   },
 }));

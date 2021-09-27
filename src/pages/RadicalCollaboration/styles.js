@@ -1,62 +1,129 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
+
+  titleStyle: {
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '13px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '16px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '28px',
+    },
+  },
   innerTextCardContainer: {
     background: 'none',
     height: '448px',
     width: '608px',
+    [theme.breakpoints.down('sm')]: {
+      width:'316px',
+      background: 'none',
+      marginTop: '146px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '11px',
+      marginLeft: '11px',
+    },
   },
-  faqCardHeading: {
-    color: '#004364',
-    position: 'absolute',
-    top: '94px',
-    right: '330px',
-    fontSize: '42px',
-    lineHeight:'48px',
+  innerVolunteerTextCardContainer: {
+    background: 'none',
+    height: '448px',
+    width: '608px',
+    [theme.breakpoints.down('sm')]: {
+      width:'316px',
+      height: '384px',
+      background: 'none',
+      marginTop: '250px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '168px',
+    },
+    [theme.breakpoints.up('md')]: {
+      marginTop: '0px',
+    },
   },
-  faqPHeading: {
-    color: '#0F1D2F',
-    position: 'absolute',
-    top: '159px',
-    right: '164px',
+  innerLeftTextCardContainer: {
+    height: '448px',
+    width: '608px',
+    background: 'none',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '0px',
+      width: '314px',
+      height: '196px',
+      marginTop: '137px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '479px',
+      marginLeft: '37px',
+    },
+    [theme.breakpoints.up('md')]: {
+      marginLeft: '638px',
+      marginTop: '0px',
+    },
   },
-  faqRightDtpLine1: {
-    position: 'absolute',
-    top: '197px',
-    right: '132px',
-    fontSize: '18px',
-  },
-  faqRightDtpLine2: {
-    position: 'absolute',
-    top: '220px',
-    right: '332px',
-    fontSize: '18px',
-  },
-  faqLinkText: {
-    position: 'absolute',
-    top: '266px',
-    right: '169px',
-    fontSize: '18px',
-  },
-  inLineLinkText: {
-    color: '#6df',
-  },
-  faqButton: {
-    position: 'absolute',
-    color: 'white',
-    backgroundColor: '#0D99C6',
-    margin: '0 auto',
-    padding: '0px 16px',
-    top: '312px',
-    right: '375px',
+  innerHelpTextCardContainer: {
+    height: '448px',
+    width: '608px',
+    background: 'none',
+    [theme.breakpoints.down('sm')]: {
+      width:'314px',
+      height: '361px',
+      background: 'none',
+      marginTop: '206px',
+      marginLeft: '0px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: '368px',
+      marginTop: '32px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: '657px',
+    },
   },
   imgCard: {
     background: 'none',
-    top: '33px',
+    top: '462px',
     position: 'absolute',
     height: '382px',
     width: '544px',
-    left: '608px',
+    left: '1040px',
+    [theme.breakpoints.down('sm')]: {
+      top: '378px',
+      left: '10px',
+      width: '348px',
+      height: '382px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      top: '418px',
+      left: '387px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      left: '1040px',
+      top: '463px',
+    },
+  },
+  imgCardVolunteer: {
+    background: 'none',
+    position: 'absolute',
+    height: '382px',
+    width: '544px',
+    left: '1040px',
+    [theme.breakpoints.down('sm')]: {
+      top: '1414px',
+      left: '11px',
+      width: '319px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      top: '1270px',
+      left: '387px',
+    },
+    [theme.breakpoints.up('lg')]: {
+      left: '1046px',
+      top: '1351px',
+    },
   },
   imgCardLeft: {
     background: 'none',
@@ -64,173 +131,160 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     height: '382px',
     width: '544px',
-    top: '33px',
-    right: '608px',
+    [theme.breakpoints.down('sm')]: {
+      top: '929px',
+      left: '7px',
+      width: '319px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      top: '926px',
+      left: '30',
+    },
+    [theme.breakpoints.up('lg')]: {
+      top: '900px',
+    },
+  },
+  imgHelpCardLeft: {
+    background: 'none',
+    maxWidth: 1280,
+    position: 'absolute',
+    height: '382px',
+    [theme.breakpoints.down('sm')]: {
+      left: '9px',
+      top: '1947px',
+      width: '340px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      top: '1650px',
+      left: '20',
+    },
+    [theme.breakpoints.up('lg')]: {
+      top: '1816px',
+    },
   },
   cardMedia: {
-    height: '382px',
-    width: '544px',
     borderRadius: '8px',
-  },
-  gridCont: {
-    margin: 'auto',
-  },
-  outerCard: {
-    background: 'none',
-    position: 'relative',
-    padding: '0px',
-    width: '1184px',
-    margin: '0 auto',
-    marginBottom: '10px',
-    maxWidth: 1280,
+    [theme.breakpoints.down('sm')]: {
+      width: '307px',
+      height: '220px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '400px',
+      height: '300px',
+    },
+    [theme.breakpoints.up('md')]: {
+      height: '382px',
+      width: '544px',
+    },
   },
   cardHeading: {
-    color: '#004364',
-    position: 'absolute',
-    top: '94px',
-    left: '69px',
+    color: theme.palette.secondary.dark,
+    marginTop: '103px',
     fontSize: '42px',
     lineHeight: '48px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize:'30px',
+    },
   },
-  cardParaHeading:{
-    color: '#0F1D2F',
-    position: 'absolute',
-    left: '69px',
-    top: '159px',
+  subcardHeading: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize:'15px',
+    },
   },
   dtpLine1: {
-    position: 'absolute',
-    left: '69px',
-    top: '197px',
+    marginTop: '7px',
     fontSize:'18px',
-  },
-  dtpLine2: {
-    position: 'absolute',
-    left: '69px',
-    top: '220px',
-    fontSize:'18px',
-  },
-  dtpLine3: {
-    position: 'absolute',
-    left: '69px',
-    top: '243px',
-    fontSize:'18px',
+    textAlign: 'justify',
+    marginRight: '0px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize:'16px',
+      textAlign: 'justify',
+    },
   },
   volButton: {
-    position: 'absolute',
-    color: 'white',
-    backgroundColor: '#0D99C6',
+    backgroundColor: theme.palette.spectrum.lightBlue,
     margin: '0 auto',
     padding: '0px 16px',
-    top: '288px',
-    left: '60px',
+    top: '18px',
   },
   shareCardHeading: {
-    color: '#004364',
-    position: 'absolute',
-    top: '94px',
+    color: theme.palette.secondary.dark,
     right: '300px',
     fontSize: '42px',
     lineHeight:'48px',
-  },
-  shareCardPHeading: {
-    color: '#0F1D2F',
-    position: 'absolute',
-    top: '159px',
-    right: '250px',
-  },
-  rightDtpLine1: {
-    position: 'absolute',
-    top: '197px',
-    right: '92px',
-    fontSize: '18px',
-  },
-  rightDtpLine2:{
-    position: 'absolute',
-    top: '220px',
-    right: '161px',
-    fontSize: '18px',
-  },
-  buttonRight: {
-    position: 'absolute',
-    color: 'white',
-    backgroundColor: '#0D99C6',
-    margin: '0 auto',
-    padding: '8px 11px',
-    top: '268px',
-    right: '307px',
-  },
-  footerTxt: {
-    position: 'absolute',
-    left: '69px',
-    top: '280px',
-  },
-  donateButton: {
-    position: 'absolute',
-    color: 'white',
-    backgroundColor: '#0D99C6',
-    margin: '0 auto',
-    padding: '8px 32px',
-    top: '330px',
-    left: '69px',
-  },
-  innerCardMobile: {
-    background: 'none',
-    maxWidth: 328,
-    padding: '0px',
-  },
-  innerTextCardContainerMobile: {
-    background: 'none',
-    margin: 'auto',
-    paddingTop: theme.spacing(4),
-  },
-  cardMediaMobile: {
-    height: 192,
-    width: '328px',
-  },
-  mobileImg: {
-    width: '328px',
-    height: '192px',
-  },
-  mobileCardHeading: {
-    color: '#004364',
-    position: 'absolute',
-    left: '16px',
-    top: '203px',
-    fontSize: '28px',
-    lineHeight: '38px',
+    marginTop: '61px',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '26px',
+      fontSize:'30px',
     },
   },
-  mobileParaHeading: {
-    color: '#0F1D2F',
-    marginTop: '50px',
-    textAlign: 'left',
-    marginLeft: '16px',
-    marginRight: '16px',
+  rightDtpLine1: {
+    fontSize: '18px',
+    marginTop: '7px',
+    textAlign: 'justify',
+    [theme.breakpoints.down('sm')]: {
+      fontSize:'16px',
+      marginRight: 0,
+    },
+    [theme.breakpoints.up('xl')]: {
+      marginRight: 0,
+    },
   },
-  mobileParaText: {
-    textAlign: 'left',
-    marginLeft: '16px',
-    marginRight: '0px',
-    size: '20px',
-    lineHeight: '21px',
-    marginTop: '5px',
-    marginBottom: '8px',
-  },
-  mobileCardActions: {
-    marginBottom: '20px',
-  },
-  mobileButton: {
-    color: 'white',
-    backgroundColor: '#0D99C6',
-    width: '225px',
+  buttonRight: {
+    backgroundColor: theme.palette.spectrum.lightBlue,
     margin: '0 auto',
-    padding: '16px',
+    padding: '8px 32px',
+    top: '21px',
+    [theme.breakpoints.down('sm')]: {
+      padding: '16px 0px',
+      width: '142px',
+      height: '42px',
+      fontSize: '15px',
+    },
   },
-  headerSection: {
-    paddingBottom: '40px',
+  donateButton: {
+    backgroundColor: theme.palette.spectrum.lightBlue,
+    margin: '0 auto',
+    padding: '8px 32px',
+    top: '21px',
+    [theme.breakpoints.down('sm')]: {
+      top: '14px',
+      padding: '16px 0px',
+      width: '142px',
+      height: '42px',
+      fontSize: '15px',
+    },
+  },
+  '@media screen and (max-width: 1366px) and (min-width: 1024px)': {
+    innerTextCardContainer: {
+      width: '348px',
+    },
+    imgCard: {
+      top: '466px',
+      left: '446px',
+    },
+    innerLeftTextCardContainer: {
+      marginTop: '0px',
+      marginLeft: '5410px',
+    },
+    rightDtpLine1:{
+      marginRight: '176px',
+      marginLeft: '7px',
+    },
+    imgCardVolunteer: {
+      top: '1366px',
+      left: '463px',
+    },
+    dtpLine1:{
+      marginRight: '12px',
+    },
+    imgHelpCardLeft:{
+      top: '1824px',
+      left: '20px',
+    },
+    innerHelpTextCardContainer: {
+      marginTop: '32px',
+      marginLeft: '558px',
+    },
   },
 }))
 export default useStyles
