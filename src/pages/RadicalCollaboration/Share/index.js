@@ -4,6 +4,7 @@ import MediaInfo from './MediaInfo.js';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -16,10 +17,12 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 const StarMediaSection = () => {
   const classes = useStyles();
 
-  const CardSection = ({ image, title, cardContent }) => {
+  const CardSection = ({ image, title, cardContent, link='' }) => {
     return (
       <Card className={classes.card}>
-        <CardMedia className={classes.media} image={image} title={title} />
+        <CardActionArea className={`${classes.link} ${classes.media}`} href={link} target="_blank">
+          <CardMedia className={classes.media} image={image} title={title} />
+        </CardActionArea>
         <CardContent>
           <Typography variant='h6' className={classes.cardTypo}>
             {cardContent}
@@ -61,6 +64,7 @@ const StarMediaSection = () => {
           image='/images/medium.png'
           title='Medium logo'
           cardContent='Mention or write about us on Medium'
+          link='https://medium.com/new-story'
         />
       </Grid>
       <Grid item sm={4}>

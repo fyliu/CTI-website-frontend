@@ -76,7 +76,7 @@ export const ProjectRepositoryInput = ({
   return (
     <>
       <Grid item style={{ padding: '16px 0px' }} xs={12}>
-        <Typography variant='body1'>Project Repository URL</Typography>
+        <Typography variant='body1'>GitHub Project Repository URL</Typography>
       </Grid>
       <Grid data-cy='grid-repository'>
         <TextField
@@ -102,7 +102,7 @@ export const ProjectRepositoryInput = ({
       >
         <Grid align='center'>
           <Button onClick={handleSubmit} id='projectButton'>
-            Find Project
+            Submit Your Project Repository
           </Button>
         </Grid>
       </Grid>

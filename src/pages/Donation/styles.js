@@ -15,13 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   infoDescription: {
-    color: '#004364',
-    fontFamily: 'Work Sans',
-    fontWeight: 'bold',
+    color: theme.palette.spectrum.teal,
     [theme.breakpoints.down('md')]: {
-      fontSize: '20px',
-    },
-    [theme.breakpoints.up('md')]: {
       fontSize: '24px',
     },
   },
@@ -31,35 +26,30 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       fontSize: '16px',
     },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '18px',
-    },
   },
 
   infoThank: {
     textAlign: 'left',
-    color: '#004364',
+    color: theme.palette.spectrum.teal,
     padding: '1vw 0',
     [theme.breakpoints.down('md')]: {
-      fontSize: '18px',
-    },
-    [theme.breakpoints.up('md')]: {
       fontSize: '20px',
     },
   },
 
   infoGif: {
-    boxShadow: '0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 0px 20px 0 rgba(0, 0, 0, 0.19)',
+    marginTop: '4vw',
     marginBottom: '6vw',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '84px',
+    },
     [theme.breakpoints.down('md')]: {
-      marginTop: 0,
-      width: '80vw',
-      height: '75vw',
+      width: '400px',
+      height: '400px',
     },
     [theme.breakpoints.up('md')]: {
-      marginTop: '4vw',
-      width: '458px',
-      height: '466px',
+      width: '500px',
+      height: '500px',
     },
   },
 }));

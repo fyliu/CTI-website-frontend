@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {
   GetStartedCard,
@@ -11,50 +10,44 @@ import {
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Grid from '@material-ui/core/Grid';
 
+const useStyles = makeStyles((theme) => ({
+  subHeaderStyle: {
+    fontWeight: '700',
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '20px',
+      padding: '48px 30px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '20px',
+      padding: '48px 100px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '24px',
+      padding: '48px 200px',
+    },
+  },
+  frameStyle: {
+    border: 'none',
+    overflow: 'hidden',
+    padding: '0',
+    width: '949px',
+    height: '629px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+  },
+}));
+
 const About = () => {
   const breadCrumbLinks = [
     { name: 'Home', href: '/home' },
     { name: 'About', href: '/about' },
   ];
 
-  const useStyles = makeStyles((theme) => ({
-    subHeaderStyle: {
-      fontWeight: '700',
-      textAlign: 'center',
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '20px',
-        padding: '48px 30px',
-      },
-      [theme.breakpoints.up('sm')]: {
-        fontSize: '20px',
-        padding: '48px 100px',
-      },
-      [theme.breakpoints.up('md')]: {
-        fontSize: '24px',
-        padding: '48px 200px',
-      },
-    },
-    videoStyle: {
-      height: 'auto',
-      [theme.breakpoints.up('lg')]: {
-        height: '440px',
-      },
-    },
-  }));
   const classes = useStyles();
-  const VideoSection = () => {
-    return (
-      <Grid container justify='center'>
-        <CardMedia
-          className={classes.videoStyle}
-          component='video'
-          image='/images/CTI V1.mp4'
-          title='Overview of CTI'
-          controls
-        />
-      </Grid>
-    );
-  };
+  const srcUrl =
+    'https://docs.google.com/presentation/d/e/2PACX-1vR7tcbGnftrvXyCPzQW9wIo4fstOf1YFhSbP_VP2E7XXKrk9qCdy7Qq5pYnrA0yudpmH2PS3R8s_oTM/embed?start=false&loop=false&delayms=3000';
 
   const pictureMarketingPoints = [
     {
@@ -83,7 +76,19 @@ const About = () => {
             mainTitle='A movement to index every open source civic tech project on GitHub'
             breadCrumbLinks={breadCrumbLinks}
           >
-            <VideoSection />
+            <Grid container justify='center'>
+              <iframe
+                className={classes.frameStyle}
+                justify='center'
+                title='Overview of CTI'
+                frameBorder='0'
+                src={srcUrl}
+                scrolling='no'
+                allowFullScreen='true'
+                mozallowfullscreen='true'
+                webkitallowfullscreen='true'
+              ></iframe>
+            </Grid>
             <Typography
               variant='h5'
               color='textSecondary'
@@ -102,7 +107,7 @@ const About = () => {
       />
       <GetStartedCard
         headerTitle='Ready to get started?'
-        buttonText='Tag your Project'
+        buttonText='Add Your Project'
         buttonHref='/join-index'
       />
     </Box>
