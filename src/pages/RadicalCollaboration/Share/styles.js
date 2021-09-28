@@ -106,6 +106,11 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.secondary.main,
     },
   },
+  link: {
+    '& .MuiCardActionArea-focusHighlight': {
+      backgroundColor: 'transparent',
+    },
+  },
 }));
 
 export default useStyles;
