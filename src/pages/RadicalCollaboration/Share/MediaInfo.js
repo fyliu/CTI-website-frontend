@@ -8,20 +8,24 @@ import Typography from '@material-ui/core/Typography';
 import Link from '../../../components/common/Link';
 
 const CtiLogoSection = () => {
-    const classes = useStyles();
+  const classes = useStyles();
+  const logoBWLink = '/images/OneColor_CTI_Logo.svg';
+  const logoColorLink = '/images/FullColor_CTI_Logo.svg';
   return (
     <Container className={classes.logoContainer}>
-        <img className={classes.logoBW} src='/images/OneColor_CTI_Logo.svg' alt='CTI logo' />
-        <img
+      <img className={classes.logoBW} src={logoBWLink} alt='CTI logo' />
+      <img
         className={classes.logoColor}
-          src='/images/FullColor_CTI_Logo.svg'
-          alt='CTI logo color'
-        />
+        src={logoColorLink}
+        alt='CTI logo color'
+      />
     </Container>
   );
 };
 
 const ButtonSection = () => {
+  const AssetsKitLink =
+    'https://drive.google.com/drive/folders/1EORoPWmALLXJCfHyDXJemYpO5HvnMzPN';
   return (
     <Grid
       container
@@ -29,10 +33,7 @@ const ButtonSection = () => {
       alignItems='center'
       style={{ marginTop: '40px' }}
     >
-      <Button
-        href='https://drive.google.com/drive/folders/1EORoPWmALLXJCfHyDXJemYpO5HvnMzPN'
-        target='blank'
-      >
+      <Button href={AssetsKitLink} target='blank'>
         Download the CTI Assets Kit
       </Button>
       <Typography variant='body1' style={{ marginTop: '18px' }}>
@@ -81,12 +82,13 @@ const MediaInfo = () => {
             <Typography variant='body1' style={{ paddingBottom: '15px' }}>
               • In articles or social media posts featuring Civic Tech Index
             </Typography>
-            <Typography variant='body1' style={{ paddingBottom: '40px' }} className={classes.contactLinkStyle}>
-              • For all other uses, please{' '}
-              <Link to='/contact'>
-                contact us
-              </Link>
-              {' '} for permission
+            <Typography
+              variant='body1'
+              style={{ paddingBottom: '40px' }}
+              className={classes.contactLinkStyle}
+            >
+              • For all other uses, please <Link to='/contact'>contact us</Link>{' '}
+              for permission
             </Typography>
           </Box>
         </Grid>

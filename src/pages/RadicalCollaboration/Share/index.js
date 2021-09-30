@@ -17,10 +17,14 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 const StarMediaSection = () => {
   const classes = useStyles();
 
-  const CardSection = ({ image, title, cardContent, link='' }) => {
+  const CardSection = ({ image, title, cardContent, link = '' }) => {
     return (
       <Card className={classes.card}>
-        <CardActionArea className={`${classes.link} ${classes.media}`} href={link} target="_blank">
+        <CardActionArea
+          className={`${classes.link} ${classes.media}`}
+          href={link}
+          target='_blank'
+        >
           <CardMedia className={classes.media} image={image} title={title} />
         </CardActionArea>
         <CardContent>

@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     boxSizing: 'border-box',
     boxShadow: '0px 6px 30px rgba(4, 45, 95, 0.08)',
-},
+  },
   tweetGrid: {
     paddingTop: '96px',
   },
