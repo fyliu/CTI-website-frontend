@@ -17,6 +17,7 @@
     "react-github-btn": "^1.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-twitter-embed": "^3.0.3",
     "sanitize-html": "^2.4.0",
     "use-clipboard-copy": "^0.2.0",
     "use-query-params": "^1.2.2",
