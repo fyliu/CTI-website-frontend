@@ -460,8 +460,8 @@ const TagCreator = () => {
             handleChange={handleChange}
             question={
               <>
-                  Are you affiliated with an{' '}
-                <Link to='/organizations/all'> organization</Link>?
+                Are you affiliated with an{' '}
+                <Link to='/organizations/all'>organization</Link>?
               </>
             }
           />
