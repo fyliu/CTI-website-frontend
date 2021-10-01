@@ -33,7 +33,7 @@ const ButtonSection = () => {
       alignItems='center'
       style={{ marginTop: '40px' }}
     >
-      <Button href={assetsKitUrl} target='blank'>
+      <Button href={assetsKitUrl} target='_blank'>
         Download the CTI Assets Kit
       </Button>
       <Typography variant='body1' style={{ marginTop: '18px' }}>
