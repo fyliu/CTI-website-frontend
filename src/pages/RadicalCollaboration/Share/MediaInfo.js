@@ -9,14 +9,14 @@ import Link from '../../../components/common/Link';
 
 const CtiLogoSection = () => {
   const classes = useStyles();
-  const logoBWLink = '/images/OneColor_CTI_Logo.svg';
-  const logoColorLink = '/images/FullColor_CTI_Logo.svg';
+  const logoBWUrl = '/images/OneColor_CTI_Logo.svg';
+  const logoColorUrl = '/images/FullColor_CTI_Logo.svg';
   return (
     <Container className={classes.logoContainer}>
-      <img className={classes.logoBW} src={logoBWLink} alt='CTI logo' />
+      <img className={classes.logoBW} src={logoBWUrl} alt='CTI logo' />
       <img
         className={classes.logoColor}
-        src={logoColorLink}
+        src={logoColorUrl}
         alt='CTI logo color'
       />
     </Container>
@@ -24,7 +24,7 @@ const CtiLogoSection = () => {
 };
 
 const ButtonSection = () => {
-  const AssetsKitLink =
+  const assetsKitUrl =
     'https://drive.google.com/drive/folders/1EORoPWmALLXJCfHyDXJemYpO5HvnMzPN';
   return (
     <Grid
@@ -33,7 +33,7 @@ const ButtonSection = () => {
       alignItems='center'
       style={{ marginTop: '40px' }}
     >
-      <Button href={AssetsKitLink} target='blank'>
+      <Button href={assetsKitUrl} target='blank'>
         Download the CTI Assets Kit
       </Button>
       <Typography variant='body1' style={{ marginTop: '18px' }}>
