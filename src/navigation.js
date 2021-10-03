@@ -58,7 +58,7 @@ const navigation = [
       {
         id: 'collaborate',
         header: 'Collaborate with Us',
-        route: '/support',
+        route: '/support/collaborate',
       },
       {
         id: 'donate',

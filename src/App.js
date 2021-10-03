@@ -5,6 +5,7 @@ import Layout from './components/common/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
 import About from './pages/About';
 import Contact from './pages/RadicalCollaboration/Contact';
+import Collaborate from './pages/RadicalCollaboration/Collaborate';
 import Contributors from './pages/Contributors';
 import Donation from './pages/Donation';
 import Faq from './pages/RadicalCollaboration/Faq';
@@ -12,7 +13,6 @@ import IndvOrgPage from './pages/IndvOrganization';
 import Home from './pages/Home';
 import HowToUse from './pages/HowToUse';
 import Landing from './pages/Landing';
-import RadicalCollaboration from './pages/RadicalCollaboration';
 import SearchProjects from './pages/SearchProjects';
 import TagCreator from './pages/TagCreator';
 import Error404 from './pages/Error404';
@@ -47,7 +47,7 @@ const App = () => {
             <RouteTitled exact path='/projects' component={SearchProjects} title='Search Projects' />
             <RouteTitled exact path='/join-index' component={TagCreator} title='Join the Index' />
             <RouteTitled exact path='/join-index/how-to-add' component={HowToUse} title='How to Add Your Project' />
-            <RouteTitled exact path='/support' component={RadicalCollaboration} title='Collaborate with Us' />
+            <RouteTitled exact path='/support/collaborate' component={Collaborate} title='Collaborate with Us' />
             <RouteTitled exact path='/support/donate' component={Donation} title='Donate' />
             <RouteTitled exact path='/support/share' component={ShareTheCti} title='Share the CTI' />
             <Route exact path='/organization/:name' component={IndvOrgPage} />
@@ -59,6 +59,7 @@ const App = () => {
             <Redirect from='/adding' to='/join-index/how-to-add' />
             <Redirect from='/adding-projects' to='/join-index/how-to-add' />
             <Redirect from='/contact' to='/about/contact' />
+            <Redirect from='/collaborate' to='/support/collaborate' />
             <Redirect from='/donate' to='/support/donate' />
             <Redirect from='/donation' to='/support/donate' />
             <Redirect from='/faq' to='/about/faq' />

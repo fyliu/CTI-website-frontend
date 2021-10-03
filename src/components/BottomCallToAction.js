@@ -45,7 +45,6 @@ const BottomCallToAction = ({
         direction='column'
         justify='center'
         alignItems='center'
-        spacing={4}
       >
         <Grid item>
           <Typography variant='h3' className={classes.typoHeading}>
