@@ -137,6 +137,7 @@ const TagCreator = () => {
   const [loadingTags, setLoadingTags] = useState(false);
   const [options, setOptions] = useState([]);
   const [repoChangeAlert, setRepoChangeAlert] = useState('');
+  const [displayTypo, setDisplayTypo] = useState(true);
   const breadCrumbLinks = [
     { href: '/home', name: 'Home' },
     { href: '/join-index', name: 'Add Your Project' },
@@ -386,6 +387,8 @@ const TagCreator = () => {
                 handleDelete={handleDelete}
                 repoChangeAlert={repoChangeAlert}
                 setRepoChangeAlert={setRepoChangeAlert}
+                displayTypo={displayTypo}
+                setDisplayTypo={setDisplayTypo}
               />
             </>
           )}
@@ -409,6 +412,7 @@ const TagCreator = () => {
             setUserTags={setUserTags}
             handleAdd={handleAdd}
             handleDelete={handleDelete}
+            displayTypo={displayTypo}
           />
         </>
       );
@@ -460,8 +464,8 @@ const TagCreator = () => {
             handleChange={handleChange}
             question={
               <>
-                  Are you affiliated with an{' '}
-                <Link to='/organizations/all'> organization</Link>?
+                Are you affiliated with an{' '}
+                <Link to='/organizations/all'>organization</Link>?
               </>
             }
           />
